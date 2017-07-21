@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use DB;
-
+use Carbon\Carbon;
 class Product extends Model
 {
     protected $table='products';
@@ -64,16 +64,27 @@ class Product extends Model
                     ->where('products.id','=',$id)
                     ->join('export_product','products.id','=','export_product.id_product')
                     ->select('export_product.id as idsize','products.id','products.id_type','products.view','products.name','products.image','products.description','export_product.size as size','export_product.export_price');
-                    
+                    // dd($product[0]->view);
+            
         return $product;
     }
     //Sản phẩm mới
     public static function New_Product()
     {
+      $day= Carbon::now()->subDays(5);
       $product=DB::table('products')
                         ->join('category','products.id_type','=','category.id')
+                        ->whereDate('products.created_at','>',$day)
                         ->select('category.type_cha','products.id','products.name','products.unit_price', 
                                  'products.image');
+      return $product;
+    }
+    //sản phẩm xem nhiều
+    public static function Best_View_Product()
+    {
+      $product=DB::table('products')
+                        ->where('view','>',10)
+                        ->select();
       return $product;
     }
 

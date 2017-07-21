@@ -1,39 +1,42 @@
 @extends('master')
 @section('content')
-<!-- /banner_bottom_agile_info -->
-<div class="page-head_agile_info_w3l" style="background-image: url(images/banner/slide_3.jpg);">
-	<div class="container">
-		@if($typepro==0)
-		@foreach($typeParent as $typeCha)
-		@if($typeCha->id==$id)
-		<h3>{{ $typeCha->name }}</h3>
-		<div class="services-breadcrumb">
-			<div class="agile_inner_breadcrumb">
-				<ul class="w3_short">
-					<li><a href="{{ route('home') }}">Trang chủ</a><i>|</i></li>
-					<li>{{ $typeCha->name }}</li>
-				</ul>
+@for($i=1;$i<count($banner);$i++)
+	@if($banner[$i]->position==4)
+		<div class="page-head_agile_info_w3l" style="background-image: url(images/banner/{{ $banner[$i]->hinh }});">
+			<div class="container">
+				@if($typepro==0)
+				@foreach($typeParent as $typeCha)
+				@if($typeCha->id==$id)
+				<h3>{{ $typeCha->name }}</h3>
+				<div class="services-breadcrumb">
+					<div class="agile_inner_breadcrumb">
+						<ul class="w3_short">
+							<li><a href="{{ route('home') }}">Trang chủ</a><i>|</i></li>
+							<li>{{ $typeCha->name }}</li>
+						</ul>
+					</div>
+				</div>
+				@endif
+				@endforeach
+				@else
+				@foreach($typeChild as $typeCon)
+				@if($typeCon->id==$id)
+				<h3>{{ $typeCon->name }}</h3>
+				<div class="services-breadcrumb">
+					<div class="agile_inner_breadcrumb">
+						<ul class="w3_short">
+							<li><a href="{{ route('home') }}">Trang chủ</a><i>|</i></li>
+							<li>{{ $typeCon->name }}</li>
+						</ul>
+					</div>
+				</div>
+				@endif
+				@endforeach
+				@endif
 			</div>
 		</div>
-		@endif
-		@endforeach
-		@else
-		@foreach($typeChild as $typeCon)
-		@if($typeCon->id==$id)
-		<h3>{{ $typeCon->name }}</h3>
-		<div class="services-breadcrumb">
-			<div class="agile_inner_breadcrumb">
-				<ul class="w3_short">
-					<li><a href="{{ route('home') }}">Trang chủ</a><i>|</i></li>
-					<li>{{ $typeCon->name }}</li>
-				</ul>
-			</div>
-		</div>
-		@endif
-		@endforeach
-		@endif
-	</div>
-</div>
+	@endif
+@endfor
 <input type="hidden" id="idLoai" value="{{ $id }}">  <!-- banner-bootom-w3-agileits -->
 <div class="banner-bootom-w3-agileits">
 	<div class="container">
@@ -62,9 +65,9 @@
 						@foreach($typeChild as $typeCon)
 						@if($typeCon->type_cha==$typeCha->id)
 						@if($typeCon->id==$id)
-						<li ><a style="color: red" href="{{ route('productByIdChild',$typeCon->id) }}">{{ $typeCon->name }}</a></li>
+						<li ><a style="color: red" href="{{ route('productByIdChild',[$typeCon->id,'type=rong']) }}">{{ $typeCon->name }}</a></li>
 						@else
-						<li><a href="{{ route('productByIdChild',$typeCon->id) }}">{{ $typeCon->name }}</a></li>
+						<li><a href="{{ route('productByIdChild',[$typeCon->id,'type=rong']) }}">{{ $typeCon->name }}</a></li>
 						@endif
 						@endif
 						@endforeach
@@ -95,9 +98,9 @@
 				<h6>Showing</h6>
 				<select id="country2" class="frm-field required sect">
 					
-					<option value="0">Nội Thất</option>
-					<option value="1">Ngoại thất</option>
-					<option value="2">Tất Cả</option>
+					<option id="0" value="0">Nội Thất</option>
+					<option id="1" value="1">Ngoại thất</option>
+					<option id="2" value="2">Tất Cả</option>
 				</select>
 				
 				<div class="clearfix"></div>
@@ -140,7 +143,7 @@
 			@foreach($Product as $proCha)
 			@foreach($proCha as $pro)
 			<div class="col-md-4 product-men">
-				<div class="men-pro-item simpleCart_shelfItem">
+				<div class="men-pro-item simpleCart_shelfItem" style="height: 360px">
 					<div class="men-thumb-item">
 						<img src=" images/products/{{$pro->image  }}" style="height: 200px" alt="" class="pro-image-front">
 						<img src="images/products/{{$pro->image  }}" style="height: 200px" alt="" class="pro-image-back">
@@ -181,7 +184,7 @@
 			@else
 			@foreach($Product as $pro)
 			<div class="col-md-4 product-men">
-				<div class="men-pro-item simpleCart_shelfItem">
+				<div class="men-pro-item simpleCart_shelfItem" style="height: 360px">
 					<div class="men-thumb-item">
 						<img src="images/products/{{$pro->image  }}" style="height: 200px" alt="" class="pro-image-front">
 						<img src="images/products/{{$pro->image  }}" style="height: 200px" alt="" class="pro-image-back">
@@ -235,12 +238,16 @@
 <script type="text/javascript">
 	$('#country2').change(function(){
 		var type=$(this).val();
-		alert(type);
+		// alert(type);
 		var id =$('#idLoai').val();
-		var route = "{{ route('Show_product',['id','type']) }}";
+		var route = "{{ route('Show_product',['id','type'=>'loai']) }}";
 		route=route.replace('id',id);
-		route=route.replace('type',type);
+		route=route.replace('loai',type);
 		window.location.replace(route);
 	});
+		var type = {{$_GET['type']}};	
+	$('#'+type).attr('selected','selected');
+	
+	
 </script>
 @endsection

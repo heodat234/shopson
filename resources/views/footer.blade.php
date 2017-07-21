@@ -149,7 +149,7 @@
 
 		<div class="clearfix"></div>
 	</div>
-		<p class="copy-right">&copy 2017 Elite shoppy. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
+		<p class="copy-right">Design by <a href="http://w3layouts.com/">Thanh Hưng</a></p>
 	</div>
 </div>
 <!-- //footer -->

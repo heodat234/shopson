@@ -16,7 +16,7 @@
 						@foreach($product as $pro)
 							@if($pro->type_cha==$i)
 								<div class="col-md-3 product-men">
-									<div class="men-pro-item simpleCart_shelfItem">
+									<div class="men-pro-item simpleCart_shelfItem" style="height: 360px">
 										<div class="men-thumb-item">
 											<img src="images/products/{{ $pro->image }}" style="height: 200px" alt="" class="pro-image-front">
 											<img src="images/products/{{ $pro->image }}" style="height: 200px" alt="" class="pro-image-back">
@@ -66,12 +66,16 @@
 </div>
 <!-- //new_arrivals -->
 <!-- /we-offer -->
-<div class="sale-w3ls" style="background-image: url('images/banner/slide_2.jpg');">
-	<div class="container">
-		<h6>We Offer Flat <span>40%</span> Discount</h6>
-		
-		<a class="hvr-outline-out button2" href="single.html">Shop Now </a>
-	</div>
-</div>
+@for($i=1;$i<count($banner);$i++)
+	@if($banner[$i]->position==3)
+		<div class="sale-w3ls" style="background-image: url('images/banner/{{ $banner[$i]->hinh }}');">
+			<div class="container">
+				<h6>We Offer Flat <span>40%</span> Discount</h6>
+				
+				<a class="hvr-outline-out button2" href="single.html">Shop Now </a>
+			</div>
+		</div>
+	@endif
+@endfor
 <!-- //we-offer -->
 <!--/grids

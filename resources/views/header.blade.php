@@ -1,15 +1,27 @@
 <div class="header" id="home">
 	<div class="container">
 		<ul>
-			<li> <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Đăng Nhập </a></li>
-			<li> <a href="#" data-toggle="modal" data-target="#myModal2"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Đăng Ký </a></li>
+			@if(Auth::check())
+                <li><a href="{{-- {{route('myPage')}} --}}"><i class="fa fa-user"></i>Chào bạn {{Auth::User()->full_name}}</a></li>
+                <li><a href="{{route('logout')}}"><i class="fa fa-sign-out"></i>Đăng xuất</a></li>
+            @else
+                <li> <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Đăng Nhập </a></li>
+				<li> <a href="#" data-toggle="modal" data-target="#myModal2"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Đăng Ký </a></li>
+            @endif
+			
 			<li><i class="fa fa-phone" aria-hidden="true"></i> Call : 0903950907</li>
-			<li><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:info@example.com">heodat234@gmail.com</a></li>
+			<li><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:heodat234@gmail.com">heodat234@gmail.com</a></li>
 		</ul>
 	</div>
 </div>
 <!-- //header -->
 <!-- header-bot -->
+@if(Session::has('thatbai'))
+	<div class="alert alert-danger">{{Session::get('thatbai')}}</div>
+@endif
+	@if(Session::has('thanhcong'))
+	<div class="alert alert-success">{{Session::get('thanhcong')}}</div>
+	@endif
 <div class="header-bot">
 	<div class="header-bot_inner_wthreeinfo_header_mid">
 		<div class="col-md-4 header-middle">
@@ -76,11 +88,11 @@
 														</div> --}}
 														@foreach($typeParent as $typeCha)
 														<div class="col-sm-3">
-															<a href="{{ route('productByIdParent',$typeCha->id) }}"><h4>{{ $typeCha->name }}</h4></a>
+															<a href="{{ route('productByIdParent',[$typeCha->id,'type=rong']) }}"><h4>{{ $typeCha->name }}</h4></a>
 															<ul class="multi-column-dropdown">
 																@foreach($typeChild as $typeCon)
 																@if($typeCon->type_cha==$typeCha->id)
-																<li class="fa fa-long-arrow-right" aria-hidden="true"><a href="{{ route('productByIdChild',$typeCon->id) }}"> {{ $typeCon->name }}</a></li>
+																<li class="fa fa-long-arrow-right" aria-hidden="true"><a href="{{ route('productByIdChild',[$typeCon->id,'type=rong']) }}"> {{ $typeCon->name }}</a></li>
 																@endif
 																@endforeach
 															</ul>

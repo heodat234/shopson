@@ -1,7 +1,7 @@
 
 <html>
 <head>
-<title>Elite Shoppy an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+<title>ViLa paint | Luôn tạo sự khác biệt</title>
 <!--/tags -->
 <base href="{{ asset('') }}">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,6 +22,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<link rel="stylesheet" href="css/pick-a-color-1.2.3.min.css">
+
 </head>
 
 <body>
@@ -92,6 +94,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 				</div>
 			</div>
+{{-- hien ban màu --}}
+<script src=" //ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js "></script>
+<script src = " js/tinycolor-0.9.15.min.js "></script>
+<script  src = " js/pick-a-color-1.2.3.min.js " ></script>
+<script type="text/javascript">
+    $(".pick-a-color").pickAColor({             
+		showSpectrum: true, 
+	    showSavedColors:true,   
+	    saveColorsPerElement:true,  
+	    fadeMenuToggle:true,    
+	    showAdvanced:true,  
+	    showBasicColors: true,  
+	    showHexInput:true,  
+	    allowBlank:true,inlineDropdown:true 
+    }); 
+    </script>
 <!-- //login -->
 <a href="#home" class="scroll" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 
@@ -195,5 +213,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!-- for bootstrap working -->
 <script type="text/javascript" src="js/bootstrap.js"></script>
+{{-- facebook --}}
+
 </body>
 </html>

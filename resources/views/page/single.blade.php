@@ -1,21 +1,24 @@
 @extends('master')
 @section('content')
-<div class="page-head_agile_info_w3l" style="background-image: url(images/banner/slide_3.jpg);">
-	<div class="container">
-		<h3>Chi tiết <span>Sản phẩm </span></h3>
-		<!--/w3_short-->
-		<div class="services-breadcrumb">
-			<div class="agile_inner_breadcrumb">
-				<ul class="w3_short">
-					<li><a href="{{ route('home') }}">Trang chủ</a><i>|</i></li>
-					<li>Chi tiết sản phẩm</li>
-				</ul>
+@for($i=1;$i<count($banner);$i++)
+	@if($banner[$i]->position==4)
+		<div class="page-head_agile_info_w3l" style="background-image: url(images/banner/{{ $banner[$i]->hinh }});">
+			<div class="container">
+				<h3>Chi tiết <span>Sản phẩm </span></h3>
+				<!--/w3_short-->
+				<div class="services-breadcrumb">
+					<div class="agile_inner_breadcrumb">
+						<ul class="w3_short">
+							<li><a href="{{ route('home') }}">Trang chủ</a><i>|</i></li>
+							<li>Chi tiết sản phẩm</li>
+						</ul>
+					</div>
+				</div>
+				<!--//w3_short-->
 			</div>
 		</div>
-		<!--//w3_short-->
-	</div>
-</div>
-<!-- banner-bootom-w3-agileits -->
+	@endif
+@endfor
 <div class="banner-bootom-w3-agileits">
 	<div class="container">
 		<div class="col-md-4 single-right-left ">
@@ -61,47 +64,61 @@
 			<div class="description">
 				{{ $product[0]->description }}
 			</div>
+			<form action="#" method="post">
 			<div class="color-quality">
 				<div class="color-quality-right">
-					<h5>Số lượng:<input type="text" id="quantity" value="1" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '1';}" required=""> Thùng </h5>
+					<h5>Số lượng:</h5>
+					<button  type="button" id="minus" style="margin-left: 3%;"><i class="fa fa-minus" aria-hidden="true"></i></button>
+					<input type="text" name="quantity" id="quantity"  value="1" pattern="[0-9]{1,4}" required title=" nhâp 1 to 4 chữ số">
+					<button   type="button" id="plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
+					 
 				</div>
-
-				
+				<br>
+				<div class="col-sm-4">
+			  		<h4>Màu sơn: </h4> <input value="222" name="item_number" class="pick-a-color form-control" type="text">
+			  </div>
+			  <div class="clearfix"> </div>
 			</div>
-			<div class="container1"> 
-			 <div class="row"> 
-			  <div><input value="222" name="border-color" class="pick-a-color form-control" type="text"> 
-			  </div> 
-			 </div>
-			</div>
+			
 			<div class="occasional">
 				<h5>Loại :</h5>
 				@foreach($product as $pro)
 				<div class="colr ert">
-					<label class="radio"><input type="radio" name="radio" checked=""><i></i>{{ $pro->size }}</label>
+					<label class="radio"><input type="radio" name="amount" size="{{ $pro->size }}" value="{{ $pro->export_price }}"><i></i>{{ $pro->size }}</label>
 				</div>
-				@endforeach
+				@endforeach	
+				
 				<div class="clearfix"> </div>
 			</div>
+			{{-- <input type="hidden" name="item_number" id="item_number" value="">
+			<script>
+					// $('input:radio[name=amount]')[0].checked = true;
+					var loai = $('[name="amount"]:radio:checked').attr('size');
+					$('#item_number').val(loai);
+					//alert(loai);
+				</script> --}}
 			<div class="occasion-cart">
 				<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-					<form action="#" method="post">
+					
 						<fieldset>
 							<input type="hidden" name="cmd" value="_cart">
 							<input type="hidden" name="add" value="1">
-							<input type="hidden" name="business" value=" ">
-							<input type="hidden" name="item_name" value="Wing Sneakers">
-							<input type="hidden" name="amount" value="650.00">
-							<input type="hidden" name="discount_amount" value="1.00">
-							<input type="hidden" name="currency_code" value="USD">
+							<input type="hidden" name="item_number" id="item_number" value="">
+							<input type="hidden" name="business" value="">
+							<input type="hidden" name="item_name" value="{{ $product[0]->name }}">
+							
+							{{-- <input type="hidden" name="amount" value="{{ $product[0]->export_price }}">
+							{{-- <input type="hidden" name="discount_amount" value=""> --}}
+							{{-- <input type="hidden" name="currency_code" value="USD"> --}}
 							<input type="hidden" name="return" value=" ">
 							<input type="hidden" name="cancel_return" value=" ">
 							<input type="submit" name="submit" value="Thêm vào giỏ hàng" class="button">
 						</fieldset>
-					</form>
+					
 				</div>
-				
 			</div>
+
+			</form>
 			<ul class="social-nav model-3d-0 footer-social w3_agile_social single_page_w3ls">
 				<li class="share">Chia sẻ: </li>
 				<li><a href="#" class="facebook">
@@ -347,5 +364,24 @@
 					</div>
 				</div>
 				<!--//single_page-->
-				
+				<script type="text/javascript">
+					$('#minus').click(function()
+					{
+						var quantity=parseInt($("#quantity").val())-1;
+						if(quantity<=1)
+							$("#quantity").val(1);
+						else
+							$("#quantity").val(quantity);
+
+					});
+					$('#plus').click(function()
+					{
+						var quantity=parseInt($("#quantity").val())+1;
+
+							$("#quantity").val(quantity);
+
+					});
+		
+	</script>
+				</script>
 				@endsection

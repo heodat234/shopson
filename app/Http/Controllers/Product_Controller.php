@@ -26,8 +26,9 @@ class Product_Controller extends Controller
    	return view('page.product',compact('Product','typepro','id'));
    }
    //lấy tất cả sản phẩm theo loại nội thất, ngoại thất
-   public function Show_Product_By_Type($id,$type)
+   public function Show_Product_By_Type($id, Request $req)
    {
+      $type= $req->type;
    	$typepro="";
    	$type_cha= DB::table('category')->where('id',$id)->select('type_cha')->get();
    	if ($type_cha[0]->type_cha==0) {
@@ -49,6 +50,8 @@ class Product_Controller extends Controller
    public function single_Product($id)
    {
    	$product =Product::Find_Product_By_Id($id)->get();
+      $view1=$product[0]->view +1;
+      $view =DB::table('products')->where('products.id','=',$id)->update(['view'=>$view1]);    
    	return view('page.single',compact('product'));
    }
 	

@@ -7,15 +7,22 @@
 					</div>
 						<div class="modal-body modal-body-sub_agile">
 						<div class="col-md-8 modal_body_left modal_body_left1">
+						@if(Session::has('thongbao'))
+						<div class="alert alert-success">{{Session::get('thongbao')}}</div>
+						@endif
+						@if(Session::has('thanhcong'))
+						<div class="alert alert-success">{{Session::get('thanhcong')}}</div>
+						@endif
 						<h3 class="agileinfo_sign">Đăng Ký <span>Ngay</span></h3>
-						 <form action="#" method="post">
+						 <form action="{{route('register')}}" method="post">
+						 	<input type="hidden" name="_token" value="{{csrf_token()}}">
 							<div class="styled-input agile-styled-input-top">
-								<input type="text" name="Name" required="">
+								<input type="text" name="full_name" required="">
 								<label>Name</label>
 								<span></span>
 							</div>
 							<div class="styled-input">
-								<input type="email" name="Email" required=""> 
+								<input type="email" name="email" required=""> 
 								<label>Email</label>
 								<span></span>
 							</div> 
@@ -25,8 +32,18 @@
 								<span></span>
 							</div> 
 							<div class="styled-input">
-								<input type="password" name="Confirm Password" required=""> 
+								<input type="password" name="re_password" required=""> 
 								<label>Confirm Password</label>
+								<span></span>
+							</div>
+							<div class="styled-input">
+								<input type="text" name="phone" required=""> 
+								<label>Phone</label>
+								<span></span>
+							</div>
+							<div class="styled-input">
+								<input type="text" name="address" required=""> 
+								<label>Address</label>
 								<span></span>
 							</div> 
 							<input type="submit" value="Đăng Ký">
@@ -35,15 +52,9 @@
 															<li><a href="#" class="facebook">
 																  <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
 																  <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a></li>
-															<li><a href="#" class="twitter"> 
-																  <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
-																  <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div></a></li>
-															<li><a href="#" class="instagram">
-																  <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
-																  <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a></li>
-															<li><a href="#" class="pinterest">
-																  <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
-																  <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div></a></li>
+															<li><a href="#" class="google"> 
+																  <div class="front"><i class="fa fa-google" aria-hidden="true"></i></div>
+																  <div class="back"><i class="fa fa-google" aria-hidden="true"></i></div></a></li>
 														</ul>
 														<div class="clearfix"></div>
 														<p><a href="#">Bằng cách nhấp vào đăng ký, tôi đồng ý với các điều khoản của bạn</a></p>
