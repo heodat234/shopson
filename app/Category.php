@@ -28,6 +28,13 @@ class Category extends Model
 	// 	$type_pro=DB::table('category')->where('id',$id)->delete();
 	// }
 
+
+
+	//lấy tất cả loại sản phẩm
+    public static function Show_Type_product(){
+		$Type_product=DB::table('category')->select('id','name');
+		return $Type_product;
+	}	
 	//lấy loại sản phẩm cha
 	public static function TypeParent_product(){
 		$Type_parent=DB::table('category')->where('type_cha','=','0')->select();

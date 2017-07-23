@@ -33,6 +33,10 @@ class AppServiceProvider extends ServiceProvider
               // dd($banner);
               $view->with('banner',$banner);
           });
+        view()->composer('admin.Product_Admin',function($view){
+                $type_product=Category::Show_Type_product()->get();
+                $view->with('type_product',$type_product);
+        });
     }
 
     /**

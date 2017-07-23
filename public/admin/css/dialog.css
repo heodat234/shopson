@@ -1,0 +1,68 @@
+/*phần tử phủ toàn màn hình*/
+#over {
+    display: none;
+    background: #000;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    z-index: 999;
+}
+a, a:visited, a:active{
+    text-decoration:none;
+}
+/* lớp form - cửa sổ đăng nhập*/
+.form
+{
+    background-color: #ffffff;
+    height:auto;
+    width:700px;
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size:14px;
+    padding-bottom:10px;
+    display:none;
+    overflow:hidden;
+    position:absolute;
+    z-index:99999;/*đặt z-index để nó nổi bật và chồng lên phần tử khác trong trang*/
+    top:10%;
+    left:50%;
+    margin-left:-400px;
+}
+    
+.form .form_title
+{
+    color:#464646;
+    font-size:25px;
+    padding:8px 0 5px 8px;
+    text-align:center;
+    background-color: #ff7f00;
+}
+
+  
+.img-close {
+    float: right;
+    margin-top:-50px;
+    margin-right:5px;
+    size: 40px;
+} 
+
+.form .row:hover {
+  background: #f1f7fa;
+}
+ 
+.form label {
+    margin-left: 20px;
+  color: #464646;
+}
+.form input {
+    width: 550px;
+}
+.form select{
+    width: 550px;
+}
+th {
+  background-color: #ff7f00;
+}
+  

@@ -5,8 +5,8 @@
                 <li><a href="{{-- {{route('myPage')}} --}}"><i class="fa fa-user"></i>Chào bạn {{Auth::User()->full_name}}</a></li>
                 <li><a href="{{route('logout')}}"><i class="fa fa-sign-out"></i>Đăng xuất</a></li>
             @else
-                <li> <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Đăng Nhập </a></li>
-				<li> <a href="#" data-toggle="modal" data-target="#myModal2"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Đăng Ký </a></li>
+                <li id="dangnhap"> <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Đăng Nhập </a></li>
+				<li id="dangky"> <a href="#" data-toggle="modal" data-target="#myModal2"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Đăng Ký </a></li>
             @endif
 			
 			<li><i class="fa fa-phone" aria-hidden="true"></i> Call : 0903950907</li>
@@ -19,9 +19,10 @@
 @if(Session::has('thatbai'))
 	<div class="alert alert-danger">{{Session::get('thatbai')}}</div>
 @endif
-	@if(Session::has('thanhcong'))
+@if(Session::has('thanhcong'))
 	<div class="alert alert-success">{{Session::get('thanhcong')}}</div>
-	@endif
+@endif
+<div class="alert alert-success register" style="display: none;"></div>
 <div class="header-bot">
 	<div class="header-bot_inner_wthreeinfo_header_mid">
 		<div class="col-md-4 header-middle">
@@ -39,21 +40,15 @@
 		</div>
 		<!-- header-bot -->
 		<div class="col-md-4 agileits-social top_content">
-			<ul class="social-nav model-3d-0 footer-social w3_agile_social">
-				<li class="share">Share On : </li>
-				<li><a href="#" class="facebook">
-					<div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
-					<div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a></li>
-					<li><a href="#" class="twitter">
-						<div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
-						<div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div></a></li>
-						<li><a href="#" class="instagram">
-							<div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
-							<div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a></li>
-							<li><a href="#" class="pinterest">
-								<div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
-								<div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div></a></li>
-							</ul>
+			<div class="footer-icons">
+					<ul>
+						<li>Chia sẻ: </li>
+						<li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
+						<li><a href="#" class="twitter facebook"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="#" class="twitter chrome"><i class="fa fa-google-plus"></i></a></li>
+						<li><a href="#" class="twitter dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+					</ul>
+				</div>
 						</div>
 						<div class="clearfix"></div>
 					</div>

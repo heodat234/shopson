@@ -41,4 +41,10 @@ return [
     'client_secret' => 'faae7ed76880a43a9c93b8437c31e606',
     'redirect' => 'http://localhost/webson/public/login/facebook/callback',
     ],
+
+    'google' => [
+        'client_id' => '827085715012-sdp6lahabgc5jvdhvnki0q7dfirbfpbf.apps.googleusercontent.com',
+        'client_secret' => '_lvVD72Vwdrh4R_yX0p-O2hl',
+        'redirect' => 'http://localhost/webson/public/login/google/callback',
+    ],
 ];

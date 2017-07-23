@@ -94,6 +94,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 				</div>
 			</div>
+
+{{-- comment facebook --}}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.10&appId=1699172937053559";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+<script type="text/javascript">
+	$('.alert').hide(2000);
+</script>
 {{-- hien ban màu --}}
 <script src=" //ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js "></script>
 <script src = " js/tinycolor-0.9.15.min.js "></script>

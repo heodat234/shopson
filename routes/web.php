@@ -23,9 +23,9 @@ Route::get('contact',
 Route::get('about',
 	['as'=>'about',
 	 'uses'=>'Home_Controller@getAbout']);
-// Route::get('/demo', function () {
-//     return view('page.demo');
-// });
+Route::get('/demo', function () {
+    return view('admin.demo_Admin');
+});
 
 //login, register
 Route::post('login',[
@@ -46,6 +46,10 @@ Route::get('login/{provider}/callback', [
 	'as'=>'provider_login_callback',
 	'uses'=>'LoginRegister_Controller@handleProviderCallback'
 ]);
+Route::get('activeUser', [
+	'as'=>'activeUser',
+	'uses'=>'LoginRegister_Controller@activeUser'
+]);
 
 //menu
 Route::get('productByIdParent/{id}',
@@ -63,4 +67,23 @@ Route::get('Show_product/{id}',
 Route::get('singleProduct/{id}',
 	['as'=>'singleProduct',
 	 'uses'=>'Product_Controller@single_Product']);
+
+
+
+
+//Admin
+
+//Product
+Route::get('ViewProduct_Admin',
+	['as'=>'ViewProductAdmin',
+	'uses'=>'Admin_Controller@Select_Product']);
+Route::post('Edit_Product',
+	['as'=>'Edit_Product',
+	 'uses'=>'Admin_Controller@Edit_Product']);
+Route::post('Insert_Product',
+	['as'=>'Insert_Product',
+	 'uses'=>'Admin_Controller@Insert_Product']);
+Route::get('Delete_Product',
+	['as'=>'Delete_Product',
+	 'uses'=>'Admin_Controller@Delete_Product']);
 

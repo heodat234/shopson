@@ -188,6 +188,48 @@ a.pinterest .front {
 }
 /*--social icons--*/
 /* Brand Colours */
+.footer-icons{
+    margin: 1.5em 0;
+    text-align: center;
+}
+.footer-icons ul{
+    padding:0;
+    margin:0;
+}
+.footer-icons ul li {
+    display: inline-block;
+    margin: 0 .5em;
+}
+.footer-icons  ul li a.twitter {
+    width: 40px;
+    height: 40px;
+    display: block;
+    margin: 0 auto;
+    padding: .6em 0 0 0;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+i.fa.fa-twitter,i.fa.fa-facebook,i.fa.fa-google-plus,i.fa.fa-dribbble{
+    color: #FFF;
+    font-size: 1em; 
+}
+.footer-icons  ul li a.twitter{
+    background:#55acee;
+}
+.footer-icons  ul li a.facebook{
+    background:#3b5998;
+}
+.footer-icons  ul li a.chrome{
+    background:#dc4e41;
+}
+.footer-icons  ul li a.twitter:hover{
+    background: #000000;
+}
+
+
 .facebook{
     background: #3b5998;
 }
@@ -195,7 +237,7 @@ a.pinterest .front {
     background: #00acee;
 }
 .google-plus{
-	background:#dd4b39;
+	background:#dc4e41;
 }
 .rss{
 	background:#f26522;
