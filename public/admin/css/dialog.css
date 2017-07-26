@@ -24,7 +24,7 @@ a, a:visited, a:active{
     padding-bottom:10px;
     display:none;
     overflow:hidden;
-    position:absolute;
+    position:fixed;
     z-index:99999;/*đặt z-index để nó nổi bật và chồng lên phần tử khác trong trang*/
     top:10%;
     left:50%;
@@ -43,7 +43,7 @@ a, a:visited, a:active{
   
 .img-close {
     float: right;
-    margin-top:-50px;
+    margin-top:-30px;
     margin-right:5px;
     size: 40px;
 } 

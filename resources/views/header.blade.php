@@ -15,7 +15,7 @@
 	</div>
 </div>
 <!-- //header -->
-<!-- header-bot -->
+<!-- header-bot --> 
 @if(Session::has('thatbai'))
 	<div class="alert alert-danger">{{Session::get('thatbai')}}</div>
 @endif

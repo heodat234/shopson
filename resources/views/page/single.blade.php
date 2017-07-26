@@ -85,6 +85,7 @@
 				@foreach($product as $pro)
 				<div class="colr ert">
 					<label class="radio"><input type="radio" name="amount" size="{{ $pro->size }}" value="{{ $pro->export_price }}"><i></i>{{ $pro->size }}</label>
+					<input type="hidden" name="amount" value="{{ $pro->export_price }}">
 				</div>
 				@endforeach	
 				
@@ -107,9 +108,9 @@
 							<input type="hidden" name="business" value="">
 							<input type="hidden" name="item_name" value="{{ $product[0]->name }}">
 							
-							{{-- <input type="hidden" name="amount" value="{{ $product[0]->export_price }}">
+							
 							{{-- <input type="hidden" name="discount_amount" value=""> --}}
-							{{-- <input type="hidden" name="currency_code" value="USD"> --}}
+							<input type="hidden" name="currency_code" value="VND">
 							<input type="hidden" name="return" value=" ">
 							<input type="hidden" name="cancel_return" value=" ">
 							<input type="submit" name="submit" value="Thêm vào giỏ hàng" class="button">

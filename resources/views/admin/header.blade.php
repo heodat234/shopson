@@ -158,19 +158,17 @@
 			</div>
 			<div class="profile_details">
 				<ul>
+					@if(Auth::check())
 					<li class="dropdown profile_details_drop">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-							<div class="profile_img">
-								<span class="prfil-img"><i class="fa fa-user" aria-hidden="true"></i></span>
-								<div class="clearfix"></div>
-							</div>
+							Chào {{Auth::User()->full_name}}
 						</a>
 						<ul class="dropdown-menu drp-mnu">
-							<li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li>
 							<li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li>
-							<li> <a href="#"><i class="fa fa-sign-out"></i> Logout</a> </li>
+							<li> <a href="{{route('logout')}}"><i class="fa fa-sign-out"></i> Logout</a> </li>
 						</ul>
 					</li>
+					@endif
 				</ul>
 			</div>
 			<div class="clearfix"> </div>

@@ -1,5 +1,6 @@
 
-
+ @if(Auth::check())
+    @if(Auth::User()->group>=1)
 <!DOCTYPE html>
 <head>
 <title>Colored  an Admin Panel Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
@@ -21,11 +22,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- font-awesome icons -->
 <link rel="stylesheet" href="admin/css/font.css" type="text/css"/>
 <link href="admin/css/font-awesome.css" rel="stylesheet"> 
+ <link rel="stylesheet" href="admin/ssi-modal/styles/ssi-modal.css"/> 
 <!-- //font-awesome icons -->
 <script src="admin/js/jquery2.0.3.min.js"></script>
 <script src="admin/js/modernizr.js"></script>
 <script src="admin/js/jquery.cookie.js"></script>
 <script src="admin/js/screenfull.js"></script>
+{{-- ssi-modal --}}
+<script src="admin/ssi-modal/js/ssi-modal.min.js"></script>
 		<script>
 		$(function () {
 			$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
@@ -77,3 +81,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 </body>
 </html>
+	@else
+         <script type="text/javascript">
+        window.location.href = "{{route('Login_Admin')}}";
+        </script>
+    @endif
+
+@else
+         {{--  @if(Auth::User()->group=1) --}}
+    <script type="text/javascript">
+        window.location.href = "{{route('Login_Admin')}}";
+    </script>
+{{--     @endif --}}
+@endif

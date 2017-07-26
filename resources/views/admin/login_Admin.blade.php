@@ -22,40 +22,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body class="signup-body">
 		<div class="agile-signup">	
-			
+			@if(Session::has('thanhcong'))
+		            <div class="alert alert-success" align="center">{{Session::get('thanhcong')}}</div>
+		        @endif 
 			<div class="content2">
 				<div class="grids-heading gallery-heading signup-heading">
-					<h2>Login</h2>
+					<h2>Đăng Nhập Admin</h2>
 				</div>
-				<form action="." method="post">
-					<input type="text" name="Username" value="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}">
-					<input type="password" name="Password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
-					<input type="submit" class="register" value="Login">
+				@if(Session::has('thatbai'))
+		            <div class="alert alert-danger">{{Session::get('thatbai')}}</div>
+		        @endif  
+				<form action="{{route('PostLogin_Admin')}}" method="post">
+					<input type="hidden" name="_token" value="{{csrf_token()}}">
+					<input type="email" name="email" placeholder="abc@gmail.com" required autofocus>
+					<input type="password" name="password" placeholder="password" required autofocus>
+					<input type="submit" class="register" value="Đăng nhập">
 				</form>
 				<div class="signin-text">
 					<div class="text-left">
-						<p><a href="#"> Forgot Password? </a></p>
+						<p><a href="{{ route('ForgetPassword') }}"> Quên mật khẩu? </a></p>
 					</div>
-					<div class="text-right">
-						<p><a href="signup.html"> Create New Account</a></p>
-					</div>
+					
 					<div class="clearfix"> </div>
 				</div>
-				<h5>- OR -</h5>
-				<div class="footer-icons">
-					<ul>
-						<li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
-						<li><a href="#" class="twitter facebook"><i class="fa fa-facebook"></i></a></li>
-						<li><a href="#" class="twitter chrome"><i class="fa fa-google-plus"></i></a></li>
-						<li><a href="#" class="twitter dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-					</ul>
-				</div>
-				<a href="index.html">Back To Home</a>
+				
+				<a href="{{ route('home') }}">Về Trang chủ</a>
 			</div>
 			
 			<!-- footer -->
 			<div class="copyright">
-				<p>© 2016 Colored . All Rights Reserved . Design by <a href="http://w3layouts.com/">W3layouts</a></p>
+				<p> Design by <a href="http://w3layouts.com/">Thanh Hưng</a></p>
 			</div>
 			<!-- //footer -->
 			

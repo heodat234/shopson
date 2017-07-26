@@ -51,6 +51,27 @@ Route::get('activeUser', [
 	'uses'=>'LoginRegister_Controller@activeUser'
 ]);
 
+
+
+
+//login Admin
+Route::get('Login_Admin',
+	['as'=>'Login_Admin',
+	'uses'=>'Admin_Controller@Login_Admin']);
+Route::post('PostLogin_Admin',
+	['as'=>'PostLogin_Admin',
+	'uses'=>'Admin_Controller@PostLogin_Admin']);
+Route::get('ForgetPassword',[
+	'as'=>'ForgetPassword',
+	'uses'=>'Admin_Controller@ForgetPassword']);
+Route::post('ForgetPassword_Admin',
+	['as'=>'ForgetPassword_Admin',
+	'uses'=>'Admin_Controller@PostForgetPassword']);
+//vào trang admin
+Route::get('ViewContent_Admin',
+	['as'=>'ViewContentAdmin',
+	'uses'=>'Admin_Controller@ViewContent_Admin']);
+
 //menu
 Route::get('productByIdParent/{id}',
 	['as'=>'productByIdParent',
@@ -86,4 +107,24 @@ Route::post('Insert_Product',
 Route::get('Delete_Product',
 	['as'=>'Delete_Product',
 	 'uses'=>'Admin_Controller@Delete_Product']);
+
+//customer
+Route::get('ViewCustomer',
+	['as'=>'ViewCustomer',
+	 'uses'=>'Admin_Controller@ViewAllCustomer']);
+
+
+//user admin
+Route::get('user_Admin',
+	['as'=>'user_Admin',
+	 'uses'=>'Admin_Controller@Select_User']);
+Route::post('Edit_User',
+	['as'=>'Edit_User',
+	 'uses'=>'Admin_Controller@Edit_User']);
+Route::post('Insert_User',
+	['as'=>'Insert_User',
+	 'uses'=>'Admin_Controller@Insert_User']);
+Route::get('Delete_User',
+	['as'=>'Delete_User',
+	 'uses'=>'Admin_Controller@Delete_User']);
 

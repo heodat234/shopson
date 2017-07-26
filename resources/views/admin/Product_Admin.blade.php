@@ -145,11 +145,11 @@
                                         </div>
                                         
                                     </form>
-                                    <script type="text/javascript">
+                                    {{-- <script type="text/javascript">
                                          $(document).ready(function(){
                                             $('#'+{{ $pro->type_name }}).attr('selected','selected');
                                          };
-                                    </script>
+                                    </script> --}}
                                     
                                 </div>
                                 {{-- End Edit --}}
@@ -394,7 +394,7 @@
         //         $('#'+$product[i]['type_name']).attr('selected','selected');
         //     }
         // }
-        // }
+         }
         var formBox = $('#editRowPro'+id);
         $(formBox).fadeIn("slow");
         // thêm phần tử id="over" vào cuối thẻ body

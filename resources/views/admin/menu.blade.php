@@ -47,39 +47,16 @@
 				</ul>
 			</li>
 			<li class="has-subnav">
-				<a href="javascript:;">
+				<a href="{{ route('user_Admin') }}">
 					<i class="fa fa-file-text-o nav_icon"></i>
-						<span class="nav-text">User</span>
-					<i class="icon-angle-right"></i><i class="icon-angle-down"></i>
+					<span class="nav-text">User</span>
 				</a>
-				<ul>
-					<li>
-						<a class="subnav-text" href="gallery.html">
-							Image Gallery
-						</a>
-					</li>
-					<li>
-						<a class="subnav-text" href="calendar.html">
-							Calendar
-						</a>
-					</li>
-					<li>
-						<a class="subnav-text" href="signup.html">
-							Sign Up Page
-						</a>
-					</li>
-					<li>
-						<a class="subnav-text" href="login.html">
-							Login Page
-						</a>
-					</li>
-				</ul>
 			</li>
 			<li>
-				<a href="charts.html">
+				<a href="{{ route('ViewCustomer') }}">
 					<i class="fa fa-bar-chart nav_icon"></i>
 					<span class="nav-text">
-						Charts
+						Customer
 					</span>
 				</a>
 			</li>
@@ -133,7 +110,7 @@
 		</ul>
 		<ul class="logout">
 			<li>
-			<a href="login.html">
+			<a href="{{route('logout')}}">
 			<i class="icon-off nav-icon"></i>
 			<span class="nav-text">
 			Logout
