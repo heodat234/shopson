@@ -309,11 +309,31 @@ i.fa.fa-shopping-bag.top_logo_agile_bag {
 .header-middle form input[type="submit"]{
     background: url(../images/search.png) no-repeat 4px 0px #2fdab8;
     width: 11%;
-    height: 50px;
+    height: 45px;
     border: none;
     padding: 0;
     border: none;
     outline: none;
+    border-radius: 3px;
+}
+ 
+
+#searchfield form .biginput {
+  width: 400px;
+  height: 40px;
+  padding: 0 10px 0 10px;
+  background-color: #fff;
+  border: 1px solid #c8c8c8;
+  border-radius: 3px;
+  color: #aeaeae;
+  font-weight:normal;
+  font-size: 1.5em;
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+#searchfield form .biginput:focus {
+  color: #858585;
 }
 .search {
     float: left;
@@ -3505,6 +3525,7 @@ p.w3ls_para {
 	.header-middle form input[type="submit"] {
 		background: url(../images/search.png) no-repeat 4px 0px #2fdab8;
 		width: 15%;
+        border-radius: 3px;
 	}
 	.header-middle form input[type="search"] {
 		width: 83%;
@@ -3695,6 +3716,7 @@ p.w3ls_para {
 	.header-middle form input[type="submit"] {
 		background: url(../images/search.png) no-repeat 4px 0px #2fdab8;
 		width: 17%;
+        border-radius: 3px;
 	}
 	.w3layouts_mail_grid_left {
 		width: 50%;
@@ -4238,6 +4260,7 @@ p.w3ls_para {
 	.header-middle form input[type="submit"] {
 		background: url(../images/search.png) no-repeat 8px 0px #2fdab8;
 		width: 9%;
+        border-radius: 3px;
 	}
 }
 @media (max-width: 768px){
@@ -4587,6 +4610,7 @@ p.w3ls_para {
 	.header-middle form input[type="submit"] {
 		background: url(../images/search.png) no-repeat 8px 0px #2fdab8;
 		width: 10%;
+        border-radius: 3px;
 	}
 	.wthree_banner_bottom_grid_three_left1 {
 		width: 100%;
@@ -4848,6 +4872,7 @@ p.w3ls_para {
 	.header-middle form input[type="submit"] {
 		background: url(../images/search.png) no-repeat 8px 0px #2fdab8;
 		width: 11%;
+        border-radius: 3px;
 	}
 	.sign-gd, .sign-gd-two {
 		float: left;
@@ -5087,6 +5112,7 @@ p.w3ls_para {
 	.header-middle form input[type="submit"] {
 		background: url(../images/search.png) no-repeat 8px 0px #2fdab8;
 		width: 14%;
+        border-radius: 3px;
 	}
 	.carousel-caption p {
 		letter-spacing: 7px;
@@ -5223,6 +5249,7 @@ p.w3ls_para {
 		background: url(../images/search.png) no-repeat 5px 0px #2fdab8;
 		width: 15%;
 		height: 48px;
+        border-radius: 3px;
 	}
 	.bb-middle-agileits-w3layouts.forth.grid figure.effect-roxy h3 {
        padding: 0em 0 .5em;
@@ -5285,6 +5312,7 @@ p.w3ls_para {
 		background: url(../images/search.png) no-repeat 5px 0px #2fdab8;
 		width: 15%;
 		height: 48px;
+        border-radius: 3px;
 	}
 	.header ul li i {
 		margin-right: 2px;
@@ -5469,6 +5497,7 @@ p.w3ls_para {
 		background: url(../images/search.png) no-repeat 7px 0px #2fdab8;
 		width: 18%;
 		height: 48px;
+        border-radius: 3px;
 	}
 	li.share {
       font-size: 0.9em;
@@ -5531,6 +5560,7 @@ p.w3ls_para {
 		background: url(../images/search.png) no-repeat 0px 0px #2fdab8;
 		width: 17%;
 		height: 44px;
+        border-radius: 3px;
 	}
 	.carousel-caption h2, .carousel-caption h3 {
 		font-size: 1.3em;

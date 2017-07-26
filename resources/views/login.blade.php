@@ -24,14 +24,7 @@
 						</div>
 						<input type="button" value="Đăng Nhập" onclick="login();">
 					</form>
-					{{-- <ul class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
-						<li><a href="{{route('provider_login','facebook')}}" class="facebook">
-							<div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
-							<div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a></li>
-							<li><a href="{{route('provider_login','google')}}" class="google-plus">
-								<div class="front"><i class="fa fa-google-plus" aria-hidden="true"></i></div>
-								<div class="back"><i class="fa fa-google-plus" aria-hidden="true"></i></div></a></li>
-					</ul> --}}
+					<p><a href="{{ route('ForgetPassword') }}"> Quên mật khẩu? </a></p>
 
 					<div class="footer-icons">
 					<ul>

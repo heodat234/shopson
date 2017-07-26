@@ -25,10 +25,12 @@
 <div class="alert alert-success register" style="display: none;"></div>
 <div class="header-bot">
 	<div class="header-bot_inner_wthreeinfo_header_mid">
-		<div class="col-md-4 header-middle">
-			<form action="#" method="post">
-				<input type="search" name="search" placeholder="Search here..." required="">
-				<input type="submit" value=" ">
+		<div class="col-md-4 header-middle" id="searchfield">
+			<form action="{{ route('searchSingle') }}" method="post">
+				<input type="hidden" name="_token" value="{{ csrf_token() }}">
+				<input type="hidden" name="id" id="idSearch" value="">
+				<input type="search" name="search" class="biginput" id="searchPro" placeholder="Search here..." required="">
+				<input type="submit"  value=" ">
 				<div class="clearfix"></div>
 			</form>
 		</div>

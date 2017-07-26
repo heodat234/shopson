@@ -22,6 +22,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
 <link rel="stylesheet" href="css/pick-a-color-1.2.3.min.css">
 
 </head>
@@ -95,6 +96,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 			</div>
 
+
+<script type="text/javascript">
+	$('#searchPro').autocomplete({
+		source: "{{ route('search') }}",
+	  	minLength: 1,
+	  	autoFocus: true,
+	  	select: function(event, ui) {
+	  		$('#searchPro').val(ui.item.value);
+	  		$('#idSearch').val(ui.item.id);
+	  	}
+	});
+</script>
 {{-- comment facebook --}}
 <div id="fb-root"></div>
 <script>(function(d, s, id) {

@@ -27,6 +27,15 @@ Route::get('/demo', function () {
     return view('admin.demo_Admin');
 });
 
+//search
+
+Route::get('search',
+	['as'=>'search',
+	 'uses'=>'SearchController@autocomplete']);
+Route::post('searchSingle',
+	['as'=>'searchSingle',
+	 'uses'=>'SearchController@singleProduct']);
+
 //login, register
 Route::post('login',[
 	'as'=>'login',

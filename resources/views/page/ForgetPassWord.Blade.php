@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Forgot Password | Bootstrap Based Admin Template - Material Design</title>
+    <title>Forgot Password | Vila Paint</title>
     <!-- Favicon-->
     <link rel="icon" href="../../favicon.ico" type="image/x-icon">
 
@@ -29,7 +29,7 @@
 <body class="fp-page">
     <div class="fp-box">
         <div class="logo">
-            <a href="javascript:void(0);"><b>Forgot Admin Password</b></a>
+            <a href="javascript:void(0);"><b>Forgot Password</b></a>
         </div>
          @if(Session::has('thatbai'))
             <div class="alert alert-danger">{{Session::get('thatbai')}}</div>
@@ -39,8 +39,8 @@
                 <form id="forgot_password" method="POST" action="{{route('ForgetPassword_Admin')}}">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                     <div class="msg">
-                        Enter your email address that you used to register. We'll send you an email with your username and a
-                        link to reset your password.
+                        Nhập địa chỉ email mà bạn đã sử dụng để đăng ký.Chúng tôi sẽ gửi cho bạn một email với mật khẩu và đường dẫn để đăng nhập tài khoản.
+                        
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">
