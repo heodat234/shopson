@@ -10,9 +10,9 @@ class SearchController extends Controller
     public function autocomplete(Request $req){
 		$term = $req->term;
 		$results = array();
-		
-		$queries = Product::where('name', 'LIKE', '%'.$term.'%')
-			     ->take(5)->get();
+		$queries=DB::table('products')->whereRaw("match(name) against('$term')")->orWhere('name', 'LIKE', '%'.$term.'%')->get();
+		// $queries = Product::where('name', 'LIKE', '%'.$term.'%')
+		// 	     // ->take(5)->get();
 			
 		foreach ($queries as $query)
 		{
