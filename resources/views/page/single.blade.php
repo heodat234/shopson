@@ -64,6 +64,7 @@
 			<div class="description">
 				{{ $product[0]->description }}
 			</div>
+
 			<form action="#" method="post">
 			<div class="color-quality">
 				<div class="color-quality-right">
@@ -75,7 +76,7 @@
 				</div>
 				<br>
 				<div class="col-sm-4">
-			  		<h4>Màu sơn: </h4> <input value="222" name="item_number" class="pick-a-color form-control" type="text">
+			  		<h4>Màu sơn: </h4> <input value="222" name="color" id="colorPro" class="pick-a-color form-control" type="text">
 			  </div>
 			  <div class="clearfix"> </div>
 			</div>
@@ -84,57 +85,19 @@
 				<h5>Loại :</h5>
 				@foreach($product as $pro)
 				<div class="colr ert">
-					<label class="radio"><input type="radio" name="amount" size="{{ $pro->size }}" value="{{ $pro->export_price }}"><i></i>{{ $pro->size }}</label>
-					<input type="hidden" name="amount" value="{{ $pro->export_price }}">
+					<label class="radio"><input type="radio" name="amount" id="idsize" value="{{ $pro->idsize }}"><i></i>{{ $pro->size }}</label>
 				</div>
 				@endforeach	
 				
 				<div class="clearfix"> </div>
 			</div>
-			{{-- <input type="hidden" name="item_number" id="item_number" value="">
-			<script>
-					// $('input:radio[name=amount]')[0].checked = true;
-					var loai = $('[name="amount"]:radio:checked').attr('size');
-					$('#item_number').val(loai);
-					//alert(loai);
-				</script> --}}
-			<div class="occasion-cart">
-				<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-					
-						<fieldset>
-							<input type="hidden" name="cmd" value="_cart">
-							<input type="hidden" name="add" value="1">
-							<input type="hidden" name="item_number" id="item_number" value="">
-							<input type="hidden" name="business" value="">
-							<input type="hidden" name="item_name" value="{{ $product[0]->name }}">
-							
-							
-							{{-- <input type="hidden" name="discount_amount" value=""> --}}
-							<input type="hidden" name="currency_code" value="VND">
-							<input type="hidden" name="return" value=" ">
-							<input type="hidden" name="cancel_return" value=" ">
-							<input type="submit" name="submit" value="Thêm vào giỏ hàng" class="button">
-						</fieldset>
-					
-				</div>
-			</div>
-
+			
 			</form>
-			<ul class="social-nav model-3d-0 footer-social w3_agile_social single_page_w3ls">
-				<li class="share">Chia sẻ: </li>
-				<li><a href="#" class="facebook">
-					<div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
-					<div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a></li>
-					<li><a href="#" class="twitter">
-						<div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
-						<div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div></a></li>
-						<li><a href="#" class="instagram">
-							<div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
-							<div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a></li>
-							<li><a href="#" class="pinterest">
-								<div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
-								<div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div></a></li>
-							</ul>
+			
+				<button class="snipcart-details" style="background-color: #2fdab8; width: 250px;height: 50px"  onclick="addcart('{{ $product[0]->id}}');">Thêm vào giỏ hàng</button>
+			
+
+
 							
 						</div>
 						<div class="clearfix"> </div>
@@ -144,7 +107,7 @@
 								<ul class="resp-tabs-list">
 									<li>Mô tả</li>
 									<li>Đánh giá</li>
-									<li>Thông tin</li>
+									
 								</ul>
 								<div class="resp-tabs-container">
 									<!--/tab_one-->
@@ -160,13 +123,7 @@
 										
 										<div class="fb-comments" data-href="http://localhost/webson/public/" data-numposts="5"></div>
 									</div>
-									<div class="tab3">
-										<div class="single_page_agile_its_w3ls">
-											<h6>Big Wing Sneakers (Navy)</h6>
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore magna aliqua.</p>
-											<p class="w3ls_para">Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore magna aliqua.</p>
-										</div>
-									</div>
+									
 								</div>
 							</div>
 						</div>
@@ -355,6 +312,31 @@
 
 					});
 		
-	</script>
+					function addcart(id){
+				        var quantity = $('#quantity').val();
+				        var color = $('#colorPro').val();
+				        var idsize = $('#idsize').val();
+				        alert(idsize);
+				        var route = "{{route('add-to-cart',['idsize','quantity','color'])}}"; 
+				        route=route.replace("idsize",idsize); 
+				        route=route.replace("quantity",quantity); 
+				        route=route.replace("color",color); 
+				        $.ajax({
+				            url: route,
+				            type: "get",
+				            data: null,
+
+				            processData: false,
+            				contentType: false,
+				        }).done(function(data){ 
+				        	var getData = $.parseJSON(data);
+				           // console.log(getData.totalQty);
+				            $("#items_in_shopping_cart").html(getData.totalQty); // get Json data
+				            if($(".shopping_cart_holder").css("display") == "block"){ // Check if shopping cart is open 
+				                $(".shopping_cart_info").trigger( "click" );  // update cart on event
+				            }
+				        })
+				        
+				    }
 				</script>
 				@endsection

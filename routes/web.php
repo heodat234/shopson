@@ -23,6 +23,9 @@ Route::get('contact',
 Route::get('about',
 	['as'=>'about',
 	 'uses'=>'Home_Controller@getAbout']);
+Route::get('checkout',[
+	'as'=>'checkout',
+	'uses'=>'HomeController@getCheckout']);
 Route::get('/demo', function () {
     return view('admin.demo_Admin');
 });
@@ -98,6 +101,23 @@ Route::get('singleProduct/{id}',
 	['as'=>'singleProduct',
 	 'uses'=>'Product_Controller@single_Product']);
 
+
+//Cart route
+Route::get('add-to-cart/{idsize}/{quantity}/{color}',
+	['as'=>'add-to-cart',
+	 'uses'=>'CartController@addToCart']); 
+Route::get('show-cart',
+	['as'=>'show-cart',
+	 'uses'=>'CartController@showCart']); 
+Route::get('rise-to-qty/{id}',
+	['as'=>'rise-to-qty',
+	 'uses'=>'CartController@riseByOne']); 
+Route::get('reduce-to-qty/{id}',
+	['as'=>'reduce-to-qty',
+	 'uses'=>'CartController@reduceByOne']); 
+Route::get('remove-to-item/{id}',
+	['as'=>'remove-to-item',
+	 'uses'=>'CartController@deleteItemCart']); 
 
 
 

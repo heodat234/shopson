@@ -109,15 +109,44 @@
 						</div>
 						<div class="top_nav_right">
 							<div class="wthreecartaits wthreecartaits2 cart cart box_1">
-								<form action="#" method="post" class="last">
+								{{-- <form action="#" method="post" class="last">
 									<input type="hidden" name="cmd" value="_cart">
 									<input type="hidden" name="display" value="1">
 									<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-								</form>
-								
+								</form> --}}
+								<button class="w3view-cart shopping_cart_info" type="submit" name="submit" value="" onclick="showCart()"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+								<span id='items_in_shopping_cart' style='color:#333; font-size:15px;'>
+					                	@if(Session::has('cart'))
+					                	{{Session('cart')->totalQty}}
+					                	@else 
+					                	{{0}}
+					                	@endif
+					            </span>
+					            <span style='color:#333; font-size:15px;'> Sản phẩm</span> 
 							</div>
 						</div>
+						
 						<div class="clearfix"></div>
+						<!-- Holds shopping cart info with selected items -->
+					    <div class="shopping_cart_holder">
+					        <a href="#" class="close_shopping_cart_holder" >Close Cart</a>
+					        <h2>Shopping Cart</h2>
+					        <div id="shopping_cart_output">
+					        </div>
+					    </div>
 					</div>
+
 				</div>
 				<!-- //banner-top -->
+				<script type="text/javascript">
+					$(".shopping_cart_holder").fadeOut();
+
+					function showCart() {
+						$(".shopping_cart_holder").fadeIn(); // how to cart displays - you can change to any event you wish.
+					    $("#shopping_cart_output" ).load( "{{route('show-cart')}}");
+					}
+					$( ".close_shopping_cart_holder").click(function(e){
+					    e.preventDefault(); 
+					    $(".shopping_cart_holder").fadeOut(500); // close cart of fadeOut ... or any event you wish 
+					});
+				</script>

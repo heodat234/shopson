@@ -317,7 +317,6 @@ i.fa.fa-shopping-bag.top_logo_agile_bag {
     border-radius: 3px;
 }
  
-
 #searchfield form .biginput {
   width: 400px;
   height: 40px;
@@ -1431,22 +1430,8 @@ position:relative;
 .btn-danger.my-cart-btn:focus {
     outline: none;
 }
-.snipcart-details input.button {
-    font-size: 13px;
-    color: #fff;
-    background: #2fdab8;
-    text-decoration: none;
-    position: relative;
-    border: none;
-    border-radius: 0;
-    width: 100%;
-    text-transform: uppercase;
-    padding: .5em 0;
-    outline: none;
-    letter-spacing: 1px;
-    font-weight: 600;
-}
-.agile_top_brand_left_grid:hover .snipcart-details input.button,.snipcart-details input.button:hover{
+
+.agile_top_brand_left_grid:hover .snipcart-details ,.snipcart-details:hover{
     background:#2fdab8;
 }
 .product_list_header input.button {

@@ -16,6 +16,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <link href="css/team.css" rel="stylesheet">
+<link href="css/cart.css" rel="stylesheet">
 <link href="css/jquery-ui.css" rel="stylesheet">  
 <link href="css/easy-responsive-tabs.css" rel='stylesheet' type='text/css'/>
 <!-- //for bootstrap working -->
@@ -96,7 +97,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 			</div>
 
-
+{{-- <script lang="javascript">(function() {var pname = ( (document.title !='')? document.title : document.querySelector('h1').innerHTML );var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async=1; ga.src = '//live.vnpgroup.net/js/web_client_box.php?hash=4361b32edcfc2bd72d80ec5ad373334c&data=eyJzc29faWQiOjczNjY4MCwiaGFzaCI6IjgzM2YyZDFlNGQ5MmJlZjVhODYwOWY5OWRmZDg2NTVlIn0-&pname='+pname;var s = document.getElementsByTagName('script');s[0].parentNode.insertBefore(ga, s[0]);})();</script>	 --}}
 <script type="text/javascript">
 	$('#searchPro').autocomplete({
 		source: "{{ route('search') }}",

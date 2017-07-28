@@ -374,7 +374,7 @@
 
     <script type="text/javascript">
     $(document).ready(function(){
-    $('#product_table').DataTable();
+        $('#product_table').DataTable();
     });
     $.ajaxSetup({
     headers: {

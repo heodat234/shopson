@@ -1,5 +1,5 @@
 <?php
-
+ 
 namespace App;
 
 class Cart
@@ -16,32 +16,40 @@ class Cart
 		}
 	}
 
-	public function add($item, $id){
-		$giohang = ['qty'=>0, 'price' => 0, 'item' => $item];
+	public function add($item, $id,$quantity,$color){
+		$giohang = ['qty'=>0, 'price' => 0, 'item' => $item, 'color' => $color,'size' => 0];
 		if($this->items){
 			if(array_key_exists($id, $this->items)){
 				$giohang = $this->items[$id];
 			}
 		}
-		$giohang['qty']++;
-		if($item->promotion_price==0){
-			$giohang['price'] = $item->unit_price * $giohang['qty'];
-			$this->items[$id] = $giohang;
-			$this->totalQty++;
-			$this->totalPrice += $giohang['price'];
-		}else{
-			$giohang['price'] = $item->promotion_price * $giohang['qty'];
-			$this->items[$id] = $giohang;
-			$this->totalQty++;
-			$this->totalPrice += $giohang['price'];
-		}
+		$giohang['size'] = $item->size;
+		$giohang['color'] = $color;
+		$giohang['qty'] += $quantity;
+		$giohang['price'] = $item->export_price* $quantity;
+		$this->items[$id] = $giohang;
+		$this->totalQty += $quantity;
+		$this->totalPrice += $giohang['price'];
 	}
-	//xóa 1
+	//giảm 1
 	public function reduceByOne($id){ 
 		$this->items[$id]['qty']--;
-		$this->items[$id]['price'] -= $this->items[$id]['item']['price'];
+		$this->items[$id]['price'] -= $this->items[$id]['item']->export_price;
 		$this->totalQty--;
-		$this->totalPrice -= $this->items[$id]['item']['price'];
+		$this->totalPrice -= $this->items[$id]['item']->export_price;
+		if($this->items[$id]['qty']<=0){
+			unset($this->items[$id]);
+		}
+		if($this->totalQty<=0){
+			unset($this->totalPrice);
+		}
+	}
+	//tăng 1
+	public function riseByOne($id){ 
+		$this->items[$id]['qty']++;
+		$this->items[$id]['price'] += $this->items[$id]['item']->export_price;
+		$this->totalQty++;
+		$this->totalPrice += $this->items[$id]['item']->export_price;
 		if($this->items[$id]['qty']<=0){
 			unset($this->items[$id]);
 		}
