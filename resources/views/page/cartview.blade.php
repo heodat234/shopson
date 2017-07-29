@@ -21,7 +21,7 @@
         </td>
 
         <td class='itemInCartDisplay'>
-            ${{$item['price']}}
+            {{$item['price']}} VNĐ
         </td>
         <td class='itemInCartDisplay'>
             <a href="#" class="remove_item_from_cart" item_id="{{$item['item']->id}}">x</a>            
@@ -40,7 +40,7 @@
          <td class='itemInCartDisplay' style='text-align:right;'>
             <div class="cart-products-total">                        
                 <span>Total : <span style='font-size:20px; color:#008cba;'></span>
-                    ${{$totalPrice}}
+                    {{$totalPrice}} VNĐ
                 </span>
             </div>
         </td>

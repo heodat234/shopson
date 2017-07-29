@@ -7,7 +7,7 @@
                 <h2>Basic Tables</h2>
             </div>
             <div>
-                <button id="addRow" onclick="addRow()"  class="btn btn-primary glyphicon glyphicon-plus-sign" style="height: 60px; width: 60px; border-radius: 10px"></button>
+                <button data-toggle="modal" data-target="#addProduct"  class="btn btn-primary glyphicon glyphicon-plus-sign" style="height: 60px; width: 60px; border-radius: 10px"></button>
             </div>
             <br>
             <div class="agile-tables">
@@ -284,6 +284,57 @@
                         @endif
                         
                         {{-- Add Product --}}
+                        <div class="modal fade" id="addProduct" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                    <h3 class="modal-title" id="lineModalLabel">Thêm sản phẩm</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="dangkythatbai alert alert-danger" style="display:none;"></div>
+                                    <!-- content goes here -->
+                                    <form enctype="multipart/form-data" method="post" id="new_form">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Tên</label>
+                                            <input type="text" id="new_name" name="new_name" class="form-control" placeholder="Enter your name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Loại sản phẩm</label>
+                                            <select class="selectpicker form-control" name="new_type" id="new_type" >
+                                                    @foreach($type_product as $type)
+                                                    <option name="{{ $type->name }}" class="{{ $type->id }}" value="{{ $type->id }}">{{ $type->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Tính năng</label>
+                                            <input type="text" name="new_des" id="new_description" required="" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Ảnh</label>
+                                            <input type="file" name="new_image" id="new_image" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Phân loại</label>
+                                            <select class="selectpicker form-control" name="new_type1" id="new_type1" >
+                                                <option value="0">Nội thất</option>
+                                                <option value="1">Ngoại thất</option>
+                                                <option value="3">khác</option>
+                                            </select>
+                                        </div>
+                                      
+                                        <button type="button" id="saveAdd" class="button submit-button btn btn-info btn-lg glyphicon glyphicon-floppy-save" style="border-radius: 10px;">  Save</button>
+                                    </form>
+
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        {{-- end add form --}}
+
+
                         <div id="addRowPro" class="form">
                             <p class="form_title">Add Product</p>
                             <a href="#" class="close"><img src="admin/images/close.png" class="img-close" title="Close Window" alt="Close" /></a>

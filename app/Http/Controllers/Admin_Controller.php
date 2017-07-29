@@ -161,10 +161,18 @@ class Admin_Controller extends Controller
       $password = Hash::make($req->input('new_password'));
       $phone = $req->input('new_phone');
       $address = $req->input('new_address');
-      $group = $req->input('new_group');
+      $group = 1;
       $token=$req->input('_token');
-      $getId=User::Insert_User($name, $email, $password, $phone, $address, $group, $token);
-      return $getId;
+      $mail = User::where('email',$email)->first();
+        if($mail){
+          $data ="0";
+          return $data."Email đã tồn tại";
+        }else{
+          $getId=User::Insert_User($name, $email, $password, $phone, $address, $group, $token);
+
+
+          return "1"."Đăng ký thành công.";
+        }
    } 
    public function Delete_User(Request $req){
       $id = $req->id;

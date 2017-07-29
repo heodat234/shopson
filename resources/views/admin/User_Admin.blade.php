@@ -7,7 +7,7 @@
             <h2>User</h2>
         </div>
         <div>
-            <button id="addRow" onclick="addRow()"  class="btn btn-primary glyphicon glyphicon-plus-sign" style="height: 60px; width: 60px; border-radius: 10px"></button>
+            <button id="addRow" data-toggle="modal" data-target="#addUser"  class="btn btn-primary glyphicon glyphicon-plus-sign" style="height: 60px; width: 60px; border-radius: 10px"></button>
         </div>
         <br>
         <div class="agile-tables">
@@ -32,9 +32,14 @@
                             <td id="email{{$users->id}}">{{$users->email}}</td>
                             <td id="phone{{$users->id}}">{{$users->phone}}</td>
                             <td id="address{{$users->id}}">{{$users->address}}</td>
-                            <td id="group{{$users->id}}">{{$users->group}}</td>
+                            <td id="group{{$users->id}}">
+                                @if($users->group == 0)
+                                    Khách
+                                @else Nhân viên
+                                @endif
+                            </td>
                             <td>
-                                <button class="btn btn-info btn-lg glyphicon glyphicon-hand-right" style="border-radius: 10px;" id="edit_button{{ $users->id  }}" onclick="editRow({{ $users->id }})"></button>
+                                <button class="btn btn-info btn-lg glyphicon glyphicon-hand-right" style="border-radius: 10px;" id="edit_button{{ $users->id  }}" data-toggle="modal" data-target="#editUser"></button>
                                 <button class="btn btn-warning btn-lg glyphicon glyphicon-trash" style="border-radius: 10px" id="delete_button{{ $users->id  }}" onclick="delete_row('{{ $users->id}}');"></button>
                             </td>
                         </div>
@@ -132,93 +137,99 @@
                     @endforeach
                 </tbody>
             </table>
+
+
+
+
+
+
+                        {{-- edit modal --}}
+            <div class="modal fade" id="editUser" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                        <h3 class="modal-title" id="lineModalLabel">Edit User</h3>
+                    </div>
+                    <div class="modal-body">
+                        
+                        content goes here
+                        <form>
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="text" class="form-control" id="editName" placeholder="Enter email">
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleInputFile">File input</label>
+                            <input type="file" id="exampleInputFile">
+                            <p class="help-block">Example block-level help text here.</p>
+                          </div>
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox"> Check me out
+                            </label>
+                          </div>
+                          <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+
+                    </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
             {{-- add form --}}
-            <div id="addRowPro" class="form">
-                <p class="form_title">Add User</p>
-                <a href="#" class="close"><img src="admin/images/close.png" class="img-close" title="Close Window" alt="Close" /></a>
-                <form enctype="multipart/form-data" method="post" id="new_form" name="new_form" class="horizontal">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <div class="row clearfix">
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                            <label class="name">Name</label>
-                        </div>
-                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" id="new_name" name="new_name" class="form-control" placeholder="Enter your name">
-                                </div>
-                            </div>
-                        </div>
+            <div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                        <h3 class="modal-title" id="lineModalLabel">Thêm tài khoản nhân viên</h3>
                     </div>
-                    <div class="row clearfix">
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                            <label class="email">Email</label>
-                        </div>
-                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                    <div class="modal-body">
+                        <div class="dangkythatbai alert alert-danger" style="display:none;"></div>
+                        <!-- content goes here -->
+                        <form enctype="multipart/form-data" method="post" id="new_form">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" id="new_email" name="new_email" class="form-control" placeholder="Enter your email">
-                                </div>
+                                <label for="exampleInputEmail1">Tên</label>
+                                <input type="text" id="new_name" name="new_name" class="form-control" placeholder="Enter your name">
                             </div>
-                        </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                            <label class="password">Password</label>
-                        </div>
-                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                             <div class="form-group">
-                                <div class="form-line">
-                                    <input type="password" id="new_password" name="new_password" class="form-control" placeholder="Enter your password">
-                                </div>
+                                <label for="exampleInputEmail1">Email</label>
+                                <input type="text" id="new_email" name="new_email" class="form-control" placeholder="Enter your email">
                             </div>
-                        </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                            <label class="phone">Phone</label>
-                        </div>
-                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                             <div class="form-group">
-                                <div class="form-line">
-                                    <input type="number" id="new_phone" name="new_phone" class="form-control" placeholder="Enter your phone">
-                                </div>
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" id="new_password" name="new_password" class="form-control" placeholder="Enter your password">
                             </div>
-                        </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                            <label class="address">Address</label>
-                        </div>
-                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                             <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" id="new_address" name="new_address" class="form-control" placeholder="Enter your address">
-                                </div>
+                                <label for="exampleInputPassword1">Số điện thoại</label>
+                                <input type="number" id="new_phone" name="new_phone" class="form-control" placeholder="Enter your phone">
                             </div>
-                        </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                            <label class="group">Group</label>
-                        </div>
-                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                             <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" id="new_group" name="new_group" class="form-control" placeholder="Enter your group">
-                                </div>
+                                <label for="exampleInputPassword1">Địa chỉ</label>
+                                <input type="text" id="new_address" name="new_address" class="form-control" placeholder="Enter your address">
                             </div>
-                        </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-lg-offset-5 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
+                          
                             <button type="button" id="saveAdd" class="button submit-button btn btn-info btn-lg glyphicon glyphicon-floppy-save" style="border-radius: 10px;">  Save</button>
-                        </div>
+                        </form>
+
                     </div>
-                    
-                </form>
+                </div>
+              </div>
             </div>
             {{-- end add form --}}
+
+
+            
                         
         </div>
     </div>
@@ -237,21 +248,6 @@
         $('#over').fadeIn(300);
     }
 
-
-    function addRow(){
-        var formBox = $('#addRowPro');
-        $(formBox).fadeIn("slow");
-        // thêm phần tử id="over" vào cuối thẻ body
-        $('body').append('<div id="over"></div>');
-        $('#over').fadeIn(300);
-    }
-
-    $(document).on('click', "a.close, #over", function() {
-        $('#over, .form').fadeOut(300 , function() {
-            $('#over').remove();
-        });
-        return false;
-    });
 
     function delete_row(id)
     {
@@ -320,11 +316,6 @@
 
     $('#saveAdd').click(function()
     {
-        var name=$('#new_name'+id).val();
-        var email=$('#new_email'+id).val();
-        var phone=$('#new_phone'+id).val();
-        var address=$('#new_address'+id).val();
-        var group=$('#new_group'+id).val();
         var route="{{ route('Insert_User') }}";
         var form_data = new FormData($('form#new_form')[0]);
         $.ajax
@@ -335,27 +326,26 @@
             contentType: false,
             data:form_data,
             success:function(data) {
-            var id=data;
-            var table=document.getElementById("product_table");
-            var table_len=(table.rows.length);
-            var row = table.insertRow(table_len).outerHTML="<tr id='row"+id+"'><td id='id"+id+"'>"+id+"</td><td id='name"+id+"'>"+name+"</td><td id='email"+id+"'>"+email+"</td><td id='phone"+id+"'>"+phone+"</td><td id='address"+id+"'>"+address+"</td><td id='group"+id+"'>"+group+"</td><td><button class='btn btn-info btn-lg glyphicon glyphicon-hand-right' style='border-radius: 10px;' id='edit_button"+id+"' onclick='editRow("+id+")'></button> <button class='btn btn-warning btn-lg glyphicon glyphicon-trash' style='border-radius: 10px' id='delete_button"+id+"' onclick='delete_row("+id+");'></button></td></tr>";
-            $('tbody').append("<div id='editRowPro"+id+"' class='form'>                                                                                                                   <p class='form_title'>Edit Type</p>                                                                                             <a href='#' class='close'><img src='close.png' class='img-close' title='Close Window' alt='Close' /></a>                        <form id='formEdit"+id+"' enctype='multipart/form-data' method='post'> <input type='hidden' name='_token' value='{{ csrf_token() }}'>                                                                                                                           <div class='row clearfix'><div class='col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label'><label class='id'>ID</label></div><div class='col-lg-10 col-md-10 col-sm-8 col-xs-7'><div class='form-group'><div class='form-line'><input type='text' value='"+id+"' name='id' class='form-control' readonly ></div></div></div></div>                                                           <div class='row clearfix'><div class='col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label'><label class='name'>Name</label></div><div class='col-lg-10 col-md-10 col-sm-8 col-xs-7'><div class='form-group'><div class='form-line'><input type='text' name='edit_name' id='edit_name"+id+"' value='"+name+"' required=''  class='form-control'></div></div></div></div>               <div class='row clearfix'><div class='col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label'><label class='email'>Email</label></div><div class='col-lg-10 col-md-10 col-sm-8 col-xs-7'><div class='form-group'><div class='form-line'><input type='email' value='"+email+"' name='edit_email' id='edit_email"+id+"' disabled='' class='form-control' ></div></div></div></div>                                                                                                                            <div class='row clearfix'><div class='col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label'><label class='phone'>Phone</label></div><div class='col-lg-10 col-md-10 col-sm-8 col-xs-7'><div class='form-group'><div class='form-line'><input type='number' value='"+phone+"' name='edit_phone' id='edit_phone"+id+"' required='' class='form-control'></div></div></div></div>                                                                                                                            <div class='row clearfix'><div class='col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label'><label class='address'>Address</label></div><div class='col-lg-10 col-md-10 col-sm-8 col-xs-7'><div class='form-group'><div class='form-line'><input type='text' value='"+address+"' name='edit_address' id='edit_address"+id+"' required='' class='form-control'></div></div></div></div>                                                                                                                           <div class='row clearfix'><div class='col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label'><label class='group'>Group</label></div><div class='col-lg-10 col-md-10 col-sm-8 col-xs-7'><div class='form-group'><div class='form-line'><input type='texy' value='"+group+"' name='edit_group' id='edit_group"+id+"' required='' class='form-control'></div></div></div></div>                                                                                                                            <div class='row clearfix'><div class='col-lg-offset-5 col-md-offset-2 col-sm-offset-4 col-xs-offset-5'><button  type='button' class='button submit-button btn btn-info btn-lg glyphicon glyphicon-floppy-save saveEdit' style='border-radius: 10px;' onclick='saveEdit("+id+");'>  Save</button></div></div> </form></div>");
-            $("#new_name").val()="";
-            $("#new_email").val()="";
-            $("#new_password").val()="";
-            $("#new_phone").val()="";
-            $("#new_address").val()="";
-            $("#new_group").val()="";
-            alert('Thêm user thành công');
+                var thongbao = data.substring(1);
+                console.log(thongbao);
+                if(data.substr(0,1)!=0){
+                    $('.modal').modal('hide');
+                    $('div.register').show();
+                    $('div.register').html(thongbao);
+                    setTimeout(function(){// wait for 2 secs(2)
+                        location.reload(); // then reload the page.(3)
+                    }, 2000); 
+                }else{
+                    $('div.dangkythatbai').fadeIn();
+                    $('div.dangkythatbai').html(thongbao);
+                    $('div.dangkythatbai').fadeOut(5000);
+                }
             },
             error:function() {
                 alert('Thêm user thất bại');
             },
         });
-        var formBox = $('#addRowPro');
-            $(formBox).fadeOut('400', function() {
-            $('#over').remove();
-        });
+        
     });
     </script>
     @endsection

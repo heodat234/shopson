@@ -23,6 +23,10 @@ class Home_Controller extends Controller
    {
       return view('page.about');
    }
+   public function getProfile()
+   {
+      return view('page.profile');
+   }
    
    // public function info(){
    // 	return view('page.gioithieu');

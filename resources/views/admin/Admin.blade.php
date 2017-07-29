@@ -78,7 +78,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script src="admin/js/bootstrap.js"></script>
 	<script src="admin/js/proton.js"></script>
 	<script src="admin/js/validator.min.js"></script>
-	
+	<script type="text/javascript">
+	$('.alert').hide(2000);
+	</script>
 </body>
 </html>
 	@else

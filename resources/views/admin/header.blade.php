@@ -175,4 +175,5 @@
 		</div>
 	</div>
 	<div class="clearfix"> </div>
+	<div class="alert alert-success register" style="display: none;"></div>
 </section>

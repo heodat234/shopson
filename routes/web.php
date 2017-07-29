@@ -23,11 +23,14 @@ Route::get('contact',
 Route::get('about',
 	['as'=>'about',
 	 'uses'=>'Home_Controller@getAbout']);
+Route::get('profile',
+	['as'=>'profile',
+	 'uses'=>'Home_Controller@getProfile']);
 Route::get('checkout',[
 	'as'=>'checkout',
 	'uses'=>'HomeController@getCheckout']);
 Route::get('/demo', function () {
-    return view('admin.demo_Admin');
+    return view('page.profile');
 });
 
 //search
@@ -61,6 +64,13 @@ Route::get('login/{provider}/callback', [
 Route::get('activeUser', [
 	'as'=>'activeUser',
 	'uses'=>'LoginRegister_Controller@activeUser'
+]);
+Route::post('editProfile',[
+	'as'=>'editProfile',
+	'uses'=>'LoginRegister_Controller@postEditProfile']);
+Route::post('changePassword', [
+	'as'=>'changePassword',
+	'uses'=>'LoginRegister_Controller@changePassword'
 ]);
 
 

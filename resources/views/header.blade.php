@@ -2,7 +2,7 @@
 	<div class="container">
 		<ul>
 			@if(Auth::check())
-                <li><a href="{{-- {{route('myPage')}} --}}"><i class="fa fa-user"></i>Chào bạn {{Auth::User()->full_name}}</a></li>
+                <li><a href="{{route('profile')}}"><i class="fa fa-user"> Chào bạn {{Auth::User()->full_name}}</i></a></li>
                 <li><a href="{{route('logout')}}"><i class="fa fa-sign-out"></i>Đăng xuất</a></li>
             @else
                 <li id="dangnhap"> <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Đăng Nhập </a></li>

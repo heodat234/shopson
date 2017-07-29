@@ -41,6 +41,7 @@ class LoginRegister_Controller extends Controller
             $user->phone = $req->phone;
             $user->address = $req->address;
             $user->remember_token = $req->_token;
+            $user->group = 0;
             $user->save();
             
             Mail::send('page.mail',['nguoidung'=>$user], function ($message) use ($user)
@@ -119,5 +120,23 @@ class LoginRegister_Controller extends Controller
             $user->save();
             return redirect()->route('home')->with('thanhcong','Đã kích hoạt tài khoản');
         }
+    }
+     public function postEditProfile(Request $req)
+     {
+      $id = $req->id;
+      $name = $req->name;
+      $phone = $req->phone;
+      $address = $req->address;
+
+       $user = User::Edit_User($id,$name,$phone,$address,0);
+       return redirect()->route('profile')->with('thanhcong','Sửa thông tin thành công');
+     }
+    public function changePassword(Request $req)
+    {
+      $email = $req->email;
+      $password = $req->password;
+      $user =User::changePassword($email, $password);
+      Auth::logout();
+      return redirect()->route('home')->with('thanhcong','Đổi nhập khẩu thành công, vui lòng đăng nhập lại');
     }
 }

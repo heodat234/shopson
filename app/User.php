@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use DB;
+use Hash;
 class User extends Authenticatable
 {
     protected $table='users';
@@ -48,12 +49,16 @@ class User extends Authenticatable
             return $user;
     }
     public static function Insert_User($name, $email, $password, $phone, $address, $group,$remember_token){
-            $id=DB::table('users')->insertGetId(['full_name'=>$name,'email'=>$email, 'password'=>$password, 'phone'=>$phone, 'address'=>$address,'remember_token'=>$remember_token,'group'=>$group]);
+            $id=DB::table('users')->insertGetId(['full_name'=>$name,'email'=>$email, 'password'=>$password, 'phone'=>$phone, 'address'=>$address,'remember_token'=>$remember_token,'group'=>$group,'active'=>1]);
             return $id;
     }
     public static function Delete_User($id){
         $user=DB::table('users')->where('id','=',$id)->delete();
         return $user;
+    }
+    public static function changePassword($email, $password)
+    {
+        $user = DB::table('users')->where('email','=',$email)->update(['password'=>Hash::make($password)]);
     }
 
 }
