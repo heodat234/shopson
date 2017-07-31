@@ -18,8 +18,24 @@ class Export_Product extends Model
     	$product=DB::table('export_product')
     				->where('export_product.id',$idsize)
     				->join('products','export_product.id_product','=','products.id')
-    				->select('export_product.id as idsize','products.id','products.name','products.image','export_product.size','export_product.export_price');
+    				->select('export_product.id as idsize','products.id','products.name','products.image','export_product.size','export_product.export_price','export_product.export_quantity');
     	return $product;
+    }
+    public static function Add_Export_Quantity($idProduct,$size,$quantity)
+    {
+        $qty = DB::table('export_product')
+                    ->where('id_product',$idProduct)
+                    ->where('size',$size)
+                    ->increment('export_quantity',$quantity);
+        return $qty;
+    }
+    public static function Sub_Export_Quantity($idProduct,$size,$quantity)
+    {
+        $qty = DB::table('export_product')
+                    ->where('id_product',$idProduct)
+                    ->where('size',$size)
+                    ->decrement('export_quantity',$quantity);
+        return $qty;
     }
     
 }

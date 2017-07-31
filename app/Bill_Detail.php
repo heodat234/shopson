@@ -32,4 +32,10 @@ class Bill_Detail extends Model
         return $product;   
         }
 
+    public static function Insert_Bill_Detail($idBill,$idProduct,$quantity,$size,$color,$price)
+    {
+      $bill_detail = DB::table('bill_detail')->insert(['id_bill'=>$idBill,'id_product'=>$idProduct,'quantity'=>$quantity,'size'=>$size,'color'=>$color,'sales_price'=>$price]);
+      return $bill_detail;
+    }
+
 }

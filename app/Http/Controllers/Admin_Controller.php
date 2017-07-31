@@ -36,6 +36,11 @@ class Admin_Controller extends Controller
    {
       return view('Admin.login_Admin');
    }
+   public function getProfileAdmin()
+   {
+      return view('admin.profile');
+   }
+
 //Loại sản phẫm 
    public function PostLogin_Admin(Request $req){
         if(Auth::attempt(['email'=>$req->email,'password'=>$req->password,'active'=>1])){

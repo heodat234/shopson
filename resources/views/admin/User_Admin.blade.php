@@ -153,7 +153,7 @@
                     </div>
                     <div class="modal-body">
                         
-                        content goes here
+                        
                         <form>
                           <div class="form-group">
                             <label for="exampleInputEmail1">Email address</label>
@@ -327,7 +327,7 @@
             data:form_data,
             success:function(data) {
                 var thongbao = data.substring(1);
-                console.log(thongbao);
+                // console.log(thongbao);
                 if(data.substr(0,1)!=0){
                     $('.modal').modal('hide');
                     $('div.register').show();

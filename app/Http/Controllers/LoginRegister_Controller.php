@@ -71,9 +71,7 @@ class LoginRegister_Controller extends Controller
         return redirect()->route('home');
     }
 
-    public function getMyPage(){
-      return view('page.myPage');
-    }
+   
 
 
 
@@ -129,7 +127,11 @@ class LoginRegister_Controller extends Controller
       $address = $req->address;
 
        $user = User::Edit_User($id,$name,$phone,$address,0);
-       return redirect()->route('profile')->with('thanhcong','Sửa thông tin thành công');
+       $group = DB::table('users')->where('id',$id)->select('group')->first();
+       if($group==0)
+        return redirect()->route('profile')->with('thanhcong','Sửa thông tin thành công');
+        else
+          return redirect()->route('profileAdmin')->with('thanhcong','Sửa thông tin thành công');
      }
     public function changePassword(Request $req)
     {
@@ -138,5 +140,16 @@ class LoginRegister_Controller extends Controller
       $user =User::changePassword($email, $password);
       Auth::logout();
       return redirect()->route('home')->with('thanhcong','Đổi nhập khẩu thành công, vui lòng đăng nhập lại');
+    }
+
+    public function checkEmail(Request $req)
+    {
+      $mail = DB::table('users')->where('email',$req->email)->first();
+      if($mail){
+        return "Email đã tồn tại trong một tài khoản. Vui lòng đăng nhập hoặc điền một email khác.";
+      }else{
+        return "Email hợp lệ";
+      }
+
     }
 }

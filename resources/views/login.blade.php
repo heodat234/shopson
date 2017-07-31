@@ -59,8 +59,9 @@
                     	var name = data.substring(1);
                     	if(data.substr(0,1)==0){
 	                        $('.modal').modal('hide');
-	                    	$('li#dangnhap').html("<a href='{{-- {{route('myPage')}} --}}'><i class='fa fa-user'></i>Chào bạn "+ name+"</a>");
-	                    	$('li#dangky').html("<a href='{{route('logout')}}'><i class='fa fa-sign-out'></i>Đăng xuất</a>");
+	                    	setTimeout(function(){// wait for 2 secs(2)
+                        		location.reload(); // then reload the page.(3)
+                    		}, 0); 
 	                    		
                   		}else{
                   			$('div.loginthatbai').fadeIn(); 

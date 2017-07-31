@@ -23,8 +23,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script src="js/jquery2.0.3.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui.js"></script>
 <link rel="stylesheet" href="css/pick-a-color-1.2.3.min.css">
+{{-- dataTable --}}
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+<script type="text/javascript" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 
 </head>
 

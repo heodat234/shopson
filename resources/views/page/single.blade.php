@@ -70,7 +70,7 @@
 				<div class="color-quality-right">
 					<h5>Số lượng:</h5>
 					<button  type="button" id="minus" style="margin-left: 3%;"><i class="fa fa-minus" aria-hidden="true"></i></button>
-					<input type="text" name="quantity" id="quantity"  value="1" pattern="[0-9]{1,4}" required title=" nhâp 1 to 4 chữ số">
+					<input type="text" name="quantity" id="quantity"  value="1" pattern="[0-9]" required title=" nhâp 1 to 4 chữ số">
 					<button   type="button" id="plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
 					 
 				</div>
@@ -85,7 +85,7 @@
 				<h5>Loại :</h5>
 				@foreach($product as $pro)
 				<div class="colr ert">
-					<label class="radio"><input type="radio" name="amount" id="idsize" value="{{ $pro->idsize }}"><i></i>{{ $pro->size }}</label>
+					<label class="radio"><input type="radio" name="amount" class="idsize" value="{{ $pro->idsize }}"><i></i>{{ $pro->size }}</label>
 				</div>
 				@endforeach	
 				
@@ -96,8 +96,8 @@
 			
 				<button class="snipcart-details" style="background-color: #2fdab8; width: 250px;height: 50px"  onclick="addcart('{{ $product[0]->id}}');">Thêm vào giỏ hàng</button>
 			
-
-
+				<div class="alert alert-success thanhcong" style="display: none;"></div>
+				<div class="alert alert-danger thatbai" style="display: none;"></div>
 							
 						</div>
 						<div class="clearfix"> </div>
@@ -113,7 +113,7 @@
 									<!--/tab_one-->
 									<div class="tab1">
 										<div class="single_page_agile_its_w3ls">
-											<h6>Sơn Jotun Majestic Đẹp Hoàn Hảo ( Bóng )</h6>
+											<h6>{{ $product[0]->name }}</h6>
 											<p>Sơn Jotun nội thất Majetic đẹp hoàn hảo là sản phẩm sơn nội thất cao cấp đem lại màu sắc rực rỡ, sắc nét, tạo nét sang trọng cho ngôi nhà bạn. Tường nhà được sơn bởi Majestic sẽ có bề mặt mờ cổ điển, bền màu và dễ lau chùi. Với công thức công nghệ màu đích thực và chất tạo màng đặc biệt của Jotun sẽ đảm bảo màu sơn Majestic luôn chính xác và bền màu theo thời gian. Jotun luôn cam kết đáp ứng những tiêu chuẩn cao nhất nhằm mang lại sản phẩm thân thiện với môi trường và sức khỏe người tiêu dùng.  </p>
 											
 										</div>
@@ -315,8 +315,14 @@
 					function addcart(id){
 				        var quantity = $('#quantity').val();
 				        var color = $('#colorPro').val();
-				        var idsize = $('#idsize').val();
-				        alert(idsize);
+				        var idsize = "";
+				        var checkbox = $('.idsize');
+		                for (var i = 0; i < checkbox.length; i++){
+		                    if (checkbox[i].checked === true){
+		                        alert(checkbox[i].value);
+		                        idsize = checkbox[i].value;
+		                    }
+		                }
 				        var route = "{{route('add-to-cart',['idsize','quantity','color'])}}"; 
 				        route=route.replace("idsize",idsize); 
 				        route=route.replace("quantity",quantity); 
@@ -329,11 +335,21 @@
 				            processData: false,
             				contentType: false,
 				        }).done(function(data){ 
-				        	var getData = $.parseJSON(data);
-				           // console.log(getData.totalQty);
-				            $("#items_in_shopping_cart").html(getData.totalQty); // get Json data
-				            if($(".shopping_cart_holder").css("display") == "block"){ // Check if shopping cart is open 
-				                $(".shopping_cart_info").trigger( "click" );  // update cart on event
+				        	var cart = data.substring(1);
+                				// console.log(thongbao);
+                			if(data.substr(0,1)==0){
+				        		var getData = $.parseJSON(cart);
+				            	$("#items_in_shopping_cart").html(getData.totalQty); // get Json data
+				            	if($(".shopping_cart_holder").css("display") == "block"){ // Check if shopping cart is open 
+				                	$(".shopping_cart_info").trigger( "click" );  // update cart on event
+				            	}
+				            	$('div.thanhcong').fadeIn();
+			                    $('div.thanhcong').html("Đã thêm vào giỏ hàng");
+			                    $('div.thanhcong').fadeOut(10000);
+				            }else{
+				            	$('div.thatbai').fadeIn();
+			                    $('div.thatbai').html(cart);
+			                    
 				            }
 				        })
 				        

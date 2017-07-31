@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
               $product =  Product::Best_View_Product()->paginate(8);
               $view->with('product',$product);
           });
-        view()->composer(['section.slide','section.banner','section.newArrivals','page.about','page.checkout','page.contact','page.product','page.single', 'page.profile','page.changePassword'],function($view){
+        view()->composer(['section.slide','section.banner','section.newArrivals','page.about','page.checkout','page.contact','page.product','page.single', 'page.profile','page.checkout'],function($view){
               $banner =  Banner::All_Banner()->get();
               // dd($banner);
               $view->with('banner',$banner);

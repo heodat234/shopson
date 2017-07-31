@@ -26,12 +26,7 @@ Route::get('about',
 Route::get('profile',
 	['as'=>'profile',
 	 'uses'=>'Home_Controller@getProfile']);
-Route::get('checkout',[
-	'as'=>'checkout',
-	'uses'=>'HomeController@getCheckout']);
-Route::get('/demo', function () {
-    return view('page.profile');
-});
+
 
 //search
 
@@ -89,10 +84,12 @@ Route::get('ForgetPassword',[
 Route::post('ForgetPassword_Admin',
 	['as'=>'ForgetPassword_Admin',
 	'uses'=>'Admin_Controller@PostForgetPassword']);
-//vào trang admin
-Route::get('ViewContent_Admin',
-	['as'=>'ViewContentAdmin',
-	'uses'=>'Admin_Controller@ViewContent_Admin']);
+Route::get('profileAdmin',
+	['as'=>'profileAdmin',
+	 'uses'=>'Admin_Controller@getProfileAdmin']);
+
+
+
 
 //menu
 Route::get('productByIdParent/{id}',
@@ -128,10 +125,29 @@ Route::get('reduce-to-qty/{id}',
 Route::get('remove-to-item/{id}',
 	['as'=>'remove-to-item',
 	 'uses'=>'CartController@deleteItemCart']); 
+Route::get('checkout',[
+	'as'=>'checkout',
+	'uses'=>'CartController@getCheckOut']);
+Route::post('postCheckOut',[
+	'as'=>'postCheckOut',
+	'uses'=>'CartController@postCheckOut']);
 
 
+Route::get('checkEmail',[
+	'as'=>'checkEmail',
+	'uses'=>'LoginRegister_Controller@checkEmail']);
+
+Route::get('demo/{idProduct}',
+	['as'=>'demo',
+	 'uses'=>'CartController@reduceByOne']); 
 
 //Admin
+
+//vào trang admin
+Route::get('ViewContent_Admin',
+	['as'=>'ViewContentAdmin',
+	'uses'=>'Admin_Controller@ViewContent_Admin']);
+
 
 //Product
 Route::get('ViewProduct_Admin',

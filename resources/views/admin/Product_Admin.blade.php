@@ -332,92 +332,7 @@
                             </div>
                           </div>
                         </div>
-                        {{-- end add form --}}
-
-
-                        <div id="addRowPro" class="form">
-                            <p class="form_title">Add Product</p>
-                            <a href="#" class="close"><img src="admin/images/close.png" class="img-close" title="Close Window" alt="Close" /></a>
-                            <form id="new_form" enctype="multipart/form-data" method="post">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <br>
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label class="name">Name Product</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input type="text" name="new_name" id="new_name" required="" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label class="type">Type Product</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <select class="selectpicker form-control" name="new_type" id="new_type" >
-                                                    @foreach($type_product as $type)
-                                                    <option name="{{ $type->name }}" class="{{ $type->id }}" value="{{ $type->id }}">{{ $type->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label class="description">Description</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input type="text" name="new_des" id="new_description" required="" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label class="unit-price">Unit Price</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input type="number" name="new_unit_price" id="new_unit_price" required="" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label class="image">Image</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input type="file" name="new_image" id="new_image" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row clearfix">
-                                    <div class="col-lg-offset-5 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
-                                        <button type="button" id="saveAdd" class="button submit-button btn btn-info btn-lg glyphicon glyphicon-floppy-save" style="border-radius: 10px;">  Insert</button>
-                                    </div>
-                                </div>
-                                
-                            </form>
-                        </div>
+                        
                         {{-- End Add --}}
             </div>
         </div>
@@ -453,14 +368,7 @@
         $('#over').fadeIn(300);
     
     }
-    function addRow(){
-    var formBox = $('#addRowPro');
-    $(formBox).fadeIn("slow");
-    // thêm phần tử id="over" vào cuối thẻ body
-    $('body').append('<div id="over"></div>');
-    $('#over').fadeIn(300);
     
-    }
     $(document).on('click', "a.close, #over", function() {
     $('#over, .form').fadeOut(300 , function() {
     $('#over').remove();
