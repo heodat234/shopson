@@ -6,6 +6,8 @@ use Illuminate\Support\ServiceProvider;
 use App\Category;
 use App\Product;
 use App\Banner;
+use App\News;
+use App\Bill;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -15,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer(['header','page.product','section.newArrivals','section.bestView'],function($view){
+        view()->composer(['header','page.product','section.newArrivals','section.bestView','admin.menu','admin.Modify_Product','admin.Category_Admin','admin.Modify_Category'],function($view){
               $typeParent =  Category::TypeParent_product()->get();
               $typeChild =  Category::TypeChild_product()->get();
               $view->with(['typeParent'=>$typeParent,'typeChild'=>$typeChild]);
@@ -28,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
               $product =  Product::Best_View_Product()->paginate(8);
               $view->with('product',$product);
           });
-        view()->composer(['section.slide','section.banner','section.newArrivals','page.about','page.checkout','page.contact','page.product','page.single', 'page.profile','page.checkout'],function($view){
+        view()->composer(['section.slide','section.banner','section.newArrivals','page.about','page.checkout','page.contact','page.product','page.single', 'page.profile','page.checkout','page.newsSingle'],function($view){
               $banner =  Banner::All_Banner()->get();
               // dd($banner);
               $view->with('banner',$banner);
@@ -36,6 +38,21 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('admin.Product_Admin',function($view){
                 $type_product=Category::TypeChild_product()->get();
                 $view->with('type_product',$type_product);
+        });
+         view()->composer(['admin.Modify_BillDetail','admin.Modify_Kho'],function($view){
+                $products=Product::Select_Product()->get();
+                $view->with('products',$products);
+        });
+
+        view()->composer('page.newsSingle',function($view){
+                $newsType=News::Load_News()->get();
+                
+                $view->with('newsType',$newsType);
+        });
+        view()->composer('admin.header',function($view){
+                $countBill=Bill::Count_Bill();
+                
+                $view->with('count_bill',$countBill);
         });
     }
 

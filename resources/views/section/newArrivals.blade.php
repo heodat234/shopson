@@ -30,25 +30,9 @@
 										</div>
 										<div class="item-info-product ">
 											<h4><a href="{{ route('singleProduct',$pro->id) }}">{{ $pro->name }}</a></h4>
-											<div class="info-product-price">
-												<span class="item_price">{{ number_format($pro->unit_price) }} VNĐ</span>
-												<del>$69.71</del>
-											</div>
-											<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-												<form action="#" method="post">
-													<fieldset>
-														<input type="hidden" name="cmd" value="_cart" />
-														<input type="hidden" name="add" value="1" />
-														<input type="hidden" name="business" value=" " />
-														<input type="hidden" name="item_name" value="{{ $pro->name }}" />
-														<input type="hidden" name="amount" value="{{ $pro->unit_price }}" />
-														{{-- <input type="hidden" name="discount_amount" value="1.00" />
-														<input type="hidden" name="currency_code" value="USD" /> --}}
-														<input type="hidden" name="return" value=" " />
-														<input type="hidden" name="cancel_return" value=" " />
-														<input type="submit" name="submit" value="Thêm vào giỏ hàng" class="button" />
-													</fieldset>
-												</form>
+											<br>
+											<div class="snipcart-details  hvr-outline-out button2">
+												<a href="{{ route('singleProduct',$pro->id) }}">Xem Chi Tiết</a>
 											</div>
 											
 										</div>

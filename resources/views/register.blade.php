@@ -27,7 +27,7 @@
 							<span></span>
 						</div>
 						<div class="styled-input">
-							<input type="email" name="email" required="">
+							<input type="email" name="email" id="id_email" required="">
 							<label>Email</label>
 							<span></span>
 						</div>
@@ -42,7 +42,7 @@
 							<span></span>
 						</div>
 						<div class="styled-input">
-							<input type="text" name="phone">
+							<input type="text" name="phone" minlength="10" maxlength="11" required="" title="Chỉ được nhập số">
 							<label>Phone</label>
 							<span></span>
 						</div>
@@ -67,6 +67,22 @@
 	</div>
 </div>
 <script type="text/javascript">
+	$("#id_email").blur(function (event) { 
+		
+			   var Email = $(this).val();
+			   var route = "{{ route('checkEmail') }}";
+			   $.ajax({
+			   	url: route,
+			   	type: 'get',
+			   	data: {email: Email},
+			   	success:function(data) {
+			   		
+			   		$('div.dangkythatbai').fadeIn();
+					$('div.dangkythatbai').html(data);
+			   	}
+			   });
+	});
+
 	function register(){
 		var route=" {{ route('register') }} ";
 		var form_data = new FormData($('form#register')[0]);

@@ -18,16 +18,15 @@ class LoginRegister_Controller extends Controller
 {
    
     public function postRegister(Request $req){
-        $this->validate($req,['email'=>'required|email', 'full_name'=>'required', 'password'=>'required|between:6,20', 'phone'=>'numeric|min:10', 're_password'=>'required|same:password'
+        $this->validate($req,['email'=>'required|email', 'full_name'=>'required', 'password'=>'required|between:6,20', 'phone'=>'digits_between:10,11', 're_password'=>'required|same:password'
             ],['email.required'=>'Vui lòng nhập Email',
                 'full_name.required'=>'Vui lòng nhập tên tài khoản',
                 'email.email'=>'Email không đúng định dạng',
-                'phone.numeric'=>'Điện thoại phải thuộc kiểu số',
                 'password.required'=>'Vui lòng nhập mật khẩu',
                 'password.between'=>'Mật khẩu phải từ 6 đến 20 kí tự',
                 're_password.same'=>'Mật khẩu không khớp',
                 're_password.required'=>'Vui lòng nhập xác nhận mật khẩu',
-                'phone.min'=>'Điện thoại chỉ được 10 hoặc 11 số'
+                'phone.digits_between'=>'Điện thoại phải thuộc kiểu số và chỉ được 10 hoặc 11 số'
             ]);
         $mail = User::where('email',$req->email)->first();
         if($mail){
@@ -126,20 +125,36 @@ class LoginRegister_Controller extends Controller
       $phone = $req->phone;
       $address = $req->address;
 
-       $user = User::Edit_User($id,$name,$phone,$address,0);
+       $user = User::Edit_User($id,$name,$phone,$address);
        $group = DB::table('users')->where('id',$id)->select('group')->first();
-       if($group==0)
+       if($group->group==0)
         return redirect()->route('profile')->with('thanhcong','Sửa thông tin thành công');
         else
           return redirect()->route('profileAdmin')->with('thanhcong','Sửa thông tin thành công');
      }
+
+     //đổi mật khẩu
     public function changePassword(Request $req)
-    {
-      $email = $req->email;
-      $password = $req->password;
-      $user =User::changePassword($email, $password);
-      Auth::logout();
-      return redirect()->route('home')->with('thanhcong','Đổi nhập khẩu thành công, vui lòng đăng nhập lại');
+    { 
+      $passwordOld = $req->passwordOld;
+      if(Hash::check($passwordOld,Auth::User()->password)){
+        $email = $req->email;
+        $password = $req->password;
+        $re_password =$req->password2;
+        if ($re_password==$password) {
+          $user =User::changePassword($email, $password);
+          if(Auth::User()->group !=0){
+            Auth::logout();
+          return redirect()->route('Login_Admin')->with('thanhcong','Đổi nhập khẩu thành công, vui lòng đăng nhập lại');
+          }else{
+            Auth::logout();
+          return redirect()->route('home')->with('thanhcong','Đổi nhập khẩu thành công, vui lòng đăng nhập lại');
+          }
+        }else return redirect()->back()->with('thatbai','Hai mật khẩu mới không khớp, vui lòng nhập lại');
+        
+      }else{
+        return redirect()->back()->with('thatbai','Mật khẩu cũ không đúng, vui lòng nhập đúng mật khẩu cũ');
+      }
     }
 
     public function checkEmail(Request $req)

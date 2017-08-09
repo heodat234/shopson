@@ -5,154 +5,61 @@
 	</a>
 </nav>
 <section class="title-bar">
-	<div class="logo">
-		<h1><a href="index.html"><img src="images/logo.png" alt="" />Colored</a></h1>
+	<div class="logo" style="width: 500px">
+		<h1><a href="{{ route('ViewContentAdmin') }}"><img src="images/logo.jpg" style="width: 90px" alt="" />Vila Paint</a></h1>
 	</div>
 	<div class="full-screen">
 		<section class="full-top">
 			<button id="toggle"><i class="fa fa-arrows-alt" aria-hidden="true"></i></button>
 		</section>
 	</div>
-	<div class="w3l_search">
+	{{-- <div class="w3l_search">
 		<form action="#" method="post">
 			<input type="text" name="search" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" required="">
 			<button class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
 		</form>
-	</div>
+	</div> --}}
 	<div class="header-right">
 		<div class="profile_details_left">
 			<div class="header-right-left">
 				<!--notifications of menu start -->
 				<ul class="nofitications-dropdown">
+					
 					<li class="dropdown head-dpdn">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i><span class="badge">3</span></a>
-						<ul class="dropdown-menu anti-dropdown-menu w3l-msg">
-							<li>
-								<div class="notification_header">
-									<h3>You have 3 new messages</h3>
-								</div>
-							</li>
-							<li><a href="#">
-								<div class="user_img"><img src="images/1.png" alt=""></div>
-								<div class="notification_desc">
-									<p>Lorem ipsum dolor amet</p>
-									<p><span>1 hour ago</span></p>
-								</div>
-								<div class="clearfix"></div>
-							</a></li>
-							<li class="odd"><a href="#">
-								<div class="user_img"><img src="images/2.png" alt=""></div>
-								<div class="notification_desc">
-									<p>Lorem ipsum dolor amet </p>
-									<p><span>1 hour ago</span></p>
-								</div>
-								<div class="clearfix"></div>
-							</a></li>
-							<li><a href="#">
-								<div class="user_img"><img src="images/3.png" alt=""></div>
-								<div class="notification_desc">
-									<p>Lorem ipsum dolor amet </p>
-									<p><span>1 hour ago</span></p>
-								</div>
-								<div class="clearfix"></div>
-							</a></li>
-							<li>
-								<div class="notification_bottom">
-									<a href="#">See all messages</a>
-								</div>
-							</li>
-						</ul>
-					</li>
-					<li class="dropdown head-dpdn">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge blue">3</span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge blue numberBill">{{ $count_bill }}</span></a>
 						<ul class="dropdown-menu anti-dropdown-menu agile-notification">
 							<li>
 								<div class="notification_header">
-									<h3>You have 3 new notifications</h3>
+									<h3>Bạn có {{ $count_bill }} hóa đơn mới</h3>
 								</div>
 							</li>
-							<li><a href="#">
-								<div class="user_img"><img src="images/2.png" alt=""></div>
-								<div class="notification_desc">
-									<p>Lorem ipsum dolor amet</p>
-									<p><span>1 hour ago</span></p>
-								</div>
-								<div class="clearfix"></div>
-							</a></li>
-							<li class="odd"><a href="#">
-								<div class="user_img"><img src="images/1.png" alt=""></div>
-								<div class="notification_desc">
-									<p>Lorem ipsum dolor amet </p>
-									<p><span>1 hour ago</span></p>
-								</div>
-								<div class="clearfix"></div>
-							</a></li>
-							<li><a href="#">
-								<div class="user_img"><img src="images/3.png" alt=""></div>
-								<div class="notification_desc">
-									<p>Lorem ipsum dolor amet </p>
-									<p><span>1 hour ago</span></p>
-								</div>
-								<div class="clearfix"></div>
-							</a></li>
-							<li>
-								<div class="notification_bottom">
-									<a href="#">See all notifications</a>
-								</div>
-							</li>
+							<script type="text/javascript">
+			                    $(document).ready(function(){
+			                        var route="{{route('Count_Bill')}}";
+			                        setInterval(function(){
+			                            $.ajax({
+			                            url:route,
+			                            type:'get',
+			                            data:{
+			                            },
+			                            success:function(data) {  
+			                                if(data!=0){
+			                                    $('.numberBill').html(data);
+			                                    $('.notification_header').html('<h3>Bạn có '+data+' hóa đơn mới. <a href={{ route('ViewPageBill_Admin') }}"><button>Xem</button>')
+			                                }
+			                                else{
+			                                    $('.numberBill').hide();
+			                                    $('.notification_header').html('Bạn không có hóa đơn mới');
+			                                }
+			                               
+			                            }
+			                        });
+			                        },10000);
+			                    });
+                			</script>
 						</ul>
 					</li>
-					<li class="dropdown head-dpdn">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-tasks"></i><span class="badge blue1">15</span></a>
-						<ul class="dropdown-menu anti-dropdown-menu agile-task">
-							<li>
-								<div class="notification_header">
-									<h3>You have 8 pending tasks</h3>
-								</div>
-							</li>
-							<li><a href="#">
-								<div class="task-info">
-									<span class="task-desc">Database update</span><span class="percentage">40%</span>
-									<div class="clearfix"></div>
-								</div>
-								<div class="progress progress-striped active">
-									<div class="bar yellow" style="width:40%;"></div>
-								</div>
-							</a></li>
-							<li><a href="#">
-								<div class="task-info">
-									<span class="task-desc">Dashboard done</span><span class="percentage">90%</span>
-									<div class="clearfix"></div>
-								</div>
-								<div class="progress progress-striped active">
-									<div class="bar green" style="width:90%;"></div>
-								</div>
-							</a></li>
-							<li><a href="#">
-								<div class="task-info">
-									<span class="task-desc">Mobile App</span><span class="percentage">33%</span>
-									<div class="clearfix"></div>
-								</div>
-								<div class="progress progress-striped active">
-									<div class="bar red" style="width: 33%;"></div>
-								</div>
-							</a></li>
-							<li><a href="#">
-								<div class="task-info">
-									<span class="task-desc">Issues fixed</span><span class="percentage">80%</span>
-									<div class="clearfix"></div>
-								</div>
-								<div class="progress progress-striped active">
-									<div class="bar  blue" style="width: 80%;"></div>
-								</div>
-							</a></li>
-							<li>
-								<div class="notification_bottom">
-									<a href="#">See all pending tasks</a>
-								</div>
-							</li>
-						</ul>
-					</li>
+					
 					<div class="clearfix"> </div>
 				</ul>
 			</div>

@@ -40,14 +40,23 @@ class User extends Authenticatable
     
     }
     
+    public static function View_User_By_Id($id)
+    {
+        $user=DB::table('users')->where('id',$id)->select();
+            return $user;
+    }
     public static function User_All(){
-            $user=DB::table('users')->select();
+            $user=DB::table('users')
+                    ->leftjoin('bills','bills.id_user','=','users.id')
+                    ->select('users.id','users.full_name','users.email','users.phone','users.address','users.group','bills.id as id_bill');
             return $user;
     }
-    public static function Edit_User($id, $name, $phone, $address, $group){
-            $user=DB::table('users')->where('id','=',$id)->update(['full_name'=>$name, 'phone'=>$phone, 'address'=>$address,'group'=>$group]);
-            return $user;
+    
+    public static function Edit_User($id,$name,$phone,$address)
+    {
+        $user = DB::table('users')->where('id',$id)->update(['full_name'=>$name,'phone'=>$phone,'address'=>$address]);
     }
+
     public static function Insert_User($name, $email, $password, $phone, $address, $group,$remember_token){
             $id=DB::table('users')->insertGetId(['full_name'=>$name,'email'=>$email, 'password'=>$password, 'phone'=>$phone, 'address'=>$address,'remember_token'=>$remember_token,'group'=>$group,'active'=>1]);
             return $id;

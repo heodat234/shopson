@@ -7,44 +7,63 @@ use DB;
 class Category extends Model
 {
     protected $table ='category';
- //    public function products(){
- //    	return $this->hasMany('App\Product','id_type','id');
- //    }
- //    public static function Show_Type_product(){
-	// 	$Type_product=DB::table('category')->select('id','name');
-	// 	return $Type_product;
-	// }	
-
-	// public static function Edit_Category($id, $name, $desc, $image, $type){
- //        $pro=DB::table('category')->where('id','=',$id)->update(['name'=>$name, 'description'=>$desc,'image'=>$image, 'type'=>$type]);
- //        return $pro; 
- //  	}
- //  	public static function Insert_Category($name, $desc, $image, $type){
- //            $id=DB::table('category')->insertGetId(['name'=>$name,'description'=>$desc,'image'=>$image, 'type'=>$type]);
- //            return $id;
- //  	}
-	// public static function Delete_Category($id){
-	// 	$pro=DB::table('products')->where('id_type',$id)->delete();
-	// 	$type_pro=DB::table('category')->where('id',$id)->delete();
-	// }
-
+ 
 
 
 	//lấy tất cả loại sản phẩm
     public static function Show_Type_product(){
-		$Type_product=DB::table('category')->select('id','name');
+		$Type_product=DB::table('category')->where('status',0)->select();
 		return $Type_product;
 	}	
 	//lấy loại sản phẩm cha
 	public static function TypeParent_product(){
-		$Type_parent=DB::table('category')->where('type_cha','=','0')->select();
+		$Type_parent=DB::table('category')->where('type_cha','=','0')->where('status',0)->select();
 		return $Type_parent;
 	}
 	//lấy loại sản phẩm con
 	public static function TypeChild_product(){
-		$Type=DB::table('category')->where('type_cha','!=','0')->select();
+		$Type=DB::table('category')->where('type_cha','!=','0')->where('status',0)->select();
 		return $Type;
 	}
+	//lấy loại cha theo id loại con
+	public static function Find_TypeParent_By_Id($id)
+	{
+		$type_cha = DB::table('category')->where('id',$id)->where('status',0)->select('type_cha');
+		return $type_cha;
+	}
+	//lấy loại con theo id loại cha
+	public static function Show_Category_By_Id_Parent($id_cha)
+	{
+		$type = DB::table('category')->where('type_cha',$id_cha)->where('status',0)->select();
+		return $type;
+	}
+	//lấy tất cả thông tin loại theo id
+	public static function Show_Category_By_Id($id)
+	{
+		$type = DB::table('category')->where('id',$id)->where('status',0)->select();
+		return $type;
+	}
+
+	public static function Edit_Category($id, $name,$type_cha, $desc, $image){
+        $pro=DB::table('category')->where('id','=',$id)->update(['name'=>$name,'type_cha'=>$type_cha, 'description'=>$desc,'image'=>$image]);
+        return $pro; 
+  	}
+
+  	 public static function Insert_Category($name,$type_cha, $desc, $image){
+            $id=DB::table('category')->insert(['name'=>$name,'description'=>$desc,'image'=>$image, 'type_cha'=>$type_cha]);
+            return $id;
+  	}
+  	public static function Delete_Category($id){
+		$pro=DB::table('products')->where('id_type',$id)->update(['status'=>1]);
+		$type_pro=DB::table('category')->where('id',$id)->update(['status'=>1]);
+	}
+
+
+
+
+
+
+
 	public static function vi_to_en($str){
 		$str = preg_replace("/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/", 'a', $str);
 		  $str = preg_replace("/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/", 'e', $str);

@@ -24,7 +24,7 @@
 		<div class="col-md-4 single-right-left ">
 			<div class="grid images_3_of_2">
 				<div class="flexslider">
-					
+					{{-- {{ dd($product) }} --}}
 					<ul class="slides">
 						<li data-thumb="images/products/{{ $product[0]->image }}">
 							<div class="thumb-image"> <img src="images/products/{{ $product[0]->image }}" data-imagezoom="true" class="img-responsive"> </div>
@@ -40,7 +40,7 @@
 				</div>
 			</div>
 		</div>
-		{{-- {{ dd($product) }} --}}
+		{{-- {{ dd($type_cha->type_cha) }} --}}
 		<div class="col-md-8 single-right-left simpleCart_shelfItem">
 			<h3>{{ $product[0]->name }} </h3>
 			@foreach($product as $pro)
@@ -62,7 +62,8 @@
 				Lượt xem: {{ $product[0]->view }}
 			</div>
 			<div class="description">
-				{{ $product[0]->description }}
+				<b>Tính năng:</b> <br>
+				{!!$product[0]->description !!}
 			</div>
 
 			<form action="#" method="post">
@@ -75,18 +76,22 @@
 					 
 				</div>
 				<br>
+				@if($type_cha->type_cha!=4)
 				<div class="col-sm-4">
 			  		<h4>Màu sơn: </h4> <input value="222" name="color" id="colorPro" class="pick-a-color form-control" type="text">
-			  </div>
-			  <div class="clearfix"> </div>
+			  	</div>
+			  	@endif
+			  	<div class="clearfix"> </div>
 			</div>
 			
 			<div class="occasional">
 				<h5>Loại :</h5>
 				@foreach($product as $pro)
+				@if($pro->status == 0) <!-- neu bang 1 là da xoa -->
 				<div class="colr ert">
-					<label class="radio"><input type="radio" name="amount" class="idsize" value="{{ $pro->idsize }}"><i></i>{{ $pro->size }}</label>
+					<label class="radio"><input type="radio" name="amount" checked="" class="idsize" value="{{ $pro->idsize }}"><i></i>{{ $pro->size }}</label>
 				</div>
+				@endif
 				@endforeach	
 				
 				<div class="clearfix"> </div>
@@ -94,8 +99,8 @@
 			
 			</form>
 			
-				<button class="snipcart-details" style="background-color: #2fdab8; width: 250px;height: 50px"  onclick="addcart('{{ $product[0]->id}}');">Thêm vào giỏ hàng</button>
-			
+				<button class="btn btn-sussess fa fa-cart-plus" style="background-color: #2fdab8; width: 250px;height: 50px" 	 onclick="addcart('{{ $product[0]->id}}');">  Thêm vào giỏ hàng</button>
+				<br><br>
 				<div class="alert alert-success thanhcong" style="display: none;"></div>
 				<div class="alert alert-danger thatbai" style="display: none;"></div>
 							
@@ -107,23 +112,107 @@
 								<ul class="resp-tabs-list">
 									<li>Mô tả</li>
 									<li>Đánh giá</li>
-									
+									<li>Bảo hành</li>
+									<li>Vận chuyển</li>
 								</ul>
 								<div class="resp-tabs-container">
 									<!--/tab_one-->
 									<div class="tab1">
 										<div class="single_page_agile_its_w3ls">
 											<h6>{{ $product[0]->name }}</h6>
-											<p>Sơn Jotun nội thất Majetic đẹp hoàn hảo là sản phẩm sơn nội thất cao cấp đem lại màu sắc rực rỡ, sắc nét, tạo nét sang trọng cho ngôi nhà bạn. Tường nhà được sơn bởi Majestic sẽ có bề mặt mờ cổ điển, bền màu và dễ lau chùi. Với công thức công nghệ màu đích thực và chất tạo màng đặc biệt của Jotun sẽ đảm bảo màu sơn Majestic luôn chính xác và bền màu theo thời gian. Jotun luôn cam kết đáp ứng những tiêu chuẩn cao nhất nhằm mang lại sản phẩm thân thiện với môi trường và sức khỏe người tiêu dùng.  </p>
+											<p>{!!$product[0]->description  !!} </p>
 											
 										</div>
 									</div>
 									<!--//tab_one-->
 									<div class="tab2">
-										
-										<div class="fb-comments" data-href="http://localhost/webson/public/" data-numposts="5"></div>
+										<div class="single_page_agile_its_w3ls">
+										<div style="width: 100%" class="fb-comments" data-href="http://localhost/webson/public/" data-numposts="5"></div>
+										</div>
 									</div>
-									
+									<div class="tab3">
+									<div class="single_page_agile_its_w3ls">
+										<h2><b>Quy định bảo hành và đổi trả hàng</b> </h2><br>
+										Quy định đổi trả hàng:<br>
+
+										- Tất cả các sản phẩm sơn được đưa lên trên Website: vilapaint.com cam kết đều là những sản phẩm chính hãng của các nhà sản xuất sơn, các sản phẩm sơn đã được nhà sản xuất đăng ký về Hợp Chuẩn Hợp Quy và tiêu chuẩn chất lượng theo quy định của nhà nước và luật xây dựng Việt nam.<br>
+
+										- Sản phẩm được Vila Paint cung cấp ra thị trường đều có cơ chế hậu mãi và bảo hành, đảm bảo không có hàng giả hàng nhái và hàng kém chất lượng.<br>
+
+										- Mọi chính sách bảo hành sơn, đổi trả sơn chúng tôi đều thực hiện theo quy định của từng nhà sản xuất với những thương hiệu sơn đang cung cấp ra thị trường.<br>
+
+										- Nếu hàng giao cho Quý khách không đúng theo đơn đặt hàng, hoặc không đúng theo tiêu chuẩn của nhà sản xuất thì Quý khách hàng được yêu cầu đổi trả hàng như sau:<br>
+
+										<b>1. Thời gian đổi trả :</b><br>
+
+										Thời gian đổi trả trong vòng 48h từ khi nhận hàng.<br>
+
+										<b>2. Điều kiện để đổi trả hàng:</b><br>
+
+										+ Sản phẩm bị lỗi do nhà sản xuất<br>
+
+										+ Hàng không đúng chuẩn, mẫu mã như Quý khách đặt hàng<br>
+
+										+ Đổi sản phẩm đúng như Quý khách đã đặt, không cho phép đổi sản phẩm không cùng loại.<br>
+
+										+ Hàng đổi hoặc trả phải còn mới, nguyên đai, nguyên kiện, không có dấu hiệu cạy mở, thay đổi.<br>
+
+										<b>3. Cách thức đổi trả hàng:</b><br>
+
+										- Khách hàng chuyển hàng đổi trả, Công ty sẽ chuyển hàng mới đạt yêu cầu cho Quý khách.<br> 
+
+										- Để đổi trả hàng Quý khách vui lòng làm theo trình tự sau:<br>
+
+										+ Khi phát hiện sự cố đề nghị khách hàng dừng mọi hoạt động liên quan đến sự cố và thực hiện bước sau.<br>
+
+										+ Gọi điện thoại thông báo ngay cho nhân viên đã bán hàng hoặc số điện thoại của bộ phận giải quyết khiếu nại hoặc đến trực tiếp văn phòng Công ty TNHH Vila Paint  để thông báo, nói rõ cụ thể tình trạng mà mình đang gặp phải.<br>
+
+										+ Thỏa thuận với người giải quyết về hình thức, cách thức, thời gian đổi hàng cụ thể.<br>
+
+										+ Trong trường hợp khách hàng biết có sự cố nhưng vẫn cố tình sử dụng và sau khi sử dụng xong hoặc đang sử dụng  mới thực hiện các bước thông báo sự cố thì Vila Paint và nhà sản xuất không giải quyết và không có trách nhiệm trong vấn đề này.<br>
+
+										- Chi phí khi đổi, trả hàng:<br>
+
+										Tất cả các chi phí trực tiếp phát sinh do lỗi trên sẽ được Công ty TNHH Vila Paint hỗ trợ hoàn toàn miễn phí.<br>
+
+										<b>4. Chính sách hoàn tiền:</b><br>
+
+										Sau quá trình đổi trả nếu hàng vẫn không đúng theo yêu cầu đặt hàng thì Quý khách hàng được quyền yêu cầu dừng đơn hàng và được hoàn trả tiền bằng tiền mặt hoặc chuyển khoản.<br>
+
+										<b>5. Chính sách bảo hành sơn:</b><br>
+
+										Chính sách bảo hành sơn nhà, sơn nước, sơn dầu, sơn công nghiệp sơn chống thấm...sẽ giải quyết tất cả các câu hỏi của khách hàng:<br>
+
+										Sơn bảo hành bao lâu?<br>
+
+										Cơ chế bảo hành sơn như thế nào?<br>
+
+										+ Chính sách bảo hành sơn nhà, sơn dầu, sơn công nghiệp theo quy định của từng nhà sản xuất sơn sản phẩm sơn.<br>
+
+										+ Khi cần giải quyết có thể liên hệ trực tiếp nhà sản xuất hoặc có thể gọi điện đến đơn vị thương mại  Công ty TNHH Vila Paint để được thực hiện quyền bảo hành sản phẩm sơn mình đã mua và sử dụng.<br>
+
+										 Mua sơn có bảo hành, Bán sơn có bảo hành, xử lý sự cố về sơn nhanh chóng dứt điểm.<br>
+
+										<h2 style="color: red; float: center">Hãy để Vila Paint mang lại giá trị niềm tin đến với khách hàng</h2><br>
+
+										Quý khách hàng có thể gọi trực tiếp đến số máy tiếp nhận và giải quyết khứu nại sơn: 0964215696<br>
+
+										Trân trọng cảm ơn sự quan tâm của Quý khách hàng!<br>
+									</div>
+									</div>
+									<div class="tab4">
+										<div class="single_page_agile_its_w3ls">
+											<b><h3>Chính sách vận chuyển và giao nhận</h3></b><br>
+ 
+											<b>1.Chính sách vận chuyển gần</b><br>
+											Công ty sẽ giao hàng miễn phí tận nơi trong bán kính 10km với đơn hàng đạt số lượng lớn hơn hoặc bằng 5 đơn vị (thùng-kiện-bao).<br>
+											Đối với những trường hợp số lượng hàng ít không đạt mức từ 5 đơn vị trở lên khách hàng sẽ hỗ trợ thêm phí vận chuyển ngoại trừ trường hợp có sự hỗ trợ vận chuyển từ nhà sản xuất.<br>
+											Phí vận chuyển công ty sẽ báo trước cho khách hàng<br>
+											<b>2.Chính sách vận chuyển xa</b><br>
+											Công Ty sẽ giao hàng ra ngoài bến xe gửi theo nhà xe khách hàng chỉ định hoặc Công ty sẽ liên hệ với nhà xe, sau đó nhà xe sẽ chở hàng đến cho khách hàng, phí xe sẽ do khách hàng chi trả.<br>
+											Trường hợp khách hàng mua số lượng lớn đủ một chuyến xe tải hoặc theo quy định thì Công ty sẽ hỗ trợ chở hàng tận nơi cho quý khách trong bán kính 150km.
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -131,163 +220,33 @@
 						<!--/slider_owl-->
 						
 						<div class="w3_agile_latest_arrivals">
-							<h3 class="wthree_text_info">Featured <span>Arrivals</span></h3>
+							<h3 class="wthree_text_info">Sản phẩm <span>Cùng loại</span></h3>
+							{{-- {{ dd($productsType) }} --}}
+							@foreach($productsType as $proType)
+							@if($proType->id != $product[0]->id)
 							<div class="col-md-3 product-men single">
-								<div class="men-pro-item simpleCart_shelfItem">
+								<div class="men-pro-item simpleCart_shelfItem" style="height: 360px">
 									<div class="men-thumb-item">
-										<img src="images/w2.jpg" alt="" class="pro-image-front">
-										<img src="images/w2.jpg" alt="" class="pro-image-back">
+										<img src="images/products/{{$proType->image  }}" style="height: 200px" alt="" class="pro-image-front">
+										<img src="images/products/{{$proType->image  }}" style="height: 200px" alt="" class="pro-image-back">
 										<div class="men-cart-pro">
 											<div class="inner-men-cart-pro">
-												<a href="single.html" class="link-product-add-cart">Quick View</a>
+												<a href="{{ route('singleProduct',$proType->id) }}" class="link-product-add-cart">Xem Nhanh</a>
 											</div>
 										</div>
 										<span class="product-new-top">New</span>
-										
 									</div>
 									<div class="item-info-product ">
-										<h4><a href="single.html">Sleeveless Solid Blue Top</a></h4>
-										<div class="info-product-price">
-											<span class="item_price">$140.99</span>
-											<del>$189.71</del>
+										<h4><a href="{{ route('singleProduct',$proType->id) }}">{{ $proType->name }}</a></h4>
+										<br>
+										<div class="snipcart-details  hvr-outline-out button2">
+										<a href="{{ route('singleProduct',$proType->id) }}">Xem Chi Tiết</a>
 										</div>
-										<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-											<form action="#" method="post">
-												<fieldset>
-													<input type="hidden" name="cmd" value="_cart">
-													<input type="hidden" name="add" value="1">
-													<input type="hidden" name="business" value=" ">
-													<input type="hidden" name="item_name" value="Sleeveless Solid Blue Top">
-													<input type="hidden" name="amount" value="30.99">
-													<input type="hidden" name="discount_amount" value="1.00">
-													<input type="hidden" name="currency_code" value="USD">
-													<input type="hidden" name="return" value=" ">
-													<input type="hidden" name="cancel_return" value=" ">
-													<input type="submit" name="submit" value="Add to cart" class="button">
-												</fieldset>
-											</form>
-										</div>
-										
 									</div>
 								</div>
 							</div>
-							<div class="col-md-3 product-men single">
-								<div class="men-pro-item simpleCart_shelfItem">
-									<div class="men-thumb-item">
-										<img src="images/w4.jpg" alt="" class="pro-image-front">
-										<img src="images/w4.jpg" alt="" class="pro-image-back">
-										<div class="men-cart-pro">
-											<div class="inner-men-cart-pro">
-												<a href="single.html" class="link-product-add-cart">Quick View</a>
-											</div>
-										</div>
-										<span class="product-new-top">New</span>
-										
-									</div>
-									<div class="item-info-product ">
-										<h4><a href="single.html">Black Basic Shorts</a></h4>
-										<div class="info-product-price">
-											<span class="item_price">$120.99</span>
-											<del>$189.71</del>
-										</div>
-										<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-											<form action="#" method="post">
-												<fieldset>
-													<input type="hidden" name="cmd" value="_cart">
-													<input type="hidden" name="add" value="1">
-													<input type="hidden" name="business" value=" ">
-													<input type="hidden" name="item_name" value="Black Basic Shorts">
-													<input type="hidden" name="amount" value="30.99">
-													<input type="hidden" name="discount_amount" value="1.00">
-													<input type="hidden" name="currency_code" value="USD">
-													<input type="hidden" name="return" value=" ">
-													<input type="hidden" name="cancel_return" value=" ">
-													<input type="submit" name="submit" value="Add to cart" class="button">
-												</fieldset>
-											</form>
-										</div>
-										
-									</div>
-								</div>
-							</div>
-							<div class="col-md-3 product-men single">
-								<div class="men-pro-item simpleCart_shelfItem">
-									<div class="men-thumb-item">
-										<img src="images/s6.jpg" alt="" class="pro-image-front">
-										<img src="images/s6.jpg" alt="" class="pro-image-back">
-										<div class="men-cart-pro">
-											<div class="inner-men-cart-pro">
-												<a href="single.html" class="link-product-add-cart">Quick View</a>
-											</div>
-										</div>
-										<span class="product-new-top">New</span>
-										
-									</div>
-									<div class="item-info-product ">
-										<h4><a href="single.html">Aero Canvas Loafers  </a></h4>
-										<div class="info-product-price">
-											<span class="item_price">$120.99</span>
-											<del>$199.71</del>
-										</div>
-										<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-											<form action="#" method="post">
-												<fieldset>
-													<input type="hidden" name="cmd" value="_cart">
-													<input type="hidden" name="add" value="1">
-													<input type="hidden" name="business" value=" ">
-													<input type="hidden" name="item_name" value="Aero Canvas Loafers">
-													<input type="hidden" name="amount" value="30.99">
-													<input type="hidden" name="discount_amount" value="1.00">
-													<input type="hidden" name="currency_code" value="USD">
-													<input type="hidden" name="return" value=" ">
-													<input type="hidden" name="cancel_return" value=" ">
-													<input type="submit" name="submit" value="Add to cart" class="button">
-												</fieldset>
-											</form>
-										</div>
-										
-									</div>
-								</div>
-							</div>
-							<div class="col-md-3 product-men single">
-								<div class="men-pro-item simpleCart_shelfItem">
-									<div class="men-thumb-item">
-										<img src="images/w7.jpg" alt="" class="pro-image-front">
-										<img src="images/w7.jpg" alt="" class="pro-image-back">
-										<div class="men-cart-pro">
-											<div class="inner-men-cart-pro">
-												<a href="single.html" class="link-product-add-cart">Quick View</a>
-											</div>
-										</div>
-										<span class="product-new-top">New</span>
-										
-									</div>
-									<div class="item-info-product ">
-										<h4><a href="single.html">Ankle Length Socks</a></h4>
-										<div class="info-product-price">
-											<span class="item_price">$100.99</span>
-											<del>$159.71</del>
-										</div>
-										<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-											<form action="#" method="post">
-												<fieldset>
-													<input type="hidden" name="cmd" value="_cart">
-													<input type="hidden" name="add" value="1">
-													<input type="hidden" name="business" value=" ">
-													<input type="hidden" name="item_name" value="Ankle Length Socks">
-													<input type="hidden" name="amount" value="30.99">
-													<input type="hidden" name="discount_amount" value="1.00">
-													<input type="hidden" name="currency_code" value="USD">
-													<input type="hidden" name="return" value=" ">
-													<input type="hidden" name="cancel_return" value=" ">
-													<input type="submit" name="submit" value="Add to cart" class="button">
-												</fieldset>
-											</form>
-										</div>
-										
-									</div>
-								</div>
-							</div>
+							@endif
+							@endforeach
 							<div class="clearfix"> </div>
 							<!--//slider_owl-->
 						</div>
@@ -314,15 +273,21 @@
 		
 					function addcart(id){
 				        var quantity = $('#quantity').val();
-				        var color = $('#colorPro').val();
+				        
+				        var id_cha = {{ $type_cha->type_cha }};
+				        if(id_cha !=4)
+				        	var color = $('#colorPro').val();
+				    	else 
+				    		var color = "0";
 				        var idsize = "";
 				        var checkbox = $('.idsize');
 		                for (var i = 0; i < checkbox.length; i++){
 		                    if (checkbox[i].checked === true){
-		                        alert(checkbox[i].value);
+		                        
 		                        idsize = checkbox[i].value;
 		                    }
 		                }
+		                if (quantity!=0) {
 				        var route = "{{route('add-to-cart',['idsize','quantity','color'])}}"; 
 				        route=route.replace("idsize",idsize); 
 				        route=route.replace("quantity",quantity); 
@@ -349,10 +314,16 @@
 				            }else{
 				            	$('div.thatbai').fadeIn();
 			                    $('div.thatbai').html(cart);
+			                    $('div.thatbai').fadeOut(10000);
 			                    
 				            }
 				        })
-				        
+				        }else{
+				        	$('div.thatbai').fadeIn();
+			                    $('div.thatbai').html("Số lượng phải tối thiểu bằng 1");
+			                    $('div.thatbai').fadeOut(10000);
+				        }
+
 				    }
 				</script>
 				@endsection

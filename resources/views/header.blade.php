@@ -102,6 +102,7 @@
 											</li>
 											
 											<li class=" menu__item"><a class="menu__link" href="{{ route('contact') }}">Liên hệ</a></li>
+											<li class=" menu__item"><a class="menu__link" href="{{ route('news') }}">Tin tức</a></li>
 										</ul>
 									</div>
 								</div>
@@ -129,7 +130,7 @@
 						<div class="clearfix"></div>
 						<!-- Holds shopping cart info with selected items -->
 					    <div class="shopping_cart_holder">
-					        <a href="#" class="close_shopping_cart_holder" >Close Cart</a>
+					        <a href="#" class="close_shopping_cart_holder" title="Đóng giỏ hàng">Close Cart</a>
 					        <h2>Shopping Cart</h2>
 					        <div id="shopping_cart_output">
 					        </div>

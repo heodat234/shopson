@@ -15,6 +15,11 @@ class Product extends Model
     	return $this->hasManyThrough('App\Bill','App\BillDetail','id_product','id');
     }
 
+    public static function Select_Product()
+    {
+      $pro = DB::table('products')->select('id','name');
+      return $pro;
+    }
     //Tất cả sản phẩm cùng loại cha
     public static function All_Product_ById($id)
     {
@@ -25,21 +30,22 @@ class Product extends Model
       $newPro= array();
       foreach ($type as $loaicha)
       {
-        $newpro = DB::table('products')->select()->where('id_type',$loaicha->id)->get();
+        $newpro = DB::table('products')->select()->where([['id_type',$loaicha->id],['status',0]])->get();
         $newPro[$loaicha->id]=$newpro;
       }
             return $newPro;
     }
-    //lấy sản phẩm thoe loại con
+    //lấy sản phẩm theo loại con
     public static function Product_By_Id_Type($id)
     {
-      $product = DB::table('products')->where('id_type',$id);
+      $product = DB::table('products')->where([['id_type',$id],['status',0]])
+                    ->select('products.id','products.id_type','products.name','products.image');          
       return $product;
     }
     //lấy sản phảm theo loại sản phẩm: ngoại thất, nội thất
     public static function Show_Product_By_Type($id, $type)
     {
-      $product = DB::table('products')->where([['id_type',$id],['type',$type]]);
+      $product = DB::table('products')->where([['id_type',$id],['type',$type],['status',0]]);
       return $product;
     }
     public static function Show_Product_By_TypeCha($id, $type)
@@ -52,19 +58,18 @@ class Product extends Model
       $Pro= array();
       foreach ($typepro as $loaicha)
       {
-        $pro = DB::table('products')->where([['id_type',$loaicha->id],['type',$type]])->get();
+        $pro = DB::table('products')->where([['id_type',$loaicha->id],['type',$type],['status',0]])->get();
         $Pro[$loaicha->id]=$pro;
       }
       return $Pro;
     }
     //Tìm sản phẩm chi tiết
-    public static function Find_Product_By_Id($id)
+    public static function Find_Product_By_Id($id) 
     {
         $product=DB::table('products')
                     ->where('products.id','=',$id)
                     ->join('export_product','products.id','=','export_product.id_product')
-                    ->select('export_product.id as idsize','products.id','products.id_type','products.view','products.name','products.image','products.description','export_product.size as size','export_product.export_price');
-                    // dd($product[0]->view);
+                    ->select('export_product.id as idsize','products.id','products.id_type','products.view','products.name','products.image','products.description','export_product.size as size','export_product.export_price','export_product.status');
             
         return $product;
     }
@@ -72,10 +77,10 @@ class Product extends Model
     public static function New_Product()
     {
       $day= Carbon::now()->subDays(5);
-      $product=DB::table('products')
+      $product=DB::table('products')->where('products.status',0)
                         ->join('category','products.id_type','=','category.id')
                         ->whereDate('products.created_at','>',$day)
-                        ->select('category.type_cha','products.id','products.name','products.unit_price', 
+                        ->select('category.type_cha','products.id','products.name', 
                                  'products.image');
       return $product;
     }
@@ -93,30 +98,39 @@ class Product extends Model
       //hiện tất cả các sản phẩm trang Admin
     public static function Show_Product_All(){
             $product=DB::table('products')
+                        ->where('export_product.status',0)
                         ->join('category','products.id_type','=','category.id')
-                        ->select('category.name as type_name','products.id','products.name','products.unit_price', 
-                                 'products.image','products.created_at',
-                                 'products.updated_at','products.description');
-        return $product;
-    }
-      public static function Edit_Product($id, $name, $type, $desc, $unit_price,$image){
-            $pro=DB::table('products')->where('id','=',$id)->update(['name'=>$name,'id_type'=>$type, 'description'=>$desc,'unit_price'=>$unit_price,'image'=>$image]);
-            return $pro; 
-    }
-    public static function Insert_Product($name, $type, $desc, $unit_price, $image){
-              $id=DB::table('products')->insertGetId(['name'=>$name,'id_type'=>$type,'description'=>$desc,'unit_price'=>$unit_price,'image'=>$image]);
-              return $id;
-    }
-    public static function Delete_Product($id){
-          $pro=DB::table('products')->where('id','=',$id)->delete();
-          return $pro;
-    }
-    //Tim sàn phẩm theo loại
-    public static function Find_Product_By_Type($id){
-        $product=DB::table('products')->where('id_type','=',$id);
+                        ->join('export_product','products.id','=','export_product.id_product')
+                        
+                    ->select('category.name as type_name','export_product.id as idsize','products.id','products.id_type','products.type','products.view','products.name','products.image','products.description','export_product.size as size','export_product.export_price');
         return $product;
     }
 
+
+
+
+      public static function Edit_Product($id, $name, $category, $desc, $type, $image){
+            $pro=DB::table('products')->where('id','=',$id)->update(['name'=>$name,'id_type'=>$category, 'description'=>$desc,'type'=>$type,'image'=>$image]);
+            return $pro; 
+    }
+    public static function Insert_Product($name, $category, $desc, $type, $image){
+              $id=DB::table('products')->insertGetId(['name'=>$name,'id_type'=>$category,'description'=>$desc,'type'=>$type,'image'=>$image]);
+              return $id;
+    }
+    public static function Delete_Product($id){
+          $pro=DB::table('products')->where('id','=',$id)->update(['status'=>1]);
+          return $pro;
+    }
+    //lấy tất cả tên sản phẩm, id cho vào các trang edit
+    public static function Product_Info_By_Id($id,$idsize)
+    {
+      $product=DB::table('products')
+                  ->where([['products.id',$id]])
+                  ->join('export_product','products.id','=','export_product.id_product')
+                  ->where([['export_product.id',$idsize],['export_product.status',0]])
+                  ->select('products.id','products.name','products.image','products.description','products.id_type', 'products.type','export_product.size','export_product.export_price','export_product.id as idsize');
+      return $product;
+    }
   //   public static function hotProduct()// tim san pham SAT noi bat
   //   {
   //   	$hotPro = DB::table('products')

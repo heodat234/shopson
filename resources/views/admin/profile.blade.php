@@ -5,8 +5,13 @@
       <div class="row">
       
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
-   
-   
+        @if(Session::has('thatbai'))
+          <div class="alert alert-danger">{{Session::get('thatbai')}}</div>
+        @endif
+        @if(Session::has('thanhcong'))
+          <div class="alert alert-success">{{Session::get('thanhcong')}}</div>
+        @endif
+
           <div class="panel panel-info">
             <div class="panel-heading">
               <h3 class="panel-title">Thông tin</h3>
@@ -56,24 +61,6 @@
           </div>
         </div>
       </div>
-      <h3>Các sản phẩm đã mua:</h3>
-      <br>
-      <table class="table table_bordered table_striped table-nonfluid" align="center" id="Mytable">
-              <thead>
-                <th>Sản phẩm</th>
-                <th>Số lượng</th>
-                <th>Giá</th>
-                <th>Ngày mua</th>
-              </thead>
-              <tbody>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
     </div>
 
     {{-- edit profile --}}
@@ -81,44 +68,38 @@
     <div class="modal fade" id="editProfile" tabindex="-1" role="dialog">
       <div class="modal-dialog">
     <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
-          <div class="modal-body modal-body-sub_agile">
-        <div class="col-md-8 modal_body_left modal_body_left1">
-          
-          <h3 class="agileinfo_sign">Sửa <span>Thông tin</span></h3>
-          
-          <form  method="post" id="editProfile" action="{{ route('editProfile') }}">
-            <input type="hidden" name="_token" value="{{csrf_token()}}">
-            <input type="hidden" name="id" value="{{Auth::User()->id}}">
-            <div class="styled-input agile-styled-input-top">
-              <input type="text" name="name" id="editName" value="{{Auth::User()->full_name}}" required="">
-              <label>Name</label>
-              <span></span>
-            </div>
-            <div class="styled-input">
-              <input type="text" name="phone" pattern="[0-9]*" title="số điện thoại chỉ được là số và 10 hoặc 11 số " id="editPhone" value="{{Auth::User()->phone}}">
-              <label>Phone</label>
-              <span></span>
-            </div>
-            <div class="styled-input">
-              <input type="text" name="address" id="editAddress" value="{{Auth::User()->address}}">
-              <label>Address</label>
-              <span></span>
-            </div>
-            <input type="submit" class="col-xs-12 btn btn-primary btn-load btn-lg" data-loading-text="Changing Password..." value="Lưu" >
-          </form>
-          
-          <div class="clearfix"></div>
-        </div>
-        <div class="col-md-4 modal_body_right modal_body_right1">
-          <img src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" alt=" "/>
-        </div>
-        <div class="clearfix"></div>
-          </div>
-        </div>
+         <div class="modal-content " style="width: 100%">
+                    <div class="modal-header">
+                        
+                        <h3 style="margin-left: 37%" class="modal-title" id="lineModalLabel">Sửa thông tin</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="dangkythatbai alert alert-danger" style="display:none;"></div>
+                        <!-- content goes here -->
+                        <form enctype="multipart/form-data" method="post" action="{{ route('editProfile') }}">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <input type="hidden" name="id" value="{{Auth::User()->id}}">
+                            <div class="form-group">
+                                <label>Tên</label>
+                                <input type="text" name="name" class="form-control" value="{{Auth::User()->full_name}}" required ="">
+                            </div>
+                            <div class="form-group">
+                                <label>Số điện thoại</label>
+                                <input type="text" name="phone" pattern="[0-9]*" minlength="10" maxlength="11" title="số điện thoại chỉ được là số và 10 hoặc 11 số " class="form-control" value="{{Auth::User()->phone}}" required ="">
+                            </div>
+                            <div class="form-group">
+                                <label>Địa chỉ</label>
+                                <input type="text" name="address" class="form-control" value="{{Auth::User()->address}}" required="">
+                            </div>
+                            <div style="margin-left: 40%" >
+                            <button type="submit" class="button submit-button btn btn-info btn-lg glyphicon glyphicon-floppy-save" style="border-radius: 10px;">  Lưu</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+              
+        
     <!-- //Modal content-->
       </div>
     </div>
@@ -130,60 +111,58 @@
     <div class="modal fade" id="changePassword" tabindex="-1" role="dialog">
       <div class="modal-dialog">
     <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
-          <div class="modal-body modal-body-sub_agile">
-        <div class="col-md-8 modal_body_left modal_body_left1">
-          
-          <h3 class="agileinfo_sign">Đổi <span>Mật khẩu</span></h3>
-          @if (count($errors) > 0)
-          <div class="alert alert-danger">
-            <ul>
-              @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-              @endforeach
-            </ul>
-          </div>
-          @endif
-          <div class="dangkythatbai alert alert-danger" style="display:none;"></div>
-          <div class="row">
-            
-              
-              <form method="post" id="passwordForm" action="{{ route('changePassword') }}">
-                <input type="hidden" name="_token" value="{{csrf_token()}}">
-                <input type="hidden" name="email" value="{{Auth::User()->email}}">
-                <input type="password" class="input-lg form-control" name="password" id="password1" placeholder="New Password" autocomplete="off">
-                <div class="styled-input">
-                  <div class="col-sm-6">
-                    <span id="8char" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> 8 kí tự trở lên<br>
-                    <span id="ucase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Phải có kí tự viết hoa
-                  </div>
-                  <div class="col-sm-6">
-                    <span id="lcase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span>Phải có kí tự viết thường<br>
-                    <span id="num" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Ít nhất 1 số
-                  </div>
+         <div class="modal-content " style="width: 100%">
+                    <div class="modal-header">
+                        <h3 style="margin-left: 37%" class="modal-title" id="lineModalLabel">Sửa thông tin</h3>
+                    </div>
+                    @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                      <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                      </ul>
+                    </div>
+                    @endif
+                    <div class="modal-body">
+                        <div class="dangkythatbai alert alert-danger" style="display:none;"></div>
+                        <!-- content goes here -->
+                        <form enctype="multipart/form-data" method="post" action="{{ route('changePassword') }}">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <input type="hidden" name="email" value="{{Auth::User()->email}}">
+                            <div class="form-group">
+                                <label>Old Password</label>
+                                <input type="password" name="passwordOld" class="form-control" required="" placeholder="Nhập mật khẩu cũ" autocomplete="off">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" name="password" id="password1" class="form-control"  required ="" placeholder="Nhập mật khẩu mới" autocomplete="off">
+                                <div class="col-sm-6">
+                                  <span id="8char" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> 8 kí tự trở lên<br>
+                                  <span id="ucase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Phải có kí tự viết hoa
+                                </div>
+                                <div class="col-sm-6">
+                                  <span id="lcase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span>Phải có kí tự viết thường<br>
+                                  <span id="num" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Ít nhất 1 số
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Nhập lại password</label>
+                                <input type="password" name="password2" id="password2" class="form-control" required ="" placeholder="Nhập lại mật khẩu mới" autocomplete="off">
+                                 <div class="col-sm-12">
+                                  <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Mật khẩu phù hợp
+                                 </div>
+                            </div>
+                            
+                            <div style="margin-left: 40%" >
+                            <button type="submit" class="button submit-button btn btn-info btn-lg " style="border-radius: 10px;">Lưu</button>
+                            </div>
+                        </form>
+
+                    </div>
                 </div>
-                <br>
-                <input type="password" class="input-lg form-control" name="password2" id="password2" placeholder="Repeat Password" autocomplete="off">
-                <div class="styled-input">
-                  <div class="col-sm-12">
-                    <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Mật khẩu phù hợp
-                  </div>
-                </div>
-                <input type="submit" class="col-xs-12 btn btn-primary btn-load btn-lg" data-loading-text="Changing Password..." value="Đổi mật khẩu">
-              </form>
-              </div><!--/row-->
           
-          <div class="clearfix"></div>
-        </div>
-        <div class="col-md-4 modal_body_right modal_body_right1">
-          <img src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" alt=" "/>
-        </div>
-        <div class="clearfix"></div>
-          </div>
-        </div>
     <!-- //Modal content-->
       </div>
     </div>
@@ -192,41 +171,6 @@
     <script type="text/javascript">
       $(document).ready(function() {
         $('#Mytable').DataTable();
-
-
-    var panels = $('.user-infos');
-    var panelsButton = $('.dropdown-user');
-    panels.hide();
-
-    //Click dropdown
-    panelsButton.click(function() {
-        //get data-for attribute
-        var dataFor = $(this).attr('data-for');
-        var idFor = $(dataFor);
-
-        //current button
-        var currentButton = $(this);
-        idFor.slideToggle(400, function() {
-            //Completed slidetoggle
-            if(idFor.is(':visible'))
-            {
-                currentButton.html('<i class="glyphicon glyphicon-chevron-up text-muted"></i>');
-            }
-            else
-            {
-                currentButton.html('<i class="glyphicon glyphicon-chevron-down text-muted"></i>');
-            }
-        })
-    });
-
-
-    $('[data-toggle="tooltip"]').tooltip();
-
-    $('button').click(function(e) {
-        e.preventDefault();
-        alert("This is a demo.\n :-)");
-    });
-
   
 });
       

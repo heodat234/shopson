@@ -10,15 +10,24 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!--//tags -->
+{{-- tags --}}
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/table-style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <link href="css/team.css" rel="stylesheet">
 <link href="css/cart.css" rel="stylesheet">
 <link href="css/jquery-ui.css" rel="stylesheet">  
 <link href="css/easy-responsive-tabs.css" rel='stylesheet' type='text/css'/>
+
+
+{{-- blog --}}
+    <link href="css/price-range.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+	<link href="css/main.css" rel="stylesheet">
+	<link href="css/responsive.css" rel="stylesheet">
+
 <!-- //for bootstrap working -->
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
 <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
@@ -159,7 +168,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	}
 });
 </script>
-{{-- <script lang="javascript">(function() {var pname = ( (document.title !='')? document.title : document.querySelector('h1').innerHTML );var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async=1; ga.src = '//live.vnpgroup.net/js/web_client_box.php?hash=4361b32edcfc2bd72d80ec5ad373334c&data=eyJzc29faWQiOjczNjY4MCwiaGFzaCI6IjgzM2YyZDFlNGQ5MmJlZjVhODYwOWY5OWRmZDg2NTVlIn0-&pname='+pname;var s = document.getElementsByTagName('script');s[0].parentNode.insertBefore(ga, s[0]);})();</script>	 --}}
+<script lang="javascript">(function() {var pname = ( (document.title !='')? document.title : document.querySelector('h1').innerHTML );var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async=1; ga.src = '//live.vnpgroup.net/js/web_client_box.php?hash=4361b32edcfc2bd72d80ec5ad373334c&data=eyJzc29faWQiOjczNjY4MCwiaGFzaCI6IjgzM2YyZDFlNGQ5MmJlZjVhODYwOWY5OWRmZDg2NTVlIn0-&pname='+pname;var s = document.getElementsByTagName('script');s[0].parentNode.insertBefore(ga, s[0]);})();</script>	
 <script type="text/javascript">
 	$('#searchPro').autocomplete({
 		source: "{{ route('search') }}",
@@ -306,5 +315,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript" src="js/bootstrap.js"></script>
 {{-- facebook --}}
 
+
+	<script src="js/price-range.js"></script>
+    {{-- <script src="js/jquery.prettyPhoto.js"></script> --}}
+    {{-- <script src="js/main.js"></script> --}}
 </body>
 </html>

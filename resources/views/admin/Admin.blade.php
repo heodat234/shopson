@@ -1,6 +1,6 @@
 
  @if(Auth::check())
-    @if(Auth::User()->group>=1)
+    @if(Auth::User()->group !=0)
 <!DOCTYPE html>
 <head>
 <title>Colored  an Admin Panel Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
@@ -30,6 +30,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="admin/js/screenfull.js"></script>
 {{-- ssi-modal --}}
 <script src="admin/ssi-modal/js/ssi-modal.min.js"></script>
+<script src="ckeditor/ckeditor.js"></script>
+<script src="ckeditor/ckfinder/ckfinder.js"></script>
 		<script>
 		$(function () {
 			$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
@@ -79,8 +81,65 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script src="admin/js/proton.js"></script>
 	<script src="admin/js/validator.min.js"></script>
 	<script type="text/javascript">
-	$('.alert').hide(2000);
+	// $('.alert').hide(10000);
 	</script>
+	<script type="text/javascript">
+	$("input[type=password]").keyup(function(){
+    var ucase = new RegExp("[A-Z]+");
+	var lcase = new RegExp("[a-z]+");
+	var num = new RegExp("[0-9]+");
+	
+	if($("#password1").val().length >= 8){
+		$("#8char").removeClass("glyphicon-remove");
+		$("#8char").addClass("glyphicon-ok");
+		$("#8char").css("color","#00A41E");
+	}else{
+		$("#8char").removeClass("glyphicon-ok");
+		$("#8char").addClass("glyphicon-remove");
+		$("#8char").css("color","#FF0004");
+	}
+	
+	if(ucase.test($("#password1").val())){
+		$("#ucase").removeClass("glyphicon-remove");
+		$("#ucase").addClass("glyphicon-ok");
+		$("#ucase").css("color","#00A41E");
+	}else{
+		$("#ucase").removeClass("glyphicon-ok");
+		$("#ucase").addClass("glyphicon-remove");
+		$("#ucase").css("color","#FF0004");
+	}
+	
+	if(lcase.test($("#password1").val())){
+		$("#lcase").removeClass("glyphicon-remove");
+		$("#lcase").addClass("glyphicon-ok");
+		$("#lcase").css("color","#00A41E");
+	}else{
+		$("#lcase").removeClass("glyphicon-ok");
+		$("#lcase").addClass("glyphicon-remove");
+		$("#lcase").css("color","#FF0004");
+	}
+	
+	if(num.test($("#password1").val())){
+		$("#num").removeClass("glyphicon-remove");
+		$("#num").addClass("glyphicon-ok");
+		$("#num").css("color","#00A41E");
+	}else{
+		$("#num").removeClass("glyphicon-ok");
+		$("#num").addClass("glyphicon-remove");
+		$("#num").css("color","#FF0004");
+	}
+	
+	if($("#password1").val() == $("#password2").val()){
+		$("#pwmatch").removeClass("glyphicon-remove");
+		$("#pwmatch").addClass("glyphicon-ok");
+		$("#pwmatch").css("color","#00A41E");
+	}else{
+		$("#pwmatch").removeClass("glyphicon-ok");
+		$("#pwmatch").addClass("glyphicon-remove");
+		$("#pwmatch").css("color","#FF0004");
+	}
+});
+</script>
 </body>
 </html>
 	@else

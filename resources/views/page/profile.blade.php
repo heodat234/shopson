@@ -24,7 +24,12 @@
       <div class="row">
       
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
-   
+        @if(Session::has('thatbai'))
+          <div class="alert alert-danger">{{Session::get('thatbai')}}</div>
+        @endif
+        @if(Session::has('thanhcong'))
+          <div class="alert alert-success">{{Session::get('thanhcong')}}</div>
+        @endif
    
           <div class="panel panel-info">
             <div class="panel-heading">
@@ -36,7 +41,7 @@
                 
                 
                 <div class=" col-md-9 col-lg-9 "> 
-                  <table class="table table-user-information">
+                  <table class=" table-user-information">
                     <tbody>
                       <tr>
                         <td>Tên:</td>
@@ -77,22 +82,69 @@
       </div>
       <h3>Các sản phẩm đã mua:</h3>
       <br>
+      @if($id_bill==0)
       <table class="table table_bordered table_striped table-nonfluid" align="center" id="Mytable">
               <thead>
-                <th>Sản phẩm</th>
-                <th>Số lượng</th>
-                <th>Giá</th>
+                <th>Mã hóa đơn</th>
+                <th>Tình trạng</th>
+                <th>Thanh toán</th>
                 <th>Ngày mua</th>
+                <th>Chi tiết</th>
               </thead>
               <tbody>
+              @foreach($bills as $bill)
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>{{ $bill->id }}</td>
+                  <td>
+                      @if($bill->method ==0)
+                          Chưa xác nhận
+                      @elseif($bill->method ==1) Đã xác nhận, chưa thanh toán
+                      @else Đã thanh toán
+                      @endif
+                  </td>
+                  <td>
+                      @if($bill->payment ==0)
+                          Thanh toán khi nhận hàng
+                      @else Thanh toán trực tuyến
+                      @endif
+                  </td>
+                  <td>{{ date("d/m/Y - H:i:sa",strtotime($bill->created_at)) }}</td>
+                  <td><a href="{{route('ViewBill_Detail',$bill->id)}}"><button class="btn btn-success btn-lg glyphicon glyphicon-hand-right" style="border-radius: 10px;"></button></a></td>
                 </tr>
+              @endforeach
               </tbody>
             </table>
+        @else
+          <table class="table table_bordered table_striped table-nonfluid" align="center" id="Mytable">
+              <thead>
+                <th>Mã hóa đơn</th>
+                <th>Tên sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Loại</th>
+                <th>Màu</th>
+                <th>Giá mua</th>
+                <th>Tổng</th>
+              </thead>
+              <tbody>
+              <div style="display: none;">{{ $totalPrice=0 }}</div>
+              @foreach($bill_details as $bill)
+                <tr>
+                  <td>{{ $bill->id_bill }}</td>
+                  <td>{{ $bill->namePro }}</td>
+                  <td>{{ $bill->quantity }}</td>
+                  <td>{{ $bill->size }}</td>
+                  <td>{{ $bill->color }}</td>
+                  <td>{{ number_format($bill->sales_price) }}</td>
+                  <td>{{ number_format($bill->sales_price*$bill->quantity) }}</td>
+                  <div style="display: none;">{{$totalPrice += $bill->sales_price*$bill->quantity  }} </div>
+                </tr>
+              @endforeach
+              <tr>
+                <td colspan="7"> <b><h3>Tổng tiền: {{ number_format($totalPrice) }} VNĐ </h3></b></td>
+              </tr>
+              </tbody>
+            </table>
+        @endif
     </div>
 
     {{-- edit profile --}}
@@ -126,7 +178,7 @@
               <span></span>
             </div>
             <div class="styled-input">
-              <input type="text" name="phone" pattern="[0-9]*" title="số điện thoại chỉ được là số và 10 hoặc 11 số " id="editPhone" value="{{Auth::User()->phone}}">
+              <input type="text" name="phone" pattern="[0-9]*" minlength="10" maxlength="11" title="số điện thoại chỉ được là số và 10 hoặc 11 số " id="editPhone" value="{{Auth::User()->phone}}">
               <label>Phone</label>
               <span></span>
             </div>
@@ -181,7 +233,10 @@
               <form method="post" id="passwordForm" action="{{ route('changePassword') }}">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                 <input type="hidden" name="email" value="{{Auth::User()->email}}">
-                <input type="password" class="input-lg form-control" name="password" id="password1" placeholder="New Password" autocomplete="off">
+                <input type="password" class="input-lg form-control" name="passwordOld"  placeholder="Nhập mật khẩu cũ" autocomplete="off">
+                <br>
+                <input type="password" class="input-lg form-control" name="password" id="password1" placeholder="Nhập mật khẩu mới" autocomplete="off">
+                
                 <div class="styled-input">
                   <div class="col-sm-6">
                     <span id="8char" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> 8 kí tự trở lên<br>
@@ -193,7 +248,7 @@
                   </div>
                 </div>
                 <br>
-                <input type="password" class="input-lg form-control" name="password2" id="password2" placeholder="Repeat Password" autocomplete="off">
+                <input type="password" class="input-lg form-control" name="password2" id="password2" placeholder="Nhập lại mật khẩu" autocomplete="off">
                 <div class="styled-input">
                   <div class="col-sm-12">
                     <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Mật khẩu phù hợp
@@ -219,41 +274,6 @@
     <script type="text/javascript">
       $(document).ready(function() {
         $('#Mytable').DataTable();
-
-
-    var panels = $('.user-infos');
-    var panelsButton = $('.dropdown-user');
-    panels.hide();
-
-    //Click dropdown
-    panelsButton.click(function() {
-        //get data-for attribute
-        var dataFor = $(this).attr('data-for');
-        var idFor = $(dataFor);
-
-        //current button
-        var currentButton = $(this);
-        idFor.slideToggle(400, function() {
-            //Completed slidetoggle
-            if(idFor.is(':visible'))
-            {
-                currentButton.html('<i class="glyphicon glyphicon-chevron-up text-muted"></i>');
-            }
-            else
-            {
-                currentButton.html('<i class="glyphicon glyphicon-chevron-down text-muted"></i>');
-            }
-        })
-    });
-
-
-    $('[data-toggle="tooltip"]').tooltip();
-
-    $('button').click(function(e) {
-        e.preventDefault();
-        alert("This is a demo.\n :-)");
-    });
-
   
 });
       

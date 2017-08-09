@@ -8,11 +8,12 @@ use DB;
 use File;
 use Illuminate\Support\Facades\Input;
 use App\Product;
+use App\Category;
 use App\News;
 class Product_Controller extends Controller
 {
 	//lấy tất cả sản phẩm theo loại cha
-	public function All_Product($id)
+	public function All_Product($id) 
    {
    	$Product=Product::All_Product_ById($id);
     $typepro=0;
@@ -22,6 +23,7 @@ class Product_Controller extends Controller
    public function Product_Child($id)
    {
    	$Product=Product::Product_By_Id_Type($id)->get();
+      // dd($Product);      
     $typepro=1;
    	return view('page.product',compact('Product','typepro','id'));
    }
@@ -46,13 +48,16 @@ class Product_Controller extends Controller
    	}
    	return view('page.product',compact('Product','typepro','id'));
    }
-
+   //trang chi tiết sản phẩm
    public function single_Product($id)
    {
    	$product =Product::Find_Product_By_Id($id)->get();
+      $id_category = $product[0]->id_type;
+      $type_cha = Category::Find_TypeParent_By_Id($id_category)->first();
+      $productsType = Product::Product_By_Id_Type($id_category)->get();
       $view1=$product[0]->view +1;
       $view =DB::table('products')->where('products.id','=',$id)->update(['view'=>$view1]);    
-   	return view('page.single',compact('product'));
+   	return view('page.single',compact('product','type_cha','productsType'));
    }
 	
 }

@@ -31,16 +31,19 @@ class CartController extends Controller
             
             $inventory = $qty_import - $product->export_quantity;//hàng còn lại trong kho
             
-
+            // dd($quantity);
             if ($inventory>=$quantity) {
-                $export_qty =Export_Product::Add_Export_Quantity($product->id,$product->size,$quantity);//thêm số lượng vao số lượng đã bán
+                $export_qty =Export_Product::Add_Export_Quantity($idsize,$quantity);//thêm số lượng vao số lượng đã bán
                 $oldCart = Session('cart') ? Session('cart') : null;
                 $cart = new Cart($oldCart);
-                $cart->add($product, $product->idsize ,$quantity,$color, $inventory);
+                $cart->add($product, $product->idsize ,$quantity,$color, $inventory-$quantity);
                 Session::put('cart', $cart);
                 return "0".json_encode($cart);
             }else{
-                return "1Sản phẩm loại ".$product->size." chỉ còn lại ".$inventory." Thùng. Vui lòng chọn lại số lượng không quá ".$inventory;
+                if ($inventory<=0) {
+                     return "1Sản phẩm loại ".$product->size." chỉ còn lại 0 thùng. Xin quý khách thông cảm";
+                }else
+                    return "1Sản phẩm loại ".$product->size." chỉ còn lại ".$inventory." Thùng. Vui lòng chọn lại số lượng không quá ".$inventory;
             }
             
     }
@@ -49,7 +52,6 @@ class CartController extends Controller
     {
             $oldCart=Session('cart')?Session::get('cart'):null;
             $cart=new Cart($oldCart);
-            $export_qty =Export_Product::Sub_Export_Quantity($cart->items[$id]['item']->id, $cart->items[$id]['size'],$cart->items[$id]['qty']);
             $cart->removeItem($id);
             
             if(count($cart->items)<=0)
@@ -65,7 +67,7 @@ class CartController extends Controller
         $oldCart = Session('cart')?Session::get('cart'):null;
         $cart = new Cart($oldCart);
         $cart->reduceByOne($id);
-        $export_qty =Export_Product::Sub_Export_Quantity($cart->items[$id]['item']->id,$cart->items[$id]['size'],1);
+        
 
         if(count($cart->items)<=0)
             Session::forget('cart');
@@ -79,7 +81,6 @@ class CartController extends Controller
         $oldCart = Session('cart')?Session::get('cart'):null;
         $cart = new Cart($oldCart);
         $cart->riseByOne($id);
-        $export_qty =Export_Product::Add_Export_Quantity($cart->items[$id]['item']->id,$cart->items[$id]['size'],1);
 
         if(count($cart->items)<=0)
             Session::forget('cart');
@@ -96,7 +97,7 @@ class CartController extends Controller
         {   
             $oldCart = Session::get('cart');
             $cart = new Cart($oldCart); 
-            
+            // dd($cart);
             return view('page.cartview')->with(['items'=>$cart->items,'totalPrice'=> $cart->totalPrice,'totalQty'=>$cart->totalQty]);
 
          }
@@ -107,8 +108,17 @@ class CartController extends Controller
 
     public function deleteCart()
     {
-        Session::forget('cart');
-        return "<script> alert('Bạn đã xóa giỏ hàng !'); window.location = '".url('cart_product')."';</script>";
+        if(Session::has('cart'))
+        {   
+            $oldCart = Session::get('cart');
+            $cart = new Cart($oldCart); 
+            foreach ($cart->items as $ca) {
+                $export_qty =Export_Product::Sub_Export_Quantity($ca['item']->idsize,$ca['qty']);
+                // dd($ca['item']->idsize);
+            }
+            Session::forget('cart');
+            return json_encode($cart);
+        }
     }
 
     public function getCheckOut()
@@ -129,6 +139,8 @@ class CartController extends Controller
     {
         if(Session::has('cart'))
         {   
+            $method="";
+            $idUser="";
             $idBill="";
             $oldCart = Session::get('cart');
             $cart = new Cart($oldCart); 
@@ -138,13 +150,15 @@ class CartController extends Controller
             $address = $req->address;
             $phone = $req->phone;
             $payment = $req->payment;
-            if(Auth::check()){
-                $idUser = Auth::User()->id;
-                $idBill = Bill::Insert_Bill_User($idUser,$payment);
-            }else{
-                $idCustomer = Customer::Insert_Customer($name, $email,$address,$phone);
-                $idBill = Bill::Insert_Bill_Customer($idCustomer,$payment);
-            }
+            if($payment==1){
+                $method =2;
+            }else $method =0;   
+            if (Auth::check()){
+                   $idUser = Auth::User()->id;   
+            }else
+               $idUser = 0;
+            
+            $idBill = Bill::Insert_Bill($idUser,$name,$email,$phone,$address,$method,$payment);
             foreach ($cart->items as $item) {
                 $price = $item['price']/$item['qty'];
                 $bill_detail = Bill_Detail::Insert_Bill_Detail($idBill,$item['item']->id,$item['qty'],$item['size'],$item['color'],$price);

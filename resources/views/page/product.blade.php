@@ -39,18 +39,9 @@
 @endfor
 <input type="hidden" id="idLoai" value="{{ $id }}">  <!-- banner-bootom-w3-agileits -->
 <div class="banner-bootom-w3-agileits">
-	<div class="container">
+	{{-- <div class="container"> --}}
 		<!-- mens -->
-		<div class="col-md-4 products-left">
-			<div class="filter-price">
-				<h3>Filter By <span>Price</span></h3>
-				<ul class="dropdown-menu6">
-					<li>
-						<div id="slider-range"></div>
-						<input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
-					</li>
-				</ul>
-			</div>
+		<div class="col-md-3 products-left">
 			{{-- {{ dd($Product) }} --}}
 			<div class="css-treeview">
 				<h4>Sản Phẩm</h4>
@@ -116,7 +107,7 @@
 			</div>
 			<div class="col-sm-8 men-wear-right">
 				<h4>{{ $typeCha->name }}</h4>
-				<p>{{ $typeCha->description }}</p>
+				<p>{!! $typeCha->description !!}</p>
 			</div>
 			<div class="clearfix"></div>
 		</div>
@@ -131,7 +122,7 @@
 			</div>
 			<div class="col-sm-8 men-wear-right">
 				<h4>{{ $typeCon->name }}</h4>
-				<p>{{ $typeCon->description }}</p>
+				<p>{!! $typeCon->description !!}</p>
 			</div>
 			<div class="clearfix"></div>
 		</div>
@@ -142,7 +133,7 @@
 			@if($typepro==0)
 			@foreach($Product as $proCha)
 			@foreach($proCha as $pro)
-			<div class="col-md-4 product-men">
+			<div class="col-md-3 product-men">
 				<div class="men-pro-item simpleCart_shelfItem" style="height: 360px">
 					<div class="men-thumb-item">
 						<img src=" images/products/{{$pro->image  }}" style="height: 200px" alt="" class="pro-image-front">
@@ -156,25 +147,9 @@
 					</div>
 					<div class="item-info-product ">
 						<h4><a href="{{ route('singleProduct',$pro->id) }}">{{ $pro->name }}</a></h4>
-						<div class="info-product-price">
-							<span class="item_price">{{ number_format($pro->unit_price) }} VNĐ</span>
-							{{-- <del>$69.71</del> --}}
-						</div>
-						<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-							<form action="#" method="post">
-								<fieldset>
-									<input type="hidden" name="cmd" value="_cart" />
-									<input type="hidden" name="add" value="1" />
-									<input type="hidden" name="business" value=" " />
-									<input type="hidden" name="item_name" value="{{ $pro->name }}" />
-									<input type="hidden" name="amount" value="{{ $pro->unit_price }}" />
-									{{-- <input type="hidden" name="discount_amount" value="1.00" />
-									<input type="hidden" name="currency_code" value="VN" /> --}}
-									<input type="hidden" name="return" value=" " />
-									<input type="hidden" name="cancel_return" value=" " />
-									<input type="submit" name="submit" value="Thêm vào giỏ hàng" class="button" />
-								</fieldset>
-							</form>
+						<br>
+						<div class="snipcart-details  hvr-outline-out button2" style="margin: auto;">
+							<a href="{{ route('singleProduct',$pro->id) }}">Xem Chi Tiết</a>
 						</div>
 					</div>
 				</div>
@@ -183,7 +158,7 @@
 			@endforeach
 			@else
 			@foreach($Product as $pro)
-			<div class="col-md-4 product-men">
+			<div class="col-md-3 product-men">
 				<div class="men-pro-item simpleCart_shelfItem" style="height: 360px">
 					<div class="men-thumb-item">
 						<img src="images/products/{{$pro->image  }}" style="height: 200px" alt="" class="pro-image-front">
@@ -198,25 +173,9 @@
 					</div>
 					<div class="item-info-product ">
 						<h4><a href="{{ route('singleProduct',$pro->id) }}">{{ $pro->name }}</a></h4>
-						<div class="info-product-price">
-							<span class="item_price">{{ number_format($pro->unit_price) }} VNĐ</span>
-							{{-- <del>$69.71</del> --}}
-						</div>
-						<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-							<form action="#" method="post">
-								<fieldset>
-									<input type="hidden" name="cmd" value="_cart" />
-									<input type="hidden" name="add" value="1" />
-									<input type="hidden" name="business" value=" " />
-									<input type="hidden" name="item_name" value="{{ $pro->name }}" />
-									<input type="hidden" name="amount" value="{{ $pro->unit_price }}" />
-									{{-- <input type="hidden" name="discount_amount" value="1.00" /> --}}
-									{{-- <input type="hidden" name="currency_code" value="VND" /> --}}
-									<input type="hidden" name="return" value=" " />
-									<input type="hidden" name="cancel_return" value=" " />
-									<input type="submit" name="submit" value="Add to cart" class="button" />
-								</fieldset>
-							</form>
+						<br>
+						<div class="snipcart-details  hvr-outline-out button2">
+							<a href="{{ route('singleProduct',$pro->id) }}">Xem Chi Tiết</a>
 						</div>
 						
 					</div>
@@ -232,7 +191,7 @@
 	
 	
 	<div class="clearfix"></div>
-</div>
+{{-- </div> --}}
 </div>
 </div>
 <script type="text/javascript">

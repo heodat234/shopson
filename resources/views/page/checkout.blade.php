@@ -317,7 +317,7 @@
 
 <script type="text/javascript">
 	// $("#loi").hide();
-	$("#id_email").keyup(function (event) { 
+	$("#id_email").blur(function (event) { 
 	
 		   var Email = $(this).val();
 		   var route = "{{ route('checkEmail') }}";

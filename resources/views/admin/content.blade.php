@@ -6,7 +6,7 @@
 			<div class="col-md-3 top-comment-grid">
 				<div class="comments likes">
 					<div class="comments-icon">
-						<i class="fa fa-facebook"></i>
+						<i class="fa fa-money" style="width: 100px"></i>
 					</div>
 					<div class="comments-info likes-info">
 						<h3>95K</h3>
