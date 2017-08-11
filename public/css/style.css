@@ -1561,6 +1561,7 @@ button.w3view-cart {
 .item-info-product {
     text-align: center;
     margin: 20px 0 0;
+    min-height: 160px;
 }
 .men-thumb-item::before {
     width: 100%;

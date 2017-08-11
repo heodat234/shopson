@@ -20,12 +20,12 @@
                 @if($typepro==0)
                     <table class="table table_bordered table_striped table-nonfluid" align="center" id="product_table" >
                         <thead>
-                            {{-- <th><input type="checkbox" id="checkall" /></th> --}}
+                            <th style="display: none;"></th>
                             <th style="width: 3%; ">Mã SP</th>
                             <th style="width: 8%; " >Ảnh</th>
-                            <th style="width: 25%;">Tên sản phẩm</th>
+                            <th style="width: 20%;">Tên sản phẩm</th>
                             <th style="width: 8%;">Loại sản phẩm</th>
-                            <th style="width: 22%;">Tính năng</th>
+                            <th style="width: 27%;">Mô tả</th>
                             <th style="width: 8%;">Nội thất/Ngoại thất  </th>
                             <th>Loại thùng</th>
                             <th>Giá bán (vnđ)</th>
@@ -35,11 +35,12 @@
                         <tbody>
                             @foreach($product as $pro )
                                 <tr id="row{{$pro->id}}">
+                                    <td style="display: none;"></td>
                                     <td>{{$pro->id}}</td>
                                     <td><img id="img{{ $pro->id }}" src="images/products/{{ $pro->image }}" style="width: 90px; height: 90px"></td>
                                     <td>{{$pro->name}}</td>
                                     <td>{{$pro->type_name}}</td>
-                                    <td>{!!$pro->description!!}</td>
+                                    <td>{!!str_limit($pro->description,$limit =300, $end='...')!!}</td>
                                     <td>
                                         @if($pro->type==0) Nội thất
                                         @elseif($pro->type==1) Ngoại thất
@@ -47,9 +48,9 @@
                                         @endif
                                     </td>
                                     <td >{{$pro->size }}</td>
-                                    <td>{{ $pro->export_price }}</td>
+                                    <td>{{ number_format($pro->export_price) }}</td>
                                     <td>
-                                        <button class="btn btn-info btn-lg glyphicon glyphicon-hand-right" style="border-radius: 10px;" title="Sửa thông tin" onclick="editRow({{ $pro->id }},{{ $pro->idsize }})"></button>
+                                        <button class="btn btn-info btn-lg glyphicon glyphicon-hand-right" style="border-radius: 10px;" title="Sửa thông tin" onclick="editRow({{ $pro->id }},'{{ $pro->size }}')"></button>
                                         <button class="btn btn-warning btn-lg glyphicon glyphicon-trash" style="border-radius: 10px" title="Xóa sản phẩm" onclick="delete_row({{ $pro->id }},{{ $pro->idsize}});"></button>
                                     </td>
                                     <td>
@@ -62,23 +63,25 @@
                 @else
                     <table border="1" class="table table-striped table-nonfluid" align="center" id="product_table" >
                         <thead>
-                            <th style="width: 5%;;">Mã sp</th>
+                            <th style="display: none;"></th>
+                            <th style="width: 3%;;">Mã sp</th>
                             <th style="width: 8%;">ảnh</th>
                             <th style="width: 20%;">tên sản phẩm</th>
-                            <th style="width: 30%;">tính năng</th>
+                            <th style="width: 35%;">Mô tả</th>
                             <th style="width: 8%;"> Nội thất/ngoại thất   </th>
                             <th>Loại thùng</th>
                             <th style="width: 8%;"> Giá bán (vnđ)  </th>
-                            <th style="width: 9%;">Sửa/Xóa</th>
+                            <th style="width: 7%;">Sửa/Xóa</th>
                             <th>Nhập Kho</th>
                         </thead>
                         <tbody>
                             @foreach($product as $pro )
                                 <tr id="row{{$pro->id}}">
+                                    <td style="display: none;"></td>
                                     <td >{{$pro->id}}</td>
                                     <td ><img id="img{{ $pro->id }}" src="images/products/{{ $pro->image }}" style="width: 90px; height: 90px"></td>
                                     <td >{{$pro->name}}</td>
-                                    <td >{!!$pro->description!!}</td>
+                                    <td >{!!str_limit($pro->description,$limit =300, $end='...')!!}</td>
                                     <td>
                                         @if($pro->type==0) Nội thất
                                         @elseif($pro->type==1) Ngoại thất
@@ -86,10 +89,10 @@
                                         @endif
                                     </td>
                                     <td >{{$pro->size }}</td>
-                                    <td>{{ $pro->export_price }}</td>
+                                    <td>{{ number_format($pro->export_price) }}</td>
                                     
                                     <td>
-                                        <button class="btn btn-info btn-lg glyphicon glyphicon-hand-right" style="border-radius: 10px;" title="Sửa thông tin" onclick="editRow({{ $pro->id }},{{ $pro->idsize }})"></button>
+                                        <button class="btn btn-info btn-lg glyphicon glyphicon-hand-right" style="border-radius: 10px;" title="Sửa thông tin" onclick="editRow({{ $pro->id }},'{{ $pro->size }}')"></button>
                                         <button class="btn btn-warning btn-lg glyphicon glyphicon-trash" style="border-radius: 10px" title="Xóa sản phẩm" onclick="delete_row({{ $pro->id }},{{ $pro->idsize}});"></button>
                                     </td>
                                     <td>
@@ -114,17 +117,16 @@
         window.location.replace(route);
         
     }
-    function editRow(id, idsize) {
-        var  route="{{ route('ViewPage_EditProduct',['id','idsize']) }}";
+    function editRow(id, size) {
+        var  route="{{ route('ViewPage_EditProduct',['id','size']) }}";
         route = route.replace('id',id);
-        route = route.replace('idsize',idsize);
+        route = route.replace('size',size);
         window.location.replace(route);
     }
     function importProduct(id, idsize) {
         var  route="{{ route('ViewPage_ImportProduct',['id','idsize']) }}";
         route = route.replace('id',id);
         route = route.replace('idsize',idsize);
-        // route = route.replace('size',size);
         window.location.replace(route);
     }
 

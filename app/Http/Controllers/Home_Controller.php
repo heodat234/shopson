@@ -21,10 +21,6 @@ class Home_Controller extends Controller
    {
       return view('page.contact');
    }
-   public function getAbout()
-   {
-      return view('page.about');
-   }
    public function getProfile()
    {
       $bills = Bill::Find_Bill_By_Id_User(Auth::User()->id)->get();

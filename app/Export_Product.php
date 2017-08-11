@@ -32,7 +32,7 @@ class Export_Product extends Model
     {
         $qty = DB::table('export_product')
                     ->where('id_product',$idPro)
-                    ->where('size',$size)
+                    ->where('size','LIKE','%'.$size.'%')
                     ->decrement('export_quantity',$quantity);
         return $qty;
     }
@@ -44,6 +44,7 @@ class Export_Product extends Model
 
         return $qty;
     }
+    //lấy số lượng bán ra theo từng loại
     public static function Export_Quantity($idsize)
     {
         $qty = DB::table('export_product')

@@ -63,7 +63,7 @@
 			</div>
 			<div class="description">
 				<b>Tính năng:</b> <br>
-				{!!$product[0]->description !!}
+				{{-- {!!$product[0]->description !!} --}}
 			</div>
 
 			<form action="#" method="post">

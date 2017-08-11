@@ -20,9 +20,6 @@ Route::get('home',[
 Route::get('contact',
 	['as'=>'contact',
 	 'uses'=>'Home_Controller@getContact']);
-Route::get('about',
-	['as'=>'about',
-	 'uses'=>'Home_Controller@getAbout']);
 Route::get('profile',
 	['as'=>'profile',
 	 'uses'=>'Home_Controller@getProfile']);
@@ -75,6 +72,7 @@ Route::post('changePassword', [
 Route::get('productByIdParent/{id}',
 	['as'=>'productByIdParent',
 	 'uses'=>'Product_Controller@All_Product']);
+
 Route::get('productByIdChild/{id}',
 	['as'=>'productByIdChild',
 	 'uses'=>'Product_Controller@Product_Child']);
@@ -87,6 +85,9 @@ Route::get('Show_product/{id}',
 Route::get('singleProduct/{id}',
 	['as'=>'singleProduct',
 	 'uses'=>'Product_Controller@single_Product']);
+
+
+
 
 
 //Cart route
@@ -121,7 +122,7 @@ Route::get('checkEmail',[
 
 Route::get('demo',
 	['as'=>'demo',
-	 'uses'=>'Bill_Controller@Delete_One_BillDetail']); 
+	 'uses'=>'Admin_Product_Controller@View_Kho']); 
 
 
 
@@ -166,22 +167,26 @@ Route::get('Delete_News',
 //vào trang admin
 Route::get('ViewContent_Admin',
 	['as'=>'ViewContentAdmin',
-	'uses'=>'Admin_Controller@ViewContent_Admin']);
+	'uses'=>'Admin_Product_Controller@View_Kho']);
 
 
 //login Admin
 Route::get('Login_Admin',
 	['as'=>'Login_Admin',
 	'uses'=>'Admin_Controller@Login_Admin']);
+
 Route::post('PostLogin_Admin',
 	['as'=>'PostLogin_Admin',
 	'uses'=>'Admin_Controller@PostLogin_Admin']);
+
 Route::get('ForgetPassword',[
 	'as'=>'ForgetPassword',
 	'uses'=>'Admin_Controller@ForgetPassword']);
+
 Route::post('ForgetPassword_Admin',
 	['as'=>'ForgetPassword_Admin',
 	'uses'=>'Admin_Controller@PostForgetPassword']);
+
 Route::get('profileAdmin',
 	['as'=>'profileAdmin',
 	 'uses'=>'Admin_Controller@getProfileAdmin']);
@@ -192,27 +197,34 @@ Route::get('profileAdmin',
 Route::get('ViewProduct_Admin',
 	['as'=>'ViewProductAdmin',
 	'uses'=>'Admin_Product_Controller@Select_Product']);
+
 Route::get('ViewProduct_Admin_ByType/{id}/{name}',
 	['as'=>'ViewProductAdmin_ByType',
 	'uses'=>'Admin_Product_Controller@FindProductByType']);
+
 Route::post('Edit_Product',
 	['as'=>'Edit_Product',
 	 'uses'=>'Admin_Product_Controller@Edit_Product']);
+
 Route::post('Insert_Product',
 	['as'=>'Insert_Product',
 	 'uses'=>'Admin_Product_Controller@Insert_Product']);
+
 Route::get('Delete_Product/{id}/{idsize}',
 	['as'=>'Delete_Product',
 	 'uses'=>'Admin_Product_Controller@Delete_Product']);
 Route::get('ViewPage_InsertProduct',[
 	'as'=>'ViewPage_InsertProduct',
 	'uses'=>'Admin_Product_Controller@ViewPageInsertProduct']);
+
 Route::get('ViewPage_EditProduct/{id}/{idsize}',[
 	'as'=>'ViewPage_EditProduct',
 	'uses'=>'Admin_Product_Controller@ViewPageEditProduct']);
+
 Route::get('ViewPage_ImportProduct/{id}/{idsize}',[
 	'as'=>'ViewPage_ImportProduct',
 	'uses'=>'Admin_Product_Controller@ViewPageImportProduct']);
+
 Route::post('Insert_Import_Product',
 	['as'=>'Insert_Import_Product',
 	 'uses'=>'Admin_Product_Controller@Insert_Import_Product']);
@@ -224,15 +236,19 @@ Route::post('Insert_Import_Product',
 Route::get('View_Kho',
 	['as'=>'View_Kho',
 	 'uses'=>'Admin_Product_Controller@View_Kho']);
+
 Route::get('ViewPage_InsertKho',
 	['as'=>'ViewPage_InsertKho',
 	 'uses'=>'Admin_Product_Controller@ViewPage_InsertKho']);
+
 Route::post('Insert_Kho',
 	['as'=>'Insert_Kho',
 	 'uses'=>'Admin_Product_Controller@Insert_Kho']);
+
 Route::get('ViewPage_EditKho/{id}',
 	['as'=>'ViewPage_EditKho',
 	 'uses'=>'Admin_Product_Controller@ViewPage_EditKho']);
+
 Route::post('Edit_Kho',
 	['as'=>'Edit_Kho',
 	 'uses'=>'Admin_Product_Controller@Edit_Kho']);
@@ -245,21 +261,27 @@ Route::post('Edit_Kho',
 Route::get('View_Category',
 	['as'=>'View_Category',
 	 'uses'=>'Category_Controller@View_Category']);
+
 Route::get('View_Category_By_Parent/{id}',
 	['as'=>'View_Category_By_Parent',
 	 'uses'=>'Category_Controller@View_Category_By_Parent']);
+
 Route::get('ViewPage_EditCategory/{id}',
 	['as'=>'ViewPage_EditCategory',
 	 'uses'=>'Category_Controller@ViewPage_EditCategory']);
+
 Route::post('Edit_Category',
 	['as'=>'Edit_Category',
 	 'uses'=>'Category_Controller@Edit_Category']);
+
 Route::get('ViewPage_InsertCategory',
 	['as'=>'ViewPage_InsertCategory',
 	 'uses'=>'Category_Controller@ViewPage_InsertCategory']);
+
 Route::post('Insert_Category',
 	['as'=>'Insert_Category',
 	 'uses'=>'Category_Controller@Insert_Category']);
+
 Route::get('Delete_Category',
 	['as'=>'Delete_Category',
 	 'uses'=>'Category_Controller@Delete_Category']);
@@ -276,12 +298,15 @@ Route::get('Delete_Category',
 Route::get('user_Admin',
 	['as'=>'user_Admin',
 	 'uses'=>'Admin_Controller@Select_User']);
+
 Route::post('Edit_User',
 	['as'=>'Edit_User',
 	 'uses'=>'Admin_Controller@Edit_User']);
+
 Route::post('Insert_User',
 	['as'=>'Insert_User',
 	 'uses'=>'Admin_Controller@Insert_User']);
+
 Route::get('Delete_User',
 	['as'=>'Delete_User',
 	 'uses'=>'Admin_Controller@Delete_User']);
@@ -289,6 +314,9 @@ Route::get('Delete_User',
 Route::get('Show_Bill_By_User/{id}',
 	['as'=>'Show_Bill_By_User',
 	 'uses'=>'Bill_Controller@Show_Bill_By_User']);
+
+
+
 
 
 
@@ -324,6 +352,7 @@ Route::get('Delete_One_BillDetail/{id}/{id_pro}/{qty}/{size}/{id_bill}',
 Route::get('CheckQuantity/{idPro}/{size}/{qty}',
 	['as'=>'CheckQuantity',
 	'uses'=>'Bill_Controller@CheckQuantity']);
+
 
 //xem chi tiết hóa đơn trong trang profile
 Route::get('ViewBill_Detail/{id}',

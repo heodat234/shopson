@@ -16,7 +16,7 @@ use Mail;
 
 class LoginRegister_Controller extends Controller
 {
-   
+   //đăng ký, gửi mail xác nhận
     public function postRegister(Request $req){
         $this->validate($req,['email'=>'required|email', 'full_name'=>'required', 'password'=>'required|between:6,20', 'phone'=>'digits_between:10,11', 're_password'=>'required|same:password'
             ],['email.required'=>'Vui lòng nhập Email',
@@ -54,7 +54,7 @@ class LoginRegister_Controller extends Controller
         }
     }
 
-   
+   //dăng nhập
    public function postLogin(Request $req){
         if(Auth::attempt(['email'=>$req->email,'password'=>$req->password,'active'=>1])){
             $data="0";
@@ -65,16 +65,22 @@ class LoginRegister_Controller extends Controller
             return $data."Sai thông tin đăng nhập";
         }
     }
+    //thoát
     public function getLogout(){
+      if (Auth::User()->group ==0 ) {
         Auth::logout();
         return redirect()->route('home');
+      }else{
+        Auth::logout();
+        return redirect()->route('Login_Admin');
+      }
     }
 
    
 
 
 
-
+    //đăng nhập bằng fb, google
     public function redirectToProvider($providers){
         return Socialite::driver($providers)->redirect();
     }
@@ -84,7 +90,6 @@ class LoginRegister_Controller extends Controller
           // return $user->getEmail();
       }
       catch(\Exception $e){
-        dd($e);
           return redirect()->route('home')->with('thatbai',"Đăng nhập không thành công");
       }
       $socialProvider = User::where('provider_id',$socialUser->getId())->first();
@@ -110,6 +115,7 @@ class LoginRegister_Controller extends Controller
       return redirect()->route('home')->with('thanhcong',"Đăng nhập thành công");
     }
 
+    //kích hoạt tài khoản
     public function activeUser(Request $req){
         $user = User::where('id',$req->id)->first();
         if($user){
@@ -118,6 +124,8 @@ class LoginRegister_Controller extends Controller
             return redirect()->route('home')->with('thanhcong','Đã kích hoạt tài khoản');
         }
     }
+
+    //sửa thông tin tài khoản
      public function postEditProfile(Request $req)
      {
       $id = $req->id;

@@ -1006,16 +1006,16 @@ ul.dropdown-menu.drp-mnu li {
 	background:#F96131;
 	padding:2em;
 }
-.comments-icon i.fa.fa-comments {
-    font-size: 5em;
+.comments-icon i.fa.fa-file-text-o {
+    font-size: 2.5em;
     color: #FDA285;
 }
-.comments-icon i.fa.fa-facebook{
-	font-size: 5em;
+.comments-icon i.fa.fa-users{
+	font-size: 2.5em;
     color: #6C8CD0;
 }
-.comments-icon i.fa.fa-twitter{
-	font-size: 5em;
+.comments-icon i.fa.fa-list-ul{
+	font-size: 2.5em;
     color: #9DCBEF;
 }
 .comments-icon i.fa.fa-eye{

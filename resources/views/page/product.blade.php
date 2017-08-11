@@ -72,21 +72,9 @@
 	<div class="col-md-8 products-right">
 		<h5>Product <span>Compare(0)</span></h5>
 		<div class="sort-grid">
+			
 			<div class="sorting">
-				<h6>Sort By</h6>
-				<select id="country1" onchange="change_country(this.value)" class="frm-field required sect">
-					<option value="null">Default</option>
-					<option value="null">Name(A - Z)</option>
-					<option value="null">Name(Z - A)</option>
-					<option value="null">Price(High - Low)</option>
-					<option value="null">Price(Low - High)</option>
-					<option value="null">Model(A - Z)</option>
-					<option value="null">Model(Z - A)</option>
-				</select>
-				<div class="clearfix"></div>
-			</div>
-			<div class="sorting">
-				<h6>Showing</h6>
+				<h6>Xem theo</h6>
 				<select id="country2" class="frm-field required sect">
 					
 					<option id="0" value="0">Nội Thất</option>
@@ -146,10 +134,13 @@
 						<span class="product-new-top">New</span>
 					</div>
 					<div class="item-info-product ">
-						<h4><a href="{{ route('singleProduct',$pro->id) }}">{{ $pro->name }}</a></h4>
-						<br>
-						<div class="snipcart-details  hvr-outline-out button2" style="margin: auto;">
+						<div style="height: 50px">
+							<h4><a href="{{ route('singleProduct',$pro->id) }}">{{ $pro->name }}</a></h4>
+						</div>
+						<div class="snipcart-details  hvr-outline-out button2" >
+						
 							<a href="{{ route('singleProduct',$pro->id) }}">Xem Chi Tiết</a>
+						
 						</div>
 					</div>
 				</div>
@@ -172,9 +163,10 @@
 						
 					</div>
 					<div class="item-info-product ">
-						<h4><a href="{{ route('singleProduct',$pro->id) }}">{{ $pro->name }}</a></h4>
-						<br>
-						<div class="snipcart-details  hvr-outline-out button2">
+						<div>
+							<h4><a href="{{ route('singleProduct',$pro->id) }}">{{ $pro->name }}</a></h4>
+						</div>
+						<div class="snipcart-details hvr-outline-out button2">
 							<a href="{{ route('singleProduct',$pro->id) }}">Xem Chi Tiết</a>
 						</div>
 						

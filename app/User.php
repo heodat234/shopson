@@ -62,12 +62,19 @@ class User extends Authenticatable
             return $id;
     }
     public static function Delete_User($id){
-        $user=DB::table('users')->where('id','=',$id)->delete();
+        $user=DB::table('users')->where([['id','=',$id],['group',1]])->delete();
         return $user;
     }
+    //đổi password
     public static function changePassword($email, $password)
     {
         $user = DB::table('users')->where('email','=',$email)->update(['password'=>Hash::make($password)]);
+    }
+    //đếm có bao nhiêu user
+    public static function Count_All_User()
+    {
+        $user = DB::table('users')->count();
+        return $user;
     }
 
 }

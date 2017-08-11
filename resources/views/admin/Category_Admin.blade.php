@@ -24,19 +24,18 @@
                 @if($type==0)
                     <table class="table table_bordered table_striped table-nonfluid" align="center" id="cateduct_table" >
                         <thead>
-                            {{-- <th><input type="checkbox" id="checkall" /></th> --}}
+                            <th style="display: none;"></th>
                             <th style="width: 5%; ">Mã Loại</th>
                             <th style="width: 10%;">Ảnh  </th>
                             <th style="width: 25%;">Tên loại sản phẩm</th>
                             <th style="width: 15%;">Loại cha</th>
                             <th style="width: 30%;">Mô tả</th>
-                            
-
                             <th >Sửa/Xóa</th>
                         </thead>
                         <tbody>
                             @foreach($category as $cate )
                                 <tr id="row{{$cate->id}}">
+                                    <td style="display: none;"></td>
                                     <td>{{$cate->id}}</td>
                                     <td><img id="img{{ $cate->id }}" src="images/products/{{ $cate->image }}" style="width: 90px; height: 90px"></td>
                                     <td>{{$cate->name}}</td>
@@ -52,11 +51,8 @@
     
                                     <td>
                                         <button class="btn btn-info btn-lg glyphicon glyphicon-hand-right" style="border-radius: 10px;" title="Sửa thông tin loại" onclick="editRow({{ $cate->id }})"></button>
-                                        @if($cate->type_cha!=0)
-                                            <button class="btn btn-warning btn-lg glyphicon glyphicon-trash" style="border-radius: 10px" title="Xóa loại" onclick="delete_row('{{ $cate->id}}');"></button>
-                                        @endif
+                                        <button class="btn btn-warning btn-lg glyphicon glyphicon-trash" style="border-radius: 10px" title="Xóa loại" onclick="delete_row('{{ $cate->id}}');"></button>
                                     </td>
-                            
                                 </tr>
                             @endforeach
                         </tbody>

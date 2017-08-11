@@ -67,16 +67,17 @@
                             </div>
                              <div class="form-group">
                                 <label>Quy cách: (thùng,bao,...)</label>
-                                <input type="text" name="size" value="{{ $product->size }}" class="form-control" disabled=""  >
+                                <input type="text" name="size" pattern="[0-9LITlitkgKG]*" title="ví dụ: 18lit; 50kg" value="{{ $product->size }}" class="form-control"  >
                             </div>
                             <div class="form-group">
                                 <label>Số lượng nhập:</label>
-                                <input type="text" name="quantity" pattern="[0-9]{,}*" title="Chỉ được nhập số"  class="form-control" value="{{ $product->import_quantity }}">
+                                <input type="text" name="quantity" pattern="[0-9]*" title="Chỉ được nhập số"  class="form-control" value="{{ $product->import_quantity }}">
                             </div>
                             <div class="form-group">
                                 <label>Giá Nhập: (VNĐ)</label>
-                                <input type="text" name="price" pattern="[0-9]{,}*" title="Chỉ được nhập số" class="form-control" required="" value="{{ $product->import_price }}">
+                                <input type="text" name="price" pattern="[0-9 ]*" title="Chỉ được nhập số" class="form-control" required="" value="{{ $product->import_price }}">
                             </div>
+                            
                             <div style="margin-left: 45%">
                                 <button type="submit" id="saveAdd" class="button submit-button btn btn-info btn-lg glyphicon glyphicon-floppy-save" style="border-radius: 10px;">  Lưu</button>
                             </div>

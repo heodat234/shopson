@@ -40,10 +40,16 @@ class Bill extends Model
     {
         $Bill=DB::table('bills')->where('id',$id)->update(['method'=>$method]);
     }
-
+    //đếm các bill mới, chưa xác nhận
     public static function Count_Bill()
     {
         $count_bill = DB::table('bills')->where('method',0)->count();
         return $count_bill;
+    }
+    //đếm tất cả các bill
+    public static function Count_All_Bill()
+    {
+        $bill = DB::table('bills')->count();
+        return $bill;
     }
 }

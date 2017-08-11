@@ -13,7 +13,7 @@ class Bill_Detail extends Model
     public function bills(){
     	return $this->belongsTo('App\Bill','id_bill','id');
     }
-    //Tìm tổng số lượng bản của tất cả các sản phẩm
+    //Tìm tổng số lượng bản của tất cả các sản phẩm gửi qua bảng thống kê kho
     public static function FindSum_Export_Product(){
         $product=DB::table('bill_detail')
                 ->join('bills','bills.id','=','bill_detail.id_bill')

@@ -1,7 +1,7 @@
 @extends("admin.Admin")
 @section('admin.Content')
 
-<div class="main-grid">
+<div class="main-grid"> 
     <div class="agile-grids">
         <div class="container" style="margin: auto; float: center;">
         @if(Session::has('thatbai'))
@@ -44,23 +44,19 @@
                             </div>
                              <div class="form-group">
                                 <label>Quy cách:(thùng,bao,...)</label>
-                                <input type="text" name="size" class="form-control" required="" placeholder="ví dụ: 18 Lít, 5 Lít">
-                                <span>(có thể nhập nhiều cách nhau bởi dấu phẩy)</span>
+                                <input type="text" name="size" class="form-control" pattern="[0-9LITlitkgKG]*" required="" placeholder="ví dụ: 18Lit">
                             </div>
                              <div class="form-group">
                                 <label>Giá nhập</label>
-                                <input type="text" name="import_price" pattern="[0-9]{,}*" title="Chỉ được nhập số" class="form-control" required="" placeholder="ví dụ: 10000">
-                                <span>(có thể nhập nhiều cách nhau bởi dấu phẩy, nhập đúng với từng quy cách nhập ở trên)</span>
+                                <input type="text" name="import_price" pattern="[0-9]*" title="Chỉ được nhập số" class="form-control" required="" placeholder="ví dụ: 10000">
                             </div>
                             <div class="form-group">
                                 <label>Số lượng nhập</label>
-                                <input type="text" name="import_quantity" pattern="[0-9]{,}*" title="Chỉ được nhập số" class="form-control" required="" placeholder="ví dụ: 100">
-                                <span>(có thể nhập nhiều cách nhau bởi dấu phẩy, nhập đúng với từng quy cách nhập ở trên)</span>
+                                <input type="text" name="import_quantity" pattern="[0-9]*" title="Chỉ được nhập số" class="form-control" required="" placeholder="ví dụ: 100">
                             </div>
                             <div class="form-group">
                                 <label>Giá bán</label>
-                                <input type="text" name="export_price" pattern="[0-9]{,}*" title="Chỉ được nhập số" class="form-control" required="" placeholder="ví dụ: 100000">
-                                <span>(có thể nhập nhiều cách nhau bởi dấu phẩy, nhập đúng với từng quy cách nhập ở trên)</span>
+                                <input type="text" name="export_price" pattern="[0-9]*" title="Chỉ được nhập số" class="form-control" required="" placeholder="ví dụ: 100000">
                             </div>
                             <div class="form-group">
                                 <label>Mô tả sản phẩm</label>
@@ -86,7 +82,7 @@
                         <form enctype="multipart/form-data" method="post" action="{{route('Edit_Product')}}" class="forms">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="hidden" name="id" value="{{ $product->id }}">
-                            <input type="hidden" name="idsize" value="{{ $product->idsize }}">
+                            <input type="hidden" name="sizeOld" value="{{ $product->size }}">
                             <input type="hidden" name="imageOld" value="{{ $product->image }}">
                             <div class="form-group">
                                 <label>Tên sản phẩm</label>
@@ -123,7 +119,15 @@
                             </div>
                              <div class="form-group">
                                 <label>Loại thùng</label>
-                                <input type="text" name="size" value="{{ $product->size }}" class="form-control" disabled="">
+                                <input type="text" name="size" value="{{ $product->size }}" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Số lượng nhập</label>
+                                <input type="text" name="import_quantity" value="{{ $import->import_quantity }}" pattern="[0-9]*" title="Chỉ được nhập số" class="form-control" required="">
+                            </div>
+                            <div class="form-group">
+                                <label>Giá nhập</label>
+                                <input type="text" name="import_price" value="{{ $import->import_price }}" pattern="[0-9]*" title="Chỉ được nhập số" class="form-control" required="">
                             </div>
                             <div class="form-group">
                                 <label>Giá bán</label>
@@ -150,22 +154,26 @@
                         <form enctype="multipart/form-data" method="post" action="{{route('Insert_Import_Product')}}" class="forms">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="hidden" name="id" value="{{ $product->id }}">
-                            <input type="hidden" name="size" value="{{ $product->size }}">
+                            <input type="hidden" name="sizeOld" value="{{ $product->size }}">
                             <div class="form-group">
                                 <label>Tên sản phẩm</label>
                                 <input type="text" name="name" value="{{ $product->name }}" class="form-control" disabled="" required="">
                             </div>
                              <div class="form-group">
                                 <label>Quy cách</label>
-                                <input type="text" name="size" value="{{ $product->size }}" class="form-control" disabled="">
+                                <input type="text" name="size" pattern="[0-9LITlitkgKG]*" title="ví dụ: 18lit; 50kg" value="{{ $product->size }}" class="form-control" >
                             </div>
                             <div class="form-group">
-                                <label>Số lượng nhập: (thùng,bao)</label>
+                                <label>Số lượng nhập: </label>
                                 <input type="text" name="quantity" pattern="[0-9]*" title="Chỉ được nhập số"  class="form-control" placeholder="ví dụ: 100">
                             </div>
                             <div class="form-group">
                                 <label>Giá nhập: (VNĐ)</label>
                                 <input type="text" name="import_price" pattern="[0-9]*" title="Chỉ được nhập số" class="form-control" required="" placeholder="ví dụ: 100000">
+                            </div>
+                            <div class="form-group">
+                                <label>Giá bán: (VNĐ)</label>
+                                <input type="text" name="export_price" pattern="[0-9]*" title="Chỉ được nhập số" class="form-control" required="" placeholder="ví dụ: 100000">
                             </div>
                             <div style="margin-left: 45%">
                                 <button type="submit" id="saveAdd" class="button submit-button btn btn-info btn-lg glyphicon glyphicon-floppy-save" style="border-radius: 10px;">  Lưu</button>

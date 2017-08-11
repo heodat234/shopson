@@ -7,7 +7,7 @@ use DB;
 class Import_Product extends Model
 {
     protected $table='import_product';
-
+    //tổng số lượng nhập theo từng sản phẩm
     public static function Qty_Import_Product_By_Id($idProduct, $size)
     {
     	$im_qty = DB::table('import_product')
@@ -23,6 +23,12 @@ class Import_Product extends Model
             $pro=DB::table('import_product')->insert(['id_product'=>$id,'size'=>$size,'import_price'=>$import_price,'import_quantity'=>$import_quantity]);
     }
 
+    public static function Edit_Import($id,$qty,$price)
+    {
+        $pro = DB::table('import_product')->where('id',$id)->update(['import_price'=>$price,'import_quantity'=>$qty]);
+    }
+
+    
     public static function Show_Import_Product_All()
     {
         $pro=DB::table('import_product')
@@ -30,7 +36,7 @@ class Import_Product extends Model
                 ->select('products.name','import_product.size','import_product.id','import_product.import_price','import_product.import_quantity','import_product.created_at');
         return $pro;
     }
-
+    //tính tổng tiền nhập và số lượng nhập
     public static function Sum_Import()
     {
         $Sum_import = DB::table('import_product')
@@ -39,10 +45,13 @@ class Import_Product extends Model
                 ->groupBy('id_product','size','products.name')->get();
         return $Sum_import;
     }
-    public static function Select_Size_By_IdProduct($idPro)
-    {
-        $size = DB::table('import_product')->where('id_product',$idPro)->where('size');
-    }
+    // public static function Select_Size_By_IdProduct($idPro)
+    // {
+    //     $size = DB::table('import_product')->where('id_product',$idPro)->where('size');
+    // }
+
+
+
     //tìm imort product theo id
     public static function Find_Import_By_Id($id)
     {
@@ -51,25 +60,13 @@ class Import_Product extends Model
                     ->select('import_product.id','import_product.size','import_product.import_price','import_product.import_quantity','products.name');
         return $pro;
     }
-    public static function Edit_Import($id,$qty,$price)
+    
+    
+    public static function Find_Import_By_IdPro($idPro,$size)
     {
-        $pro = DB::table('import_product')->where('id',$id)->update(['import_price'=>$price,'import_quantity'=>$qty]);
+        $size = DB::table('import_product')->where([['id_product',$idPro],['size','LIKE','%'.$size.'%']])->orderBy('id','DESC')->select();
+        return $size;
     }
-    // public static function FindProductByIdPro_Size($idsize)
-    // {
-    // 	$product=DB::table('export_product')
-    // 				->where('export_product.id',$idsize)
-    // 				->join('products','export_product.id_product','=','products.id')
-    // 				->select('export_product.id as idsize','products.id','products.name','products.image','export_product.size','export_product.export_price');
-    // 	return $product;
-    // }
-    // public static function Update_Export_Quantity($idProduct,$size,$quantity)
-    // {
-    //     $qty = DB::table('export_product')
-    //                 ->where('id_product',$idProduct)
-    //                 ->where('size',$size)
-    //                 ->increment('export_quantity',$quantity);
-    //     return $qty;
-    // }
+    
     
 }

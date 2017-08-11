@@ -15,6 +15,10 @@ class Product extends Model
     	return $this->hasManyThrough('App\Bill','App\BillDetail','id_product','id');
     }
 
+
+
+
+
     public static function Select_Product()
     {
       $pro = DB::table('products')->select('id','name');
@@ -35,19 +39,7 @@ class Product extends Model
       }
             return $newPro;
     }
-    //lấy sản phẩm theo loại con
-    public static function Product_By_Id_Type($id)
-    {
-      $product = DB::table('products')->where([['id_type',$id],['status',0]])
-                    ->select('products.id','products.id_type','products.name','products.image');          
-      return $product;
-    }
-    //lấy sản phảm theo loại sản phẩm: ngoại thất, nội thất
-    public static function Show_Product_By_Type($id, $type)
-    {
-      $product = DB::table('products')->where([['id_type',$id],['type',$type],['status',0]]);
-      return $product;
-    }
+    // lấy sản phẩm theo loại cha và theo loại nội thất, ngoại thất
     public static function Show_Product_By_TypeCha($id, $type)
     {
 
@@ -63,6 +55,22 @@ class Product extends Model
       }
       return $Pro;
     }
+
+    //lấy sản phẩm theo loại con
+    public static function Product_By_Id_Type($id)
+    {
+      $product = DB::table('products')->where([['id_type',$id],['export_product.status',0]])
+                      ->join('export_product','products.id','=','export_product.id_product')
+                      ->select('export_product.id as idsize','products.id','products.id_type','products.type','products.view','products.name','products.image','products.description','export_product.size as size','export_product.export_price');        
+      return $product;
+    }
+    //lấy sản phảm theo loại sản phẩm: ngoại thất, nội thất
+    public static function Show_Product_By_Type($id, $type)
+    {
+      $product = DB::table('products')->where([['id_type',$id],['type',$type],['status',0]]);
+      return $product;
+    }
+    
     //Tìm sản phẩm chi tiết
     public static function Find_Product_By_Id($id) 
     {
@@ -73,6 +81,8 @@ class Product extends Model
             
         return $product;
     }
+
+    
     //Sản phẩm mới
     public static function New_Product()
     {
@@ -95,6 +105,8 @@ class Product extends Model
 
 
 
+
+
       //hiện tất cả các sản phẩm trang Admin
     public static function Show_Product_All(){
             $product=DB::table('products')
@@ -106,10 +118,8 @@ class Product extends Model
         return $product;
     }
 
-
-
-
-      public static function Edit_Product($id, $name, $category, $desc, $type, $image){
+    //update sản phẩm trong admin
+    public static function Edit_Product($id, $name, $category, $desc, $type, $image){
             $pro=DB::table('products')->where('id','=',$id)->update(['name'=>$name,'id_type'=>$category, 'description'=>$desc,'type'=>$type,'image'=>$image]);
             return $pro; 
     }
@@ -122,64 +132,20 @@ class Product extends Model
           return $pro;
     }
     //lấy tất cả tên sản phẩm, id cho vào các trang edit
-    public static function Product_Info_By_Id($id,$idsize)
+    public static function Product_Info_By_Id($id,$size)
     {
       $product=DB::table('products')
                   ->where([['products.id',$id]])
                   ->join('export_product','products.id','=','export_product.id_product')
-                  ->where([['export_product.id',$idsize],['export_product.status',0]])
+                  ->where([['export_product.size','LIKE','%'.$size.'%'],['export_product.status',0]])
                   ->select('products.id','products.name','products.image','products.description','products.id_type', 'products.type','export_product.size','export_product.export_price','export_product.id as idsize');
       return $product;
     }
-  //   public static function hotProduct()// tim san pham SAT noi bat
-  //   {
-  //   	$hotPro = DB::table('products')
-  //   				->where('view','>','9');
-  //           return $hotPro;
-
-  //   }
   
+    public static function Count_All_Product()
+    {
+        $pro = DB::table('products')->count();
+        return $pro;
+    }
   
-  //   //Xóa sản phẩm theo id
-  //   public static function Find_Product_By_Id($id){
-  //       $product=DB::table('products')->where('id','=',$id)->delete();
-  //       return $product;
-  //   }
-  //   //Các sản phẩm có lượng view nhiều nhất
-  //   public static function MostViewProduct(){
-  //       $product=array();
-  //       $product_view=DB::table('products')->select()->orderBy('view','DESC')->limit(5)->get();
-  //       $total_view=DB::table('products')->sum('view');
-  //       $product[0]=$product_view;
-  //       $product[1]=$total_view;
-  //       return $product;
-  //   }
-
-  
-
-  //     public static function findProductBestSale() // tim san pham ban chay
-  //       {
-  //           $bestsale = DB::table('bill_detail')->join('products','bill_detail.id_product','=','products.id')
-  //                           ->select(DB::raw('sum(quantity) as quan'),'products.id','products.name','products.unit_price','products.promotion_price','products.image')
-  //                           ->groupBy('products.name','products.id','products.unit_price','products.promotion_price','products.image')
-  //                           ->orderBy('quantity','DESC')
-  //                           ->limit(2);
-
-  //           return $bestsale;
-  //       }
-  //   public static function findOneProduct($id)
-  //   {
-  //       $productcart = DB::table('products')
-  //                   ->where('products.id','=',$id)
-  //                   ->first();
-  //       return $productcart;
-
-  //   }
-
-  //   public static function findProductPromotion()
-  //   {
-  //       $products = DB::table('products')->where('promotion_price','>','0')
-  //                                       ->limit(8);
-  //       return $products;
-  //   }
 }

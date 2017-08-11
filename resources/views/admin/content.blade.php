@@ -6,11 +6,11 @@
 			<div class="col-md-3 top-comment-grid">
 				<div class="comments likes">
 					<div class="comments-icon">
-						<i class="fa fa-money" style="width: 100px"></i>
+						<i class="fa fa-users" style="height: 70%"></i>
 					</div>
 					<div class="comments-info likes-info">
 						<h3>95K</h3>
-						<a href="#">Likes</a>
+						<a href="#">user</a>
 					</div>
 					<div class="clearfix"> </div>
 				</div>
@@ -18,11 +18,11 @@
 			<div class="col-md-3 top-comment-grid">
 				<div class="comments">
 					<div class="comments-icon">
-						<i class="fa fa-comments"></i>
+						<i class="fa fa-file-text-o"></i>
 					</div>
 					<div class="comments-info">
 						<h3>12K</h3>
-						<a href="#">Comments</a>
+						<a href="#">bills</a>
 					</div>
 					<div class="clearfix"> </div>
 				</div>
@@ -30,11 +30,11 @@
 			<div class="col-md-3 top-comment-grid">
 				<div class="comments tweets">
 					<div class="comments-icon">
-						<i class="fa fa-twitter"></i>
+						<i class="fa fa-list-ul" aria-hidden="true"></i>
 					</div>
 					<div class="comments-info tweets-info">
 						<h3>27K</h3>
-						<a href="#">Tweets</a>
+						<a href="#">Products</a>
 					</div>
 					<div class="clearfix"> </div>
 				</div>

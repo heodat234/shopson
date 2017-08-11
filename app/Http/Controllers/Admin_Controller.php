@@ -25,13 +25,9 @@ class Admin_Controller extends Controller
 {
     public function ViewContent_Admin()
    {
-      // $MostViewProduct=Product::MostViewProduct();
-      // $Total_view= $MostViewProduct[1];
-      // $MostViewProduct=$MostViewProduct[0];
-      // $FindSumQuantity=Bill_Detail::FindSum_Quantity();
       return view('admin.content');
    }
-//login
+   //login
    public function Login_Admin()
    {
       return view('Admin.login_Admin');
@@ -41,7 +37,7 @@ class Admin_Controller extends Controller
       return view('admin.profile');
    }
 
-//Loại sản phẫm 
+   //Loại sản phẫm 
    public function PostLogin_Admin(Request $req){
         if(Auth::attempt(['email'=>$req->email,'password'=>$req->password,'active'=>1])){
             if(Auth::User()->group>=1){
@@ -55,6 +51,7 @@ class Admin_Controller extends Controller
             return redirect()->back()->with('thatbai','Sai thông tin đăng nhập');
         }
     }
+    //gửi lại password mới về mail
    public function PostForgetPassword(Request $req){
       $user=User::User_All()->where('email',$req->email)->get();
       // dd($user[0]->email);
@@ -72,11 +69,13 @@ class Admin_Controller extends Controller
               $message->subject('Cấp lại mật khẩu');
             });
              DB::table('users')->where('email','=',$req->email)->update(['password'=>Hash::make($randomString)]);
-             return redirect()->route('Login_Admin')->with('thanhcong','Mật khẩu mới đã được gửi tới email của bạn. Vui lòng kiểm tra email để lấy mật khẩu và đăng nhập.');  
+             return redirect()->route('home')->with('thanhcong','Mật khẩu mới đã được gửi tới email của bạn. Vui lòng kiểm tra email để lấy mật khẩu và đăng nhập.');  
       }
       else
             return redirect()->back()->with('thatbai','Nhập Không Đúng Email hoặc Email Bạn Không Tồn Tại');
     }
+
+    //gọi trang quên mật khẩu
    public function ForgetPassword() {
    return view('page.ForgetPassWord');
    }
@@ -94,7 +93,7 @@ class Admin_Controller extends Controller
   
       return view('Admin.User_Admin',compact('user'));
    }
-   
+   //thêm tài khoản nhân viên
    public function Insert_User(Request $req){
       $name = $req->input('new_name');
       $email = $req->input('new_email');
@@ -114,6 +113,7 @@ class Admin_Controller extends Controller
           return "1"."Đăng ký thành công.";
         }
    } 
+   //xóa tài khoản nhân viên
    public function Delete_User(Request $req){
       $id = $req->id;
       $user=User::Delete_User($id);

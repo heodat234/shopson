@@ -29,8 +29,9 @@
 											
 										</div>
 										<div class="item-info-product ">
-											<h4><a href="{{ route('singleProduct',$pro->id) }}">{{ $pro->name }}</a></h4>
-											<br>
+											<div style="height: 50px">
+												<h4><a href="{{ route('singleProduct',$pro->id) }}">{{ $pro->name }}</a></h4>
+											</div>
 											<div class="snipcart-details  hvr-outline-out button2">
 												<a href="{{ route('singleProduct',$pro->id) }}">Xem Chi Tiết</a>
 											</div>

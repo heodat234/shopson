@@ -7,8 +7,8 @@
 						<i class="fa fa-truck" aria-hidden="true"></i>
 					</div>
 					<div class="w3layouts_mail_grid_left2">
-						<h3>FREE SHIPPING</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur</p>
+						<h3>MIỄN PHÍ VẬN CHUYỂN</h3>
+						<p>Vận chuyển giao hàng tận nơi</p>
 					</div>
 				</div>
 				<div class="col-md-3 w3layouts_mail_grid_left">
@@ -16,8 +16,8 @@
 						<i class="fa fa-headphones" aria-hidden="true"></i>
 					</div>
 					<div class="w3layouts_mail_grid_left2">
-						<h3>24/7 SUPPORT</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur</p>
+						<h3>HỖ TRỢ 24/7</h3>
+						<p>Hỗ trợ khách hàng mọi lúc, tận tình, chu đáo</p>
 					</div>
 				</div>
 				<div class="col-md-3 w3layouts_mail_grid_left">
@@ -25,8 +25,8 @@
 						<i class="fa fa-shopping-bag" aria-hidden="true"></i>
 					</div>
 					<div class="w3layouts_mail_grid_left2">
-						<h3>MONEY BACK GUARANTEE</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur</p>
+						<h3>BẢO HÀNH TOÀN DIỆN</h3>
+						<p>Thời gian bảo hành tới 30 ngày, đổi trả miễn phí</p>
 					</div>
 				</div>
 					<div class="col-md-3 w3layouts_mail_grid_left">
@@ -34,8 +34,8 @@
 						<i class="fa fa-gift" aria-hidden="true"></i>
 					</div>
 					<div class="w3layouts_mail_grid_left2">
-						<h3>FREE GIFT COUPONS</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur</p>
+						<h3>MIỄN PHÍ QUÀ TẶNG</h3>
+						<p>Luôn có nhiều chương trình giảm giá hấp dẫn</p>
 					</div>
 				</div>
 				<div class="clearfix"> </div>
@@ -49,9 +49,7 @@
 	<div class="footer_agile_inner_info_w3l">
 		<div class="col-md-3 footer-left">
 			<h2><a href="index.html"><span>V</span>ila Paint </a></h2>
-			<p>Lorem ipsum quia dolor
-			sit amet, consectetur, adipisci velit, sed quia non 
-			numquam eius modi tempora.</p>
+			<p>Sơn Vila Paint tự hào là hệ thống kinh doanh sơn lớn, uy tín, được sự bảo trợ của các nhà sản xuất để có được những sản phẩm chất lượng, giá thành hợp lý nhất cho mọi khách hàng.</p>
 			<ul class="social-nav model-3d-0 footer-social w3_agile_social two">
 															<li><a href="#" class="facebook">
 																  <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>

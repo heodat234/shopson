@@ -47,7 +47,7 @@
                     </tr>
                     <div style="display: none;">{{ $totalPrice += $bill_detail->quantity*$bill_detail->sales_price }} </div>      
                     @endforeach
-                    <div id="totalPrice"><b>Tổng tiền: </b>  {{ number_format($totalPrice) }} VNĐ <span style="margin-left: 300px"><b>Ngày mua: </b> {{ $bill_details[0]->created_at }}</span></div><br>
+                    <div id="totalPrice"><b>Tổng tiền: </b>  {{ number_format($totalPrice) }} VNĐ <span style="margin-left: 300px"><b>Ngày mua: </b>{{ date("d/m/Y - H:i:s",strtotime($bill_details[0]->created_at)) }}</span></div><br>
                 </tbody>
             </table>
 

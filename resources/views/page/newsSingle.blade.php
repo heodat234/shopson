@@ -45,7 +45,7 @@
 					<div class="blog-post-area">
 						<h2 class="title text-center">Nội dung</h2>
 						<div class="single-blog-post">
-							<h3>{{ $news->title }}</h3>
+							<h2><b>{{ $news->title }}</b></h2>
 							<div class="post-meta">
 								<ul>
 									<li><i class="fa fa-user"></i> {{ $news->full_name }}</li>

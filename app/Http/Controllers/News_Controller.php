@@ -8,13 +8,15 @@ use DB;
 use Auth;
 class News_Controller extends Controller
 {	
+    //gọi trang tin tức
     public function getNews()
     {
-    	$news =News::NewById(1)->first();
+    	$news =News::NewsById(1)->first();
         $id=1;
     	return view('page.newsSingle',compact('news','id'));
 
     }
+    //lấy tin tức theo id
     public function news_By_Id($id)
     {
     	$news = News::NewsById($id)->first();
@@ -41,6 +43,8 @@ class News_Controller extends Controller
     	$new = News::NewsById($id)->first();
     	return view('admin.Modify_News',compact('new','id'));
     }
+
+
 
     public function Edit_News(Request $req)
     {
