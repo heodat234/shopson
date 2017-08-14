@@ -5,7 +5,7 @@
 @if($banner[$i]->position==4)
 <div class="page-head_agile_info_w3l"  style="background-image: url(images/banner/{{ $banner[$i]->hinh }});">
 	<div class="container">
-		<h3>C<span>ontact Us </span></h3>
+		<h3>L<span>iên Hệ </span></h3>
 		<div class="services-breadcrumb">
 			<div class="agile_inner_breadcrumb">
 				<ul class="w3_short">

@@ -131,12 +131,12 @@
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="hidden" name="email" value="{{Auth::User()->email}}">
                             <div class="form-group">
-                                <label>Old Password</label>
+                                <label>Mật khẩu cũ</label>
                                 <input type="password" name="passwordOld" class="form-control" required="" placeholder="Nhập mật khẩu cũ" autocomplete="off">
                             </div>
 
                             <div class="form-group">
-                                <label>Password</label>
+                                <label>Mật khẩu mới</label>
                                 <input type="password" name="password" id="password1" class="form-control"  required ="" placeholder="Nhập mật khẩu mới" autocomplete="off">
                                 <div class="col-sm-6">
                                   <span id="8char" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> 8 kí tự trở lên<br>
@@ -148,7 +148,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Nhập lại password</label>
+                                <label>Nhập lại mật khẩu</label>
                                 <input type="password" name="password2" id="password2" class="form-control" required ="" placeholder="Nhập lại mật khẩu mới" autocomplete="off">
                                  <div class="col-sm-12">
                                   <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Mật khẩu phù hợp
@@ -168,11 +168,11 @@
     </div>
     <!-- end change password -->
 
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
       $(document).ready(function() {
         $('#Mytable').DataTable();
   
 });
       
-    </script>
+    </script> --}}
 @endsection

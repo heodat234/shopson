@@ -71,8 +71,8 @@
 							Chào {{Auth::User()->full_name}}
 						</a>
 						<ul class="dropdown-menu drp-mnu">
-							<li> <a href="{{ route('profileAdmin') }}"><i class="fa fa-user"></i> Profile</a> </li>
-							<li> <a href="{{route('logout')}}"><i class="fa fa-sign-out"></i> Logout</a> </li>
+							<li> <a href="{{ route('profileAdmin') }}"><i class="fa fa-user"></i> Trang cá nhân</a> </li>
+							<li> <a href="{{route('logout')}}"><i class="fa fa-sign-out"></i> Đăng xuất</a> </li>
 						</ul>
 					</li>
 					@endif

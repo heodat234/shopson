@@ -174,17 +174,17 @@
             <input type="hidden" name="id" value="{{Auth::User()->id}}">
             <div class="styled-input agile-styled-input-top">
               <input type="text" name="name" id="editName" value="{{Auth::User()->full_name}}" required="">
-              <label>Name</label>
+              <label>Tên</label>
               <span></span>
             </div>
             <div class="styled-input">
               <input type="text" name="phone" pattern="[0-9]*" minlength="10" maxlength="11" title="số điện thoại chỉ được là số và 10 hoặc 11 số " id="editPhone" value="{{Auth::User()->phone}}">
-              <label>Phone</label>
+              <label>Số điện thoại</label>
               <span></span>
             </div>
             <div class="styled-input">
               <input type="text" name="address" id="editAddress" value="{{Auth::User()->address}}">
-              <label>Address</label>
+              <label>Địa chỉ</label>
               <span></span>
             </div>
             <input type="submit" class="col-xs-12 btn btn-primary btn-load btn-lg" data-loading-text="Changing Password..." value="Lưu" >

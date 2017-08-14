@@ -29,7 +29,7 @@
 			<form action="{{ route('searchSingle') }}" method="post">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<input type="hidden" name="id" id="idSearch" value="">
-				<input type="search" name="search" class="biginput" id="searchPro" placeholder="Search here..." required="">
+				<input type="search" name="search" class="biginput" id="searchPro" placeholder="Tìm kiếm" required="">
 				<input type="submit"  value=" ">
 				<div class="clearfix"></div>
 			</form>

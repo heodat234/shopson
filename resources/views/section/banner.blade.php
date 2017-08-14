@@ -8,8 +8,7 @@
 				<figure class="effect-roxy">
 					<img src="images/banner/{{ $banner[$i]->hinh }}" style="height: 250px" alt=" " class="img-responsive" />
 					<figcaption>
-					<h3><span>F</span>all Ahead</h3>
-					<p>Mới về</p>
+					
 					</figcaption>
 				</figure>
 			</div>
@@ -25,7 +24,7 @@
 	@for($i=1;$i<count($banner);$i++)
 		@if($banner[$i]->position==2)
 			<div class="col-md-6 multi-gd-img multi-gd-text ">
-				<a href="womens.html"><img src="images/banner/{{ $banner[$i]->hinh }}" style="height: 400px" alt=" "><h4>Flat <span>50%</span> offer</h4></a>
+				<a href="womens.html"><img src="images/banner/{{ $banner[$i]->hinh }}" style="height: 400px" alt=" "></a>
 				
 			</div>
 		@endif

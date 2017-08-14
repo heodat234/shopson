@@ -3,8 +3,6 @@
 
 <div class="main-grid">
     <div class="agile-grids">
-        
-        
         <div class="container">
         @if(Session::has('thatbai'))
             <div class="alert alert-error">{{Session::get('thatbai')}}</div>
@@ -52,7 +50,7 @@
                                 <textarea id="ckeditor" name="desc">{!! $category->description !!}</textarea>
                             </div>
                             <div style="margin-left: 45%">
-                                <button type="submit" id="saveEdit" class="button submit-button btn btn-info btn-lg glyphicon glyphicon-floppy-save" style="border-radius: 10px;">  Save</button>
+                                <button type="submit" id="saveEdit" class="button submit-button btn btn-info btn-lg glyphicon glyphicon-floppy-save" style="border-radius: 10px;">  Lưu</button>
                             </div>
                         </form>
 
@@ -76,7 +74,6 @@
                             <div class="form-group">
                                 <label>Tên Loại Cha</label>
                                 <select class="form-control" id="type_cha" name ="type_cha">
-                                        <option  id="0" value="0">Không có loại cha</option>
                                         @foreach( $typeParent as $typeCha )
                                             <option  id="{{$typeCha->id}}" value="{{$typeCha->id}}">{{$typeCha->name}}</option>
                                         @endforeach
@@ -92,7 +89,7 @@
                                 <textarea id="ckeditor" name="desc"></textarea>
                             </div>
                             <div style="margin-left: 45%">
-                                <button type="submit" id="saveAdd" class="button submit-button btn btn-info btn-lg glyphicon glyphicon-floppy-save" style="border-radius: 10px;">  Save</button>
+                                <button type="submit" id="saveAdd" class="button submit-button btn btn-info btn-lg glyphicon glyphicon-floppy-save" style="border-radius: 10px;">  Lưu</button>
                             </div>
                         </form>
 

@@ -55,9 +55,9 @@
 	@if($banner[$i]->position==3)
 		<div class="sale-w3ls" style="background-image: url('images/banner/{{ $banner[$i]->hinh }}');">
 			<div class="container">
-				<h6>We Offer Flat <span>40%</span> Discount</h6>
+				{{-- <h6>We Offer Flat <span>40%</span> Discount</h6>
 				
-				<a class="hvr-outline-out button2" href="single.html">Shop Now </a>
+				<a class="hvr-outline-out button2" href="single.html">Shop Now </a> --}}
 			</div>
 		</div>
 	@endif

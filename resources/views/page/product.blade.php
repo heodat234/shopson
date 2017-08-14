@@ -44,7 +44,7 @@
 		<div class="col-md-3 products-left">
 			{{-- {{ dd($Product) }} --}}
 			<div class="css-treeview">
-				<h4>Sản Phẩm</h4>
+				<h4>Danh mục</h4>
 				<ul class="tree-list-pad">
 					@foreach($typeParent as $typeCha)
 					@if($typeCha->id==$id)
@@ -70,7 +70,7 @@
 		<div class="clearfix"></div>
 	</div>
 	<div class="col-md-8 products-right">
-		<h5>Product <span>Compare(0)</span></h5>
+		<h5>Sản phẩm <span></span></h5>
 		<div class="sort-grid">
 			
 			<div class="sorting">

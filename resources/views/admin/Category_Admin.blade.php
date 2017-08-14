@@ -2,6 +2,7 @@
 @section('admin.Content')
 
 <div class="main-grid" style="overflow: scroll;">
+    <div class="social grid">
         <div class="agile-grids">
             <div class="table-heading">
                 @if($type==0)
@@ -51,7 +52,9 @@
     
                                     <td>
                                         <button class="btn btn-info btn-lg glyphicon glyphicon-hand-right" style="border-radius: 10px;" title="Sửa thông tin loại" onclick="editRow({{ $cate->id }})"></button>
+                                        @if($cate->type_cha!=0)
                                         <button class="btn btn-warning btn-lg glyphicon glyphicon-trash" style="border-radius: 10px" title="Xóa loại" onclick="delete_row('{{ $cate->id}}');"></button>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
@@ -90,12 +93,13 @@
             </div>
         </div>
     </div>
+</div>
 
-    <script type="text/javascript">
+<script type="text/javascript">
     $(document).ready(function(){
         $('#cateduct_table').DataTable();
     });
-    
+
     function addRow(){
         var  route="{{ route('ViewPage_InsertCategory') }}";
         window.location.replace(route);
@@ -106,7 +110,7 @@
         route = route.replace('id',id);
         window.location.replace(route);
     }
-    
+
 
     function delete_row(id)
     {
@@ -145,6 +149,5 @@
         }
         );
     }
-
-    </script>
-    @endsection
+</script>
+@endsection

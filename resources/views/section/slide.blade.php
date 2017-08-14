@@ -15,9 +15,9 @@
 		<div class="item" style="background-image:url(images/banner/{{ $banner[$i]->hinh }}); ">
 			<div class="container">
 				<div class="carousel-caption">
-					<h3>Giảm giá<span>Lớn</span></h3>
+					{{-- <h3>Giảm giá<span>Lớn</span></h3>
 					<p>Đặc biệt hôm nay</p>
-					<a class="hvr-outline-out button2" href="mens.html">Xem Ngay </a>
+					<a class="hvr-outline-out button2" href="mens.html">Xem Ngay </a> --}}
 				</div>
 			</div>
 		</div>
@@ -27,20 +27,20 @@
 		<div class="item active" style="background-image:url(images/banner/{{ $banner[0]->hinh }}); ">
 			<div class="container">
 				<div class="carousel-caption">
-					<h3>Giảm giá<span>Lớn</span></h3>
+					{{-- <h3>Giảm giá<span>Lớn</span></h3>
 					<p>Đặc biệt hôm nay</p>
-					<a class="hvr-outline-out button2" href="mens.html">Xem Ngay </a>
+					<a class="hvr-outline-out button2" href="mens.html">Xem Ngay </a> --}}
 				</div>
 			</div>
 		</div>
 	</div>
 	<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
 		<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-		<span class="sr-only">Previous</span>
+		<span class="sr-only">Lùi</span>
 	</a>
 	<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
 		<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-		<span class="sr-only">Next</span>
+		<span class="sr-only">Tới</span>
 	</a>
 	<!-- The Modal -->
 </div>

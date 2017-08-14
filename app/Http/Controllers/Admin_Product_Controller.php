@@ -240,6 +240,18 @@ class Admin_Product_Controller extends Controller
       return redirect()->route('View_Kho');
    }
 
-	
+	//xem bảng export, xem hàng lỗi
+   public function View_Export()
+   {
+      $exports = Export_Product::Select_Export()->get();
+      return view('admin.Export',compact('exports'));
+   }
+   public function updateErrorQuantity(Request $req)
+   {
+     $id = $req->id;
+     $error = $req->error;
+     $export = Export_Product::Update_Error_Quantity($id,$error);
+     return redirect()->route('View_Export')->with('thanhcong','Sửa hàng lỗi thành công');
+   }
 	
 }

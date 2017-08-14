@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <head>
-<title>Login Admin</title>
+<title>Đăng nhập trang quản trị</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Colored Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -27,7 +27,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		        @endif 
 			<div class="content2">
 				<div class="grids-heading gallery-heading signup-heading">
-					<h2>Đăng Nhập Admin</h2>
+					<h2>Đăng Nhập Trang Quản Trị</h2>
 				</div>
 				@if(Session::has('thatbai'))
 		            <div class="alert alert-danger">{{Session::get('thatbai')}}</div>

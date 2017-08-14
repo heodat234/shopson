@@ -11,7 +11,7 @@
 			<li class="has-subnav">
 				<a href="{{ route('ViewProductAdmin') }}">
 					<i class="fa fa-list-ul" aria-hidden="true"></i>
-					<span class="nav-text">Product</span>
+					<span class="nav-text">Sản phẩm</span>
 					<i class="icon-angle-right"></i><i class="icon-angle-down"></i>
 				</a>
 				<ul>
@@ -27,7 +27,7 @@
 			<li class="has-subnav">
 				<a href="{{ route('View_Category') }}">
 					<i class="fa fa-check-square-o nav_icon"></i>
-					<span class="nav-text">Category</span>
+					<span class="nav-text">Danh mục</span>
 					<i class="icon-angle-right"></i><i class="icon-angle-down"></i>
 				</a>
 				<ul>
@@ -42,14 +42,14 @@
 			<li class="has-subnav">
 				<a href="{{ route('user_Admin') }}">
 					<i class="fa fa-user"></i>
-					<span class="nav-text">User</span>
+					<span class="nav-text">Thành viên</span>
 				</a>
 			</li>
 			<li>
 				<a href="{{ route('ViewPageBill_Admin') }}">
 					<i class="fa fa-file-text-o"></i>
 					<span class="nav-text">
-					Bill
+					Hóa đơn
 					</span>
 				</a>
 			</li>
@@ -65,18 +65,25 @@
 				<a href="{{ route('news_Admin') }}">
 					<i class="fa fa-file-o" aria-hidden="true"></i>
 					<span class="nav-text">
-					News
+					Tin tức
 					</span>
 				</a>
 			</li>
-			
+			<li>
+				<a href="{{ route('View_Export') }}">
+					<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+					<span class="nav-text">
+					Hàng lỗi
+					</span>
+				</a>
+			</li>
 		</ul>
 		<ul class="logout">
 			<li>
 			<a href="{{route('logout')}}">
 			<i class="icon-off nav-icon"></i>
 			<span class="nav-text">
-			Logout
+			Đăng xuất
 			</span>
 			</a>
 			</li>

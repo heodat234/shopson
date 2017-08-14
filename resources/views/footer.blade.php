@@ -68,13 +68,11 @@
 		<div class="col-md-9 footer-right">
 			<div class="sign-grds">
 				<div class="col-md-4 sign-gd">
-					<h4>Our <span>Information</span> </h4>
+					<h4>Thông tin<span></span> </h4>
 					<ul>
-						<li><a href="{{ route('home') }}">Home</a></li>
-						<li><a href="mens.html">Men's Wear</a></li>
-						<li><a href="about.html">About</a></li>
-						<li><a href="typography.html">Short Codes</a></li>
-						<li><a href="{{ route('contact') }}">Contact</a></li>
+						<li><a href="{{ route('home') }}">Trang chủ</a></li>
+						<li><a href="{{ route('contact') }}">Liên hệ</a></li>
+						<li><a href="{{ route('news') }}">Tin tức</a></li>
 					</ul>
 				</div>
 				

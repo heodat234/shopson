@@ -256,6 +256,15 @@ Route::post('Edit_Kho',
 
 
 
+//bang hàng lỗi, bảng export
+Route::get('View_Export',
+	['as'=>'View_Export',
+	 'uses'=>'Admin_Product_Controller@View_Export']);
+
+Route::post('updateErrorQuantity',
+	['as'=>'updateErrorQuantity',
+	 'uses'=>'Admin_Product_Controller@updateErrorQuantity']);
+
 
 //Category
 Route::get('View_Category',

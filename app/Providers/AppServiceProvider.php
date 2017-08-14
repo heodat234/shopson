@@ -60,7 +60,8 @@ class AppServiceProvider extends ServiceProvider
                 $count_All_Bill=Bill::Count_All_Bill();
                 $count_All_User=User::Count_All_User();
                 $count_All_Pro=Product::Count_All_Product();
-                $view->with(['count_bill'=>$count_All_Bill,'count_user'=>$count_All_User,'count_pro'=>$count_All_Pro]);
+                $count_View = Product::Count_View_Product();
+                $view->with(['count_bill'=>$count_All_Bill,'count_user'=>$count_All_User,'count_pro'=>$count_All_Pro,'count_view'=>$count_View]);
         });
     }
 

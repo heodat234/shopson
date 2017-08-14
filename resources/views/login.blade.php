@@ -19,7 +19,7 @@
 						</div>
 						<div class="styled-input">
 							<input type="password" name="password" required="">
-							<label>Password</label>
+							<label>Mật khẩu</label>
 							<span></span>
 						</div>
 						<input type="button" value="Đăng Nhập" onclick="login();">

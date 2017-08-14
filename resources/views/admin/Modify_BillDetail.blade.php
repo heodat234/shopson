@@ -4,13 +4,12 @@
 <div class="main-grid">
     <div class="agile-grids">
         
-
             {{-- add form --}}
             <div class="container">
                 <div class="modal-content " style="width: 100%">
                     <div class="modal-header">
                         
-                        <h3 style="margin-left: 40%" class="modal-title" id="lineModalLabel">Sửa sản phẩm trong bill</h3>
+                        <h3 style="margin-left: 40%" class="modal-title" id="lineModalLabel">Sửa sản phẩm trong hóa đơn</h3>
                     </div>
                     <div class="modal-body">
                         <div class="dangkythatbai alert alert-danger" style="display:none;"></div>
@@ -27,7 +26,7 @@
                                 <input type="text" name="new_password" class="form-control" value="{{ $nameProduct }}" disabled="">
                             </div>
                             <div class="form-group">
-                                <label>Loại thùng</label>
+                                <label>Quy cách</label>
                                 <input type="text" name="new_size" class="form-control" value="{{ $Bill_Detail->size }}" disabled="">
                             </div>
                             <div class="form-group">
@@ -44,7 +43,7 @@
                                 <input type="text" id="price" name="new_price" class="form-control" value="{{ $Bill_Detail->sales_price }}" disabled="">
                             </div>
                             <div style="margin-left: 45%">
-                            <button type="submit" id="saveAdd" class="button submit-button btn btn-info btn-lg glyphicon glyphicon-floppy-save" style="border-radius: 10px;">  Save</button>
+                            <button type="submit" id="saveAdd" class="button submit-button btn btn-info btn-lg glyphicon glyphicon-floppy-save" style="border-radius: 10px;">  Lưu</button>
                             </div>
                         </form>
 

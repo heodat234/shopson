@@ -23,7 +23,7 @@
 						<input type="hidden" name="_token" value="{{csrf_token()}}">
 						<div class="styled-input agile-styled-input-top">
 							<input type="text" name="full_name" required="">
-							<label>Name</label>
+							<label>Tên</label>
 							<span></span>
 						</div>
 						<div class="styled-input">
@@ -33,22 +33,22 @@
 						</div>
 						<div class="styled-input">
 							<input type="password" name="password" required="">
-							<label>Password</label>
+							<label>Mật khẩu</label>
 							<span></span>
 						</div>
 						<div class="styled-input">
 							<input type="password" name="re_password" required="">
-							<label>Confirm Password</label>
+							<label>Nhập lại mật khẩu</label>
 							<span></span>
 						</div>
 						<div class="styled-input">
 							<input type="text" name="phone" minlength="10" maxlength="11" required="" title="Chỉ được nhập số">
-							<label>Phone</label>
+							<label>Số điện thoại</label>
 							<span></span>
 						</div>
 						<div class="styled-input">
 							<input type="text" name="address">
-							<label>Address</label>
+							<label>Địa chỉ</label>
 							<span></span>
 						</div>
 						<input type="button" value="Đăng Ký" onclick="register()">

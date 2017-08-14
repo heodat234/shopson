@@ -8,6 +8,19 @@ class Export_Product extends Model
 {
     protected $table='export_product';
 
+
+    public static function Select_Export()
+    {
+        $export = DB::table('export_product')->where('export_product.status',0)
+                    ->join('products','products.id','=','export_product.id_product')
+                    ->select('export_product.id','export_product.size','export_product.error_quantity','products.name');
+        return $export;
+    }
+
+    public static function Update_Error_Quantity($id,$err)
+    {
+        $export = DB::table('export_product')->where('id',$id)->update(['error_quantity'=>$err]);
+    }
     public static function Find_Export_Product($id)
     {
     	$ex_pro = DB::table('export_product')->select()->where('id',$id);

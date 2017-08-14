@@ -48,7 +48,7 @@ class Category_Controller extends Controller
       $desc = $req->desc;
       $imageOld = $req->imageOld;
       if ($req->hasFile('image')) {
-         $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
+         $allowed = array("jpg" => "image/jpg", "JPG" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
          $typefile= $req->file('image')->getClientOriginalExtension();
          
          if(!array_key_exists($typefile, $allowed)) {

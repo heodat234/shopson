@@ -10,7 +10,7 @@
                 <div class="modal-content " style="width: 100%">
                     <div class="modal-header">
                         
-                        <h3 style="margin-left: 40%" class="modal-title" id="lineModalLabel">Sửa sản phẩm trong bill</h3>
+                        <h3 style="margin-left: 40%" class="modal-title" id="lineModalLabel">Sửa tình trạng hóa đơn</h3>
                     </div>
                     <div class="modal-body">
                         <div class="dangkythatbai alert alert-danger" style="display:none;"></div>
@@ -40,7 +40,7 @@
                                 </select>
                             </div>
                             <div style="margin-left: 45%" >
-                            <button type="submit" id="saveAdd" class="button submit-button btn btn-info btn-lg glyphicon glyphicon-floppy-save" style="border-radius: 10px;">  Save</button>
+                            <button type="submit" id="saveAdd" class="button submit-button btn btn-info btn-lg glyphicon glyphicon-floppy-save" style="border-radius: 10px;">  Lưu</button>
                             </div>
                         </form>
 

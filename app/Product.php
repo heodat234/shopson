@@ -132,19 +132,24 @@ class Product extends Model
           return $pro;
     }
     //lấy tất cả tên sản phẩm, id cho vào các trang edit
-    public static function Product_Info_By_Id($id,$size)
+    public static function Product_Info_By_Id($id,$idsize)
     {
       $product=DB::table('products')
-                  ->where([['products.id',$id]])
+                  ->where('products.id',$id)
                   ->join('export_product','products.id','=','export_product.id_product')
-                  ->where([['export_product.size','LIKE','%'.$size.'%'],['export_product.status',0]])
+                  ->where('export_product.id',$idsize)
                   ->select('products.id','products.name','products.image','products.description','products.id_type', 'products.type','export_product.size','export_product.export_price','export_product.id as idsize');
       return $product;
     }
   
     public static function Count_All_Product()
     {
-        $pro = DB::table('products')->count();
+        $pro = DB::table('products')->where('status',0)->count();
+        return $pro;
+    }
+    public static function Count_View_Product()
+    {
+        $pro = DB::table('products')->sum('view');
         return $pro;
     }
   

@@ -2,6 +2,7 @@
 @section('admin.Content')
 
 <div class="main-grid" style="overflow: scroll;">
+    <div class="social grid">
         <div class="agile-grids">
             <div class="table-heading">
                 @if($typepro==0)
@@ -106,6 +107,7 @@
             </div>
         </div>
     </div>
+</div>
 
     <script type="text/javascript">
     $(document).ready(function(){
