@@ -39,12 +39,14 @@
 					@endforeach
 				</ul>
 			</li>
+			@if(Auth::User()->group >=2)
 			<li class="has-subnav">
 				<a href="{{ route('user_Admin') }}">
 					<i class="fa fa-user"></i>
 					<span class="nav-text">Thành viên</span>
 				</a>
 			</li>
+			@endif
 			<li>
 				<a href="{{ route('ViewPageBill_Admin') }}">
 					<i class="fa fa-file-text-o"></i>
@@ -80,7 +82,7 @@
 		</ul>
 		<ul class="logout">
 			<li>
-			<a href="{{route('logout')}}">
+			<a href="{{route('logout_Admin')}}">
 			<i class="icon-off nav-icon"></i>
 			<span class="nav-text">
 			Đăng xuất

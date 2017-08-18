@@ -20,7 +20,7 @@
   @endif
 @endfor
 
-<div class="container">
+<div class="container" >
       <div class="row">
       
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
@@ -37,7 +37,7 @@
             </div>
             <div class="panel-body">
               <div class="row">
-                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive"> </div>
+                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="images/avatar.png" class="img-circle img-responsive"> </div>
                 
                 
                 <div class=" col-md-9 col-lg-9 "> 
@@ -193,7 +193,7 @@
           <div class="clearfix"></div>
         </div>
         <div class="col-md-4 modal_body_right modal_body_right1">
-          <img src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" alt=" "/>
+          <img src="images/avatar.png" alt=" "/>
         </div>
         <div class="clearfix"></div>
           </div>
@@ -261,7 +261,7 @@
           <div class="clearfix"></div>
         </div>
         <div class="col-md-4 modal_body_right modal_body_right1">
-          <img src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" alt=" "/>
+          <img src="images/avatar.png" alt=" "/>
         </div>
         <div class="clearfix"></div>
           </div>

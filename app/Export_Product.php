@@ -45,7 +45,7 @@ class Export_Product extends Model
     {
         $qty = DB::table('export_product')
                     ->where('id_product',$idPro)
-                    ->where('size','LIKE','%'.$size.'%')
+                    ->where('size',$size)
                     ->decrement('export_quantity',$quantity);
         return $qty;
     }

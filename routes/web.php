@@ -187,10 +187,17 @@ Route::post('ForgetPassword_Admin',
 	['as'=>'ForgetPassword_Admin',
 	'uses'=>'Admin_Controller@PostForgetPassword']);
 
+Route::get('loginForgetPassword/{email}/{pass}',
+	['as'=>'loginForgetPassword',
+	'uses'=>'Admin_Controller@loginForgetPassword']);
+
 Route::get('profileAdmin',
 	['as'=>'profileAdmin',
 	 'uses'=>'Admin_Controller@getProfileAdmin']);
 
+Route::get('logout_Admin',[
+	'as'=>'logout_Admin',
+	'uses'=>'LoginRegister_Controller@getLogout_Admin']);
 
 
 //Product

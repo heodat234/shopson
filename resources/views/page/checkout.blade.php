@@ -137,7 +137,7 @@
 	                                                <td style="width: 175px;">
 	                                                    <label for="id_phone">Số điện thoại:</label></td>
 	                                                <td>
-	                                                    <input class="form-control" id="id_phone" name="phone" type="number" value="{{Auth::User()->phone}}" />
+	                                                    <input class="form-control" id="id_phone" name="phone" pattern="[0-9]*" minlength="10" maxlength="11" title="số điện thoại chỉ được là số và 10 hoặc 11 số " type="text" value="{{Auth::User()->phone}}" />
 	                                                </td>
 	                                            </tr>
 	                                            @else
@@ -173,7 +173,7 @@
 		                                                <td style="width: 175px;">
 		                                                    <label for="id_phone">Số điện thoại:</label></td>
 		                                                <td>
-		                                                    <input class="form-control" id="id_phone"  name="phone" type="number"  />
+		                                                    <input class="form-control" id="id_phone" pattern="[0-9]*" minlength="10" maxlength="11" title="số điện thoại chỉ được là số và 10 hoặc 11 số " name="phone" type="text"  />
 		                                                </td>
 		                                            </tr>
 	                                            @endif

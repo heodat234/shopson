@@ -191,9 +191,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 }(document, 'script', 'facebook-jssdk'));</script>
 
 
-<script type="text/javascript">
-	$('.alert').hide(2000);
-</script>
+
 {{-- hien ban màu --}}
 <script src=" //ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js "></script>
 <script src = " js/tinycolor-0.9.15.min.js "></script>

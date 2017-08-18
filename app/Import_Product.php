@@ -64,7 +64,7 @@ class Import_Product extends Model
     
     public static function Find_Import_By_IdPro($idPro,$size)
     {
-        $size = DB::table('import_product')->where([['id_product',$idPro],['size','LIKE','%'.$size.'%']])->orderBy('id','DESC')->select();
+        $size = DB::table('import_product')->where([['id_product',$idPro],['size',$size]])->orderBy('id','DESC')->select();
         return $size;
     }
     

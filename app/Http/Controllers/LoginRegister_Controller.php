@@ -67,13 +67,8 @@ class LoginRegister_Controller extends Controller
     }
     //thoát
     public function getLogout(){
-      if (Auth::User()->group ==0 ) {
         Auth::logout();
         return redirect()->route('home');
-      }else{
-        Auth::logout();
-        return redirect()->route('Login_Admin');
-      }
     }
 
    

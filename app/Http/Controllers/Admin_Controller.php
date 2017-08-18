@@ -32,6 +32,12 @@ class Admin_Controller extends Controller
    {
       return view('Admin.login_Admin');
    }
+   //dang xuất
+   public function getLogout_Admin(){
+        Auth::logout();
+        return redirect()->route('Login_Admin');
+    }
+
    public function getProfileAdmin()
    {
       return view('admin.profile');
@@ -53,7 +59,7 @@ class Admin_Controller extends Controller
     }
     //gửi lại password mới về mail
    public function PostForgetPassword(Request $req){
-      $user=User::User_All()->where('email',$req->email)->get();
+      $user=User::User_All()->where('users.email',$req->email)->get();
       // dd($user[0]->email);
       if(isset($user[0])){
             $characters ='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -62,19 +68,23 @@ class Admin_Controller extends Controller
             for ($i = 0; $i <8 ; $i++) {
                  $randomString .= $characters[rand(0, $charactersLength - 1)];
              }
-            Mail::send('page.mailForgetPass',['matkhau'=>$randomString], function ($message)  use ($user)
+            Mail::send('page.mailForgetPass',['matkhau'=>$randomString,'email'=>$user[0]->email], function ($message)  use ($user)
             {
               $message->from('thanhhung23495@gmail.com', "Sơn ViLa Paint");
               $message->to($user[0]->email,$user[0]->full_name);
               $message->subject('Cấp lại mật khẩu');
             });
-             DB::table('users')->where('email','=',$req->email)->update(['password'=>Hash::make($randomString)]);
+             
              return redirect()->route('home')->with('thanhcong','Mật khẩu mới đã được gửi tới email của bạn. Vui lòng kiểm tra email để lấy mật khẩu và đăng nhập.');  
       }
       else
             return redirect()->back()->with('thatbai','Nhập Không Đúng Email hoặc Email Bạn Không Tồn Tại');
     }
-
+    public function loginForgetPassword($email, $pass)
+    {
+      DB::table('users')->where('email','=',$email)->update(['password'=>Hash::make($pass)]);
+      return redirect()->route('home')->with('thanhcong','Đăng nhập với mật khẩu đã gửi tới mail của bạn.');  
+    }
     //gọi trang quên mật khẩu
    public function ForgetPassword() {
    return view('page.ForgetPassWord');
